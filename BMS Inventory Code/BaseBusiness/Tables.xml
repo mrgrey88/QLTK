@@ -1,0 +1,238 @@
+<Tables>
+
+	<Table>
+		<name>DesignSummary</name>
+		<column>
+			<name>iD</name>
+			<dataType>bigint</dataType>
+			<isPK>true</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias></alias>
+			<number>0</number>
+		</column>
+		<column>
+			<name>projectId</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Project Id</alias>
+			<number>1</number>
+		</column>
+		<column>
+			<name>projectCode</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Project Code</alias>
+			<number>2</number>
+		</column>
+		<column>
+			<name>productId</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Product Id</alias>
+			<number>3</number>
+		</column>
+		<column>
+			<name>contractId</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Contract Id</alias>
+			<number>4</number>
+		</column>
+		<column>
+			<name>customerName</name>
+			<dataType>nvarchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Customer Name</alias>
+			<number>5</number>
+		</column>
+		<column>
+			<name>userNamePTC</name>
+			<dataType>nvarchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>User Name P T C</alias>
+			<number>6</number>
+		</column>
+		<column>
+			<name>departmentIDYC</name>
+			<dataType>int</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Department I D Y C</alias>
+			<number>7</number>
+		</column>
+		<column>
+			<name>departmentIDTH</name>
+			<dataType>int</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Department I D T H</alias>
+			<number>8</number>
+		</column>
+		<column>
+			<name>dateYC</name>
+			<dataType>datetime</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Date Y C</alias>
+			<number>9</number>
+		</column>
+		<column>
+			<name>dateHT</name>
+			<dataType>datetime</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Date H T</alias>
+			<number>10</number>
+		</column>
+		<column>
+			<name>hangMuc</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Hang Muc</alias>
+			<number>11</number>
+		</column>
+		<column>
+			<name>version</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Version</alias>
+			<number>12</number>
+		</column>
+		<column>
+			<name>userID</name>
+			<dataType>int</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>User</alias>
+			<number>13</number>
+		</column>
+		<column>
+			<name>productNameTK</name>
+			<dataType>nvarchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Product Name T K</alias>
+			<number>14</number>
+		</column>
+		<column>
+			<name>productCodeTK</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Product Code T K</alias>
+			<number>15</number>
+		</column>
+		<column>
+			<name>productNamePhu</name>
+			<dataType>nvarchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Product Name Phu</alias>
+			<number>16</number>
+		</column>
+		<column>
+			<name>productCodePhu</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Product Code Phu</alias>
+			<number>17</number>
+		</column>
+		<column>
+			<name>createdBy</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Created By</alias>
+			<number>18</number>
+		</column>
+		<column>
+			<name>createdDate</name>
+			<dataType>datetime</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Created Date</alias>
+			<number>19</number>
+		</column>
+		<column>
+			<name>updatedBy</name>
+			<dataType>varchar</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Updated By</alias>
+			<number>20</number>
+		</column>
+		<column>
+			<name>updatedDate</name>
+			<dataType>datetime</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Updated Date</alias>
+			<number>21</number>
+		</column>
+		<column>
+			<name>isApproved</name>
+			<dataType>bit</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Is Approved</alias>
+			<number>22</number>
+		</column>
+	</Table>
+
+</Tables>
+

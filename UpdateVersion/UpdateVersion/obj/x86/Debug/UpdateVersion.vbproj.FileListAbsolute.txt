@@ -1,0 +1,41 @@
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\bin\Debug\UpdateVersion.exe
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\bin\Debug\UpdateVersion.pdb
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\bin\Debug\UpdateVersion.xml
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\obj\x86\Debug\UpdateVersion.frmUpdateVersion.resources
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\obj\x86\Debug\UpdateVersion.Resources.resources
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\obj\x86\Debug\UpdateVersion.exe
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\obj\x86\Debug\UpdateVersion.xml
+C:\Users\thao.nv\AppData\Local\Temporary Projects\UpdateVersion\obj\x86\Debug\UpdateVersion.pdb
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.exe
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.xml
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.pdb
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\bin\Debug\UpdateVersion.exe
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\bin\Debug\UpdateVersion.pdb
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\bin\Debug\UpdateVersion.xml
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.frmUpdateVersion.resources
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.Resources.resources
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\Projects\Dự án hỗ trợ phòng thiết kế\UpdateVersion\UpdateVersion\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.exe
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.xml
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.pdb
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\bin\Debug\UpdateVersion.exe
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\bin\Debug\UpdateVersion.pdb
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\bin\Debug\UpdateVersion.xml
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.frmUpdateVersion.resources
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.Resources.resources
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\bin\Debug\BaseBusiness.dll
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\bin\Debug\Utilities.dll
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\bin\Debug\TpaInvClass.dll
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\bin\Debug\BaseBusiness.pdb
+D:\Projects\QUẢN LÝ KẾ HOẠCH THIẾT KẾ\UpdateVersion\UpdateVersion\bin\Debug\Utilities.pdb
+D:\TanPhat\QLTK\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.exe
+D:\TanPhat\QLTK\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.xml
+D:\TanPhat\QLTK\UpdateVersion\UpdateVersion\obj\x86\Debug\UpdateVersion.pdb

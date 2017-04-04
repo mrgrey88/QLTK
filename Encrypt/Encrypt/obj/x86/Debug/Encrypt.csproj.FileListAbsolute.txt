@@ -1,0 +1,9 @@
+D:\Projects\Encrypt\Encrypt\bin\Debug\Encrypt.exe
+D:\Projects\Encrypt\Encrypt\bin\Debug\Encrypt.pdb
+D:\Projects\Encrypt\Encrypt\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Projects\Encrypt\Encrypt\obj\x86\Debug\Encrypt.frmEncrypt.resources
+D:\Projects\Encrypt\Encrypt\obj\x86\Debug\Encrypt.Properties.Resources.resources
+D:\Projects\Encrypt\Encrypt\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+D:\Projects\Encrypt\Encrypt\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+D:\Projects\Encrypt\Encrypt\obj\x86\Debug\Encrypt.exe
+D:\Projects\Encrypt\Encrypt\obj\x86\Debug\Encrypt.pdb
