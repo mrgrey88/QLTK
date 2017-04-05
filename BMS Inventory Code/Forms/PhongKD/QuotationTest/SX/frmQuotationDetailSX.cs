@@ -321,6 +321,8 @@ namespace BMS
                 item.Qty = item.QtyT = TextUtils.ToDecimal(txtQtyT.EditValue);
             }
 
+            //item.Cr
+
             item.ID = (int)C_QuotationDetail_SXBO.Instance.Insert(item);
 
             if (item.ParentID > 0)
@@ -346,10 +348,10 @@ namespace BMS
 
         private void btnImportExcel_Click(object sender, EventArgs e)
         {
-            frmQuotationDetailImport frm = new frmQuotationDetailImport();
-            frm.QuotationID = Quotation.ID;
-            frm.LoadDataChange += main_LoadDataChange;
-            TextUtils.OpenForm(frm);
+            //frmQuotationDetailImport frm = new frmQuotationDetailImport();
+            //frm.QuotationID = Quotation.ID;
+            //frm.LoadDataChange += main_LoadDataChange;
+            //TextUtils.OpenForm(frm);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -668,11 +670,6 @@ namespace BMS
                     btnSave_Click(null, null);
                 }
             }
-        }
-
-        private void btnImportExcel_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

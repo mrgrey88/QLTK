@@ -1,321 +1,7 @@
 <Tables>
 
 	<Table>
-		<name>C_Quotation_KD</name>
-		<column>
-			<name>iD</name>
-			<dataType>int</dataType>
-			<isPK>true</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias></alias>
-			<number>0</number>
-		</column>
-		<column>
-			<name>code</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Code</alias>
-			<number>1</number>
-		</column>
-		<column>
-			<name>pOnumber</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>P Onumber</alias>
-			<number>2</number>
-		</column>
-		<column>
-			<name>projectCode</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Project Code</alias>
-			<number>3</number>
-		</column>
-		<column>
-			<name>projectName</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Project Name</alias>
-			<number>4</number>
-		</column>
-		<column>
-			<name>departmentName</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Department Name</alias>
-			<number>5</number>
-		</column>
-		<column>
-			<name>customerCode</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Customer Code</alias>
-			<number>6</number>
-		</column>
-		<column>
-			<name>customerName</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Customer Name</alias>
-			<number>7</number>
-		</column>
-		<column>
-			<name>customerCodeF</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Customer Code F</alias>
-			<number>8</number>
-		</column>
-		<column>
-			<name>customerNameF</name>
-			<dataType>nvarchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Customer Name F</alias>
-			<number>9</number>
-		</column>
-		<column>
-			<name>departmentId</name>
-			<dataType>varchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Department Id</alias>
-			<number>10</number>
-		</column>
-		<column>
-			<name>customerType</name>
-			<dataType>int</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Customer Type</alias>
-			<number>11</number>
-		</column>
-		<column>
-			<name>totalDP_KD</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total D P_ K D</alias>
-			<number>12</number>
-		</column>
-		<column>
-			<name>totalDP_SX</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total D P_ S X</alias>
-			<number>13</number>
-		</column>
-		<column>
-			<name>totalVC_KD</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total V C_ K D</alias>
-			<number>14</number>
-		</column>
-		<column>
-			<name>totalBX_KD</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total B X_ K D</alias>
-			<number>15</number>
-		</column>
-		<column>
-			<name>totalVCBX</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total V C B X</alias>
-			<number>16</number>
-		</column>
-		<column>
-			<name>totalCPVCHB_C13</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total C P V C H B_ C13</alias>
-			<number>17</number>
-		</column>
-		<column>
-			<name>totalBXHB_C52</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total B X H B_ C52</alias>
-			<number>18</number>
-		</column>
-		<column>
-			<name>deliveryTime</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Delivery Time</alias>
-			<number>19</number>
-		</column>
-		<column>
-			<name>status</name>
-			<dataType>int</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Status</alias>
-			<number>20</number>
-		</column>
-		<column>
-			<name>isCustomerVAT</name>
-			<dataType>bit</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Is Customer V A T</alias>
-			<number>21</number>
-		</column>
-		<column>
-			<name>customerCash</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Customer Cash</alias>
-			<number>22</number>
-		</column>
-		<column>
-			<name>customerPercent</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Customer Percent</alias>
-			<number>23</number>
-		</column>
-		<column>
-			<name>isApproved</name>
-			<dataType>bit</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Is Approved</alias>
-			<number>24</number>
-		</column>
-		<column>
-			<name>isVAT</name>
-			<dataType>int</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Is V A T</alias>
-			<number>25</number>
-		</column>
-		<column>
-			<name>statusNC</name>
-			<dataType>int</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Status N C</alias>
-			<number>26</number>
-		</column>
-		<column>
-			<name>createdBy</name>
-			<dataType>varchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Created By</alias>
-			<number>27</number>
-		</column>
-		<column>
-			<name>createdDate</name>
-			<dataType>datetime</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Created Date</alias>
-			<number>28</number>
-		</column>
-		<column>
-			<name>updatedBy</name>
-			<dataType>varchar</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Updated By</alias>
-			<number>29</number>
-		</column>
-		<column>
-			<name>updatedDate</name>
-			<dataType>datetime</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Updated Date</alias>
-			<number>30</number>
-		</column>
-	</Table>
-
-	<Table>
-		<name>C_QuotationDetail_KD</name>
+		<name>C_QuotationDetail_SX</name>
 		<column>
 			<name>iD</name>
 			<dataType>int</dataType>
@@ -437,94 +123,34 @@
 			<number>11</number>
 		</column>
 		<column>
-			<name>priceHD</name>
+			<name>priceVTTN</name>
 			<dataType>decimal</dataType>
 			<isPK>false</isPK>
 			<isFK>false</isFK>
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
-			<alias>Price H D</alias>
+			<alias>Price V T T N</alias>
 			<number>12</number>
 		</column>
 		<column>
-			<name>priceVAT</name>
+			<name>priceVTPS</name>
 			<dataType>decimal</dataType>
 			<isPK>false</isPK>
 			<isFK>false</isFK>
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
-			<alias>Price V A T</alias>
+			<alias>Price V T P S</alias>
 			<number>13</number>
 		</column>
 		<column>
-			<name>priceCP</name>
+			<name>priceVTLD</name>
 			<dataType>decimal</dataType>
 			<isPK>false</isPK>
 			<isFK>false</isFK>
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
-			<alias>Price C P</alias>
+			<alias>Price V T L D</alias>
 			<number>14</number>
-		</column>
-		<column>
-			<name>priceTPA_PreVAT</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Price T P A_ Pre V A T</alias>
-			<number>15</number>
-		</column>
-		<column>
-			<name>priceTPA</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Price T P A</alias>
-			<number>16</number>
-		</column>
-		<column>
-			<name>priceReal</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Price Real</alias>
-			<number>17</number>
-		</column>
-		<column>
-			<name>totalProfitTT</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total Profit T T</alias>
-			<number>18</number>
-		</column>
-		<column>
-			<name>totalProfitQD</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total Profit Q D</alias>
-			<number>19</number>
-		</column>
-		<column>
-			<name>totalPB</name>
-			<dataType>decimal</dataType>
-			<isPK>false</isPK>
-			<isFK>false</isFK>
-			<isUnique>false</isUnique>
-			<tableRelate></tableRelate>
-			<alias>Total P B</alias>
-			<number>20</number>
 		</column>
 		<column>
 			<name>totalNC</name>
@@ -534,37 +160,107 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Total N C</alias>
+			<number>15</number>
+		</column>
+		<column>
+			<name>totalPB_DA</name>
+			<dataType>decimal</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Total P B_ D A</alias>
+			<number>16</number>
+		</column>
+		<column>
+			<name>totalPB</name>
+			<dataType>decimal</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Total P B</alias>
+			<number>17</number>
+		</column>
+		<column>
+			<name>priceCP</name>
+			<dataType>decimal</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Price C P</alias>
+			<number>18</number>
+		</column>
+		<column>
+			<name>priceTPA</name>
+			<dataType>decimal</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Price T P A</alias>
+			<number>19</number>
+		</column>
+		<column>
+			<name>priceHD</name>
+			<dataType>decimal</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Price H D</alias>
+			<number>20</number>
+		</column>
+		<column>
+			<name>priceReal</name>
+			<dataType>decimal</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Price Real</alias>
 			<number>21</number>
 		</column>
 		<column>
-			<name>totalNC_KD</name>
+			<name>priceVAT</name>
 			<dataType>decimal</dataType>
 			<isPK>false</isPK>
 			<isFK>false</isFK>
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
-			<alias>Total N C_ K D</alias>
+			<alias>Price V A T</alias>
 			<number>22</number>
 		</column>
 		<column>
-			<name>totalXL</name>
+			<name>totalProfit</name>
 			<dataType>decimal</dataType>
 			<isPK>false</isPK>
 			<isFK>false</isFK>
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
-			<alias>Total X L</alias>
+			<alias>Total Profit</alias>
 			<number>23</number>
 		</column>
 		<column>
-			<name>totalCustomer</name>
+			<name>totalPercentCP_PB</name>
 			<dataType>decimal</dataType>
 			<isPK>false</isPK>
 			<isFK>false</isFK>
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
-			<alias>Total Customer</alias>
+			<alias>Total Percent C P_ P B</alias>
 			<number>24</number>
+		</column>
+		<column>
+			<name>totalPercentCP_NC</name>
+			<dataType>decimal</dataType>
+			<isPK>false</isPK>
+			<isFK>false</isFK>
+			<isUnique>false</isUnique>
+			<tableRelate></tableRelate>
+			<alias>Total Percent C P_ N C</alias>
+			<number>25</number>
 		</column>
 		<column>
 			<name>totalDP</name>
@@ -574,7 +270,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Total D P</alias>
-			<number>25</number>
+			<number>26</number>
 		</column>
 		<column>
 			<name>totalVC</name>
@@ -584,7 +280,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Total V C</alias>
-			<number>26</number>
+			<number>27</number>
 		</column>
 		<column>
 			<name>totalBX</name>
@@ -594,7 +290,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Total B X</alias>
-			<number>27</number>
+			<number>28</number>
 		</column>
 		<column>
 			<name>manufacture</name>
@@ -604,7 +300,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Manufacture</alias>
-			<number>28</number>
+			<number>29</number>
 		</column>
 		<column>
 			<name>origin</name>
@@ -614,7 +310,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Origin</alias>
-			<number>29</number>
+			<number>30</number>
 		</column>
 		<column>
 			<name>createdBy</name>
@@ -624,7 +320,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Created By</alias>
-			<number>30</number>
+			<number>31</number>
 		</column>
 		<column>
 			<name>createdDate</name>
@@ -634,7 +330,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Created Date</alias>
-			<number>31</number>
+			<number>32</number>
 		</column>
 		<column>
 			<name>updatedBy</name>
@@ -644,7 +340,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Updated By</alias>
-			<number>32</number>
+			<number>33</number>
 		</column>
 		<column>
 			<name>updatedDate</name>
@@ -654,7 +350,7 @@
 			<isUnique>false</isUnique>
 			<tableRelate></tableRelate>
 			<alias>Updated Date</alias>
-			<number>33</number>
+			<number>34</number>
 		</column>
 	</Table>
 

@@ -447,7 +447,7 @@
             this.btnImportExcel.TabIndex = 228;
             this.btnImportExcel.Text = "Thêm từ excel";
             this.btnImportExcel.UseVisualStyleBackColor = true;
-            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click_1);
+            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
             // 
             // gridColumn2
             // 
