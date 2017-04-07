@@ -132,50 +132,51 @@ namespace BMS
             _dtData.Columns.Add("Name");
             _dtData.Columns.Add("SqlText1");
             _dtData.Columns.Add("SqlText2");
+            _dtData.Columns.Add("Group");
             _dtData.Columns.Add("C_Value", typeof(decimal));
             _dtData.Columns.Add("NamTruoc", typeof(decimal));
 
             #region Init value
-            _dtData.Rows.Add(1, "I", "CHI PHÍ VẬT TƯ", "", "");
+            //_dtData.Rows.Add(1, "I", "CHI PHÍ VẬT TƯ", "", "");
             string sql2a = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where (FK_TKNO like '154%' or FK_TKNO like '6321%' or FK_TKNO like '64212%') and ([C_KMP_MA] = 'C27' or [C_KMP_MA] = 'C22')";
             string sql2b = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where (FK_TKCO like '154%' or FK_TKCO like '6321%' or FK_TKCO like '64212%') and ([C_KMP_MA] = 'C27' or [C_KMP_MA] = 'C22')";
-            _dtData.Rows.Add(2, "1", "Chi phí VTU chính", sql2a, sql2b);
+            _dtData.Rows.Add(2, "1", "Chi phí VTU chính", sql2a, sql2b, "I - CHI PHÍ VẬT TƯ");
 
             string sql31 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where (FK_TKNO like '154%' or FK_TKNO like '6321%' or FK_TKNO like '64212%') and ([C_KMP_MA] = 'C20')";
             string sql32 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where (FK_TKCO like '154%' or FK_TKCO like '6321%' or FK_TKCO like '64212%') and ([C_KMP_MA] = 'C20')";
-            _dtData.Rows.Add(3, "2", "Chi phí VTU thử nghiệm", sql31, sql32);
+            _dtData.Rows.Add(3, "2", "Chi phí VTU thử nghiệm", sql31, sql32, "I - CHI PHÍ VẬT TƯ");
 
             string sql41 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where (FK_TKNO like '154%' or FK_TKNO like '6321%' or FK_TKNO like '64212%') and ([C_KMP_MA] = 'C24')";
             string sql42 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where (FK_TKCO like '154%' or FK_TKCO like '6321%' or FK_TKCO like '64212%') and ([C_KMP_MA] = 'C24')";
-            _dtData.Rows.Add(4, "3", "Chi phí VTU phát sinh", sql41, sql42);
+            _dtData.Rows.Add(4, "3", "Chi phí VTU phát sinh", sql41, sql42, "I - CHI PHÍ VẬT TƯ");
 
-            _dtData.Rows.Add(5, "II", "CHI PHÍ NHÂN CÔNG", "", "");
-            _dtData.Rows.Add(6, "1", "Chi phí cố định - đầu nhân viên gián tiếp", "", "");
-            _dtData.Rows.Add(7, "1.1", "Chi phí nhân công phòng vật tư + kho", "", "");
-            _dtData.Rows.Add(8, "2", "Chi phí cố định - đầu nhân viên Tkế", "", "");
+            //_dtData.Rows.Add(5, "II", "CHI PHÍ NHÂN CÔNG", "", "");
+            _dtData.Rows.Add(6, "1", "Chi phí cố định - đầu nhân viên gián tiếp", "", "", "II - CHI PHÍ NHÂN CÔNG");
+            _dtData.Rows.Add(7, "1.1", "Chi phí nhân công phòng vật tư + kho", "", "", "II - CHI PHÍ NHÂN CÔNG");
+            _dtData.Rows.Add(8, "2", "Chi phí cố định - đầu nhân viên Tkế", "", "", "II - CHI PHÍ NHÂN CÔNG");
 
             string sql9 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] = 'C09P24'";
             string sql10 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] = 'C09P11'";
             string sql12 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] = 'C09P16'";
             string sql11 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] = 'C09P15' and C_PHANXUONG_MA in ('P11','P24','P16')";
-            _dtData.Rows.Add(9, "2.1", "Chi phí nhân công tk2", sql9, "");
-            _dtData.Rows.Add(10, "2.2", "Chi phí nhân công thiết kế 1", sql10, "");
-            _dtData.Rows.Add(11, "2.3", "chi phí nhân công thuê ngoài ", sql11, "");
-            _dtData.Rows.Add(12, "2.4", "Chi phí nhân công nghiên cứu phát triển", sql12, "");
+            _dtData.Rows.Add(9, "2.1", "Chi phí nhân công tk2", sql9, "", "II - CHI PHÍ NHÂN CÔNG");
+            _dtData.Rows.Add(10, "2.2", "Chi phí nhân công thiết kế 1", sql10, "", "II - CHI PHÍ NHÂN CÔNG");
+            _dtData.Rows.Add(11, "2.3", "chi phí nhân công thuê ngoài ", sql11, "", "II - CHI PHÍ NHÂN CÔNG");
+            _dtData.Rows.Add(12, "2.4", "Chi phí nhân công nghiên cứu phát triển", sql12, "", "II - CHI PHÍ NHÂN CÔNG");
 
-            _dtData.Rows.Add(13, "3", "Chi phí cố định - đầu nhân viên SXLR", "", "");
+            _dtData.Rows.Add(13, "3", "Chi phí cố định - đầu nhân viên SXLR", "", "", "II - CHI PHÍ NHÂN CÔNG");
 
             string sql14 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where ([C_KMP_MA] = 'C09P07')";
             string sql15 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where ([C_KMP_MA] = 'C09P12 ')";
             string sql16 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where ([C_KMP_MA] = 'C09P08')";
             string sql17 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where ([C_KMP_MA] = 'C09P15') and C_PHANXUONG_MA ='P07'";
-            _dtData.Rows.Add(14, "3.1", "Nhân công sản xuất lắp ráp ", sql14, "");
-            _dtData.Rows.Add(15, "3.2", "Nhân công phòng kỹ thuật ", sql15, "");
-            _dtData.Rows.Add(16, "3.3", "Nhân công KCS", sql16, "");
-            _dtData.Rows.Add(17, "3.4", "chi phí nhân công thuê ngoài ", sql17, "");
+            _dtData.Rows.Add(14, "3.1", "Nhân công sản xuất lắp ráp ", sql14, "", "II - CHI PHÍ NHÂN CÔNG");
+            _dtData.Rows.Add(15, "3.2", "Nhân công phòng kỹ thuật ", sql15, "", "II - CHI PHÍ NHÂN CÔNG");
+            _dtData.Rows.Add(16, "3.3", "Nhân công KCS", sql16, "", "II - CHI PHÍ NHÂN CÔNG");
+            _dtData.Rows.Add(17, "3.4", "chi phí nhân công thuê ngoài ", sql17, "", "II - CHI PHÍ NHÂN CÔNG");
 
-            _dtData.Rows.Add(18, "III", "CHI PHÍ KĨ THUẬT", "", "");
-            _dtData.Rows.Add(19, "1", "Chi phí vận chuyển hàng bán", "", "");
+            //_dtData.Rows.Add(18, "III", "CHI PHÍ KĨ THUẬT", "", "");
+            _dtData.Rows.Add(19, "1", "Chi phí vận chuyển hàng bán", "", "", "III - CHI PHÍ KĨ THUẬT");
 
             string sql20 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] = 'C13'";
             string sql21 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] in ('C38','C41','C48')";
@@ -183,21 +184,21 @@ namespace BMS
             string sql23 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] in ('C04','C42','C43') and C_PHANXUONG_MA ='P07'";
             string sql24 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] in ('C03','C39','C40') and C_PHANXUONG_MA ='P07'";
             string sql25 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] in ('C42','C43','C04','C47','C50','C03','C39','C40') and C_PHANXUONG_MA in ('P11','P24')";
-            _dtData.Rows.Add(20, "1.1", "Chi phí vận chuyển hàng bán", sql20, "");
-            _dtData.Rows.Add(21, "1.2", "Chi phí đi lại của nhân viên ", sql21, "");
-            _dtData.Rows.Add(22, "2", "Chi phí bốc xếp hàng bán", sql22, "");
-            _dtData.Rows.Add(23, "3", "Chi phí cố bộ phận Service (Lắp đặt, chuyển giao, follow)", sql23, "");
-            _dtData.Rows.Add(24, "4", "Chi phí bộ phận SXLR  (Lắp đặt, chuyển giao, follow)", sql24, "");
-            _dtData.Rows.Add(25, "5", "Chi phí bộ phận thiết kế (Lắp đặt, chuyển giao, follow)", sql25, "");
+            _dtData.Rows.Add(20, "1.1", "Chi phí vận chuyển hàng bán", sql20, "", "III - CHI PHÍ KĨ THUẬT");
+            _dtData.Rows.Add(21, "1.2", "Chi phí đi lại của nhân viên ", sql21, "", "III - CHI PHÍ KĨ THUẬT");
+            _dtData.Rows.Add(22, "2", "Chi phí bốc xếp hàng bán", sql22, "", "III - CHI PHÍ KĨ THUẬT");
+            _dtData.Rows.Add(23, "3", "Chi phí cố bộ phận Service (Lắp đặt, chuyển giao, follow)", sql23, "", "III - CHI PHÍ KĨ THUẬT");
+            _dtData.Rows.Add(24, "4", "Chi phí bộ phận SXLR  (Lắp đặt, chuyển giao, follow)", sql24, "", "III - CHI PHÍ KĨ THUẬT");
+            _dtData.Rows.Add(25, "5", "Chi phí bộ phận thiết kế (Lắp đặt, chuyển giao, follow)", sql25, "", "III - CHI PHÍ KĨ THUẬT");
 
-            _dtData.Rows.Add(26, "IV", "CHI PHÍ PHÂN BỐ KHÁC", "", "");
-            _dtData.Rows.Add(27, "1", "Chi phí quản lí", "", "");
-            _dtData.Rows.Add(28, "2", "Chi phí tài chính và lãi vay", "", "");
+            //_dtData.Rows.Add(26, "IV", "CHI PHÍ PHÂN BỐ KHÁC", "", "");
+            _dtData.Rows.Add(27, "1", "Chi phí quản lí", "", "", "IV - CHI PHÍ PHÂN BỐ KHÁC");
+            _dtData.Rows.Add(28, "2", "Chi phí tài chính và lãi vay", "", "", "IV - CHI PHÍ PHÂN BỐ KHÁC");
 
             string sql30 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] = 'C23'";
             string sql29 = "SELECT sum([C_PSNO]) FROM [V_XNTC_REPORT_ALL] where [C_KMP_MA] in ('C26','C25')";
-            _dtData.Rows.Add(29, "3", "Chi phí dự phòng", sql29, "");
-            _dtData.Rows.Add(30, "4", "Chi phí bảo hành", sql30, "");
+            _dtData.Rows.Add(29, "3", "Chi phí dự phòng", sql29, "", "IV - CHI PHÍ PHÂN BỐ KHÁC");
+            _dtData.Rows.Add(30, "4", "Chi phí bảo hành", sql30, "", "IV - CHI PHÍ PHÂN BỐ KHÁC");
             #endregion
         }
         void loadData()
@@ -215,7 +216,7 @@ namespace BMS
             foreach (DataRow row in dtMonth.Rows)
             {
                 string p = TextUtils.ToString(row["C_Month"]);
-                _dtData.Columns.Add("T_" + p,typeof(decimal));
+                _dtData.Columns.Add("T_" + p, typeof(decimal));
                 exp += "+ T_" + p;
             }
 
@@ -261,6 +262,7 @@ namespace BMS
 
             foreach (DataRow r in drsLaiVay)
             {
+                r["NamTruoc"] = TextUtils.ToDecimal(dtLaiVay.Compute("SUM(LaiGop)", "C_Month <= 12 and C_Year = " + (year - 1))); ;
                 foreach (DataRow row in dtMonth.Rows)
                 {
                     int p = TextUtils.ToInt(row["C_Month"]);
@@ -285,10 +287,9 @@ namespace BMS
             grvData.PopulateColumns(_dtData);
             grdData.DataSource = _dtData;
 
-            grvData.Columns[0].Visible = false;
-            //grvData.Columns[3].GroupIndex = 0;
-            grvData.Columns[3].Visible = false;
-            grvData.Columns[4].Visible = false;
+            grvData.Columns["STT"].Visible = false;
+            grvData.Columns["SqlText1"].Visible = false;
+            grvData.Columns["SqlText2"].Visible = false;
 
             for (int i = 4; i < _dtData.Columns.Count; i++)
             {
@@ -297,16 +298,38 @@ namespace BMS
             }
 
             grvData.BestFitColumns();
-            grvData.ExpandAllGroups();
-            grvData.Columns[1].Fixed = FixedStyle.Left;
-            grvData.Columns[2].Fixed = FixedStyle.Left;
-            grvData.Columns[3].Fixed = FixedStyle.Left;
-            grvData.Columns[4].Fixed = FixedStyle.Left;
-            grvData.Columns[5].Fixed = FixedStyle.Left;
-            grvData.Columns[6].Fixed = FixedStyle.Left;
+
+            grvData.Columns["Code"].Fixed = FixedStyle.Left;
+            grvData.Columns["Name"].Fixed = FixedStyle.Left;
+            //grvData.Columns["SqlText1"].Fixed = FixedStyle.Left;
+            //grvData.Columns["SqlText2"].Fixed = FixedStyle.Left;
+            //grvData.Columns["Group"].Fixed = FixedStyle.Left;
+            grvData.Columns["C_Value"].Fixed = FixedStyle.Left;
+            grvData.Columns["NamTruoc"].Fixed = FixedStyle.Left;
+
+            grvData.Columns["Group"].GroupIndex = 0;
+            grvData.Columns["Group"].Visible = false;
 
             grvData.Columns["LuyKe"].AppearanceCell.BackColor = Color.Yellow;
             grvData.Columns["ChenhLech"].AppearanceCell.BackColor = Color.YellowGreen;
+
+            grvData.Columns["LuyKe"].SummaryItem.FieldName = "LuyKe";
+            grvData.Columns["LuyKe"].SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum;
+            grvData.Columns["LuyKe"].SummaryItem.DisplayFormat = "{0:n0}";
+
+            grvData.GroupSummary.Add(DevExpress.Data.SummaryItemType.Sum, "LuyKe", grvData.Columns["LuyKe"], "{0:n0}");
+            grvData.GroupSummary.Add(DevExpress.Data.SummaryItemType.Sum, "NamTruoc", grvData.Columns["NamTruoc"], "{0:n0}");
+            foreach (DataRow row in dtMonth.Rows)
+            {
+                string p = TextUtils.ToString(row["C_Month"]);
+                grvData.GroupSummary.Add(DevExpress.Data.SummaryItemType.Sum, "T_" + p, grvData.Columns["T_" + p], "{0:n0}");
+                grvData.Columns["T_" + p].Width = 90;
+            }
+            grvData.Columns["NamTruoc"].Width = 100;
+            grvData.Columns["Code"].Width = 80;
+            grvData.Columns["LuyKe"].Width = 200;
+
+            grvData.ExpandAllGroups();
         }
 
         void loadDataOld()

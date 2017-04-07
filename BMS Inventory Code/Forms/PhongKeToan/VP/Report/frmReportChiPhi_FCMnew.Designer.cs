@@ -174,6 +174,7 @@
             this.grvData.OptionsBehavior.AutoPopulateColumns = false;
             this.grvData.OptionsBehavior.Editable = false;
             this.grvData.OptionsView.ColumnAutoWidth = false;
+            this.grvData.OptionsView.ShowFooter = true;
             this.grvData.OptionsView.ShowGroupPanel = false;
             this.grvData.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvData_RowCellStyle);
             // 
