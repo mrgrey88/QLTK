@@ -63,7 +63,7 @@
             this.txtFinishCustomerName = new System.Windows.Forms.TextBox();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.txtPOnumber = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblPOnumber = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtFinishCustomerCode = new System.Windows.Forms.TextBox();
             this.txtProjectName = new System.Windows.Forms.TextBox();
@@ -74,7 +74,7 @@
             this.txtCustomerCode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
+            this.lblIsVAT = new System.Windows.Forms.Label();
             this.txtProjectCode = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -95,8 +95,8 @@
             this.txtTotalBX_KD = new DevExpress.XtraEditors.TextEdit();
             this.groupSX = new System.Windows.Forms.GroupBox();
             this.cboStatusNC = new System.Windows.Forms.ComboBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
+            this.lblStatusNC = new System.Windows.Forms.Label();
+            this.lblCustomerType = new System.Windows.Forms.Label();
             this.cboCustomerType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtDeliveryTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalHD.Properties)).BeginInit();
@@ -469,14 +469,6 @@
             // cboDepartment
             // 
             this.cboDepartment.FormattingEnabled = true;
-            this.cboDepartment.Items.AddRange(new object[] {
-            "-----Chọn-----",
-            "Chưa có thông tin",
-            "Đang tư vấn",
-            "Chốt danh mục",
-            "Thẩm định giá",
-            "Xây dựng HSMT",
-            "Ký hợp đồng"});
             this.cboDepartment.Location = new System.Drawing.Point(275, 53);
             this.cboDepartment.Name = "cboDepartment";
             this.cboDepartment.Size = new System.Drawing.Size(441, 21);
@@ -503,14 +495,14 @@
             this.txtPOnumber.Size = new System.Drawing.Size(146, 20);
             this.txtPOnumber.TabIndex = 243;
             // 
-            // label9
+            // lblPOnumber
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(180, 209);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(91, 13);
-            this.label9.TabIndex = 235;
-            this.label9.Text = "Số PO/Hợp đồng";
+            this.lblPOnumber.AutoSize = true;
+            this.lblPOnumber.Location = new System.Drawing.Point(180, 209);
+            this.lblPOnumber.Name = "lblPOnumber";
+            this.lblPOnumber.Size = new System.Drawing.Size(91, 13);
+            this.lblPOnumber.TabIndex = 235;
+            this.lblPOnumber.Text = "Số PO/Hợp đồng";
             // 
             // label14
             // 
@@ -596,14 +588,14 @@
             this.label7.TabIndex = 223;
             this.label7.Text = "Thời gian giao hàng";
             // 
-            // label28
+            // lblIsVAT
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(721, 87);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(125, 13);
-            this.label28.TabIndex = 218;
-            this.label28.Text = "Có xuất hóa đơn không?";
+            this.lblIsVAT.AutoSize = true;
+            this.lblIsVAT.Location = new System.Drawing.Point(721, 87);
+            this.lblIsVAT.Name = "lblIsVAT";
+            this.lblIsVAT.Size = new System.Drawing.Size(125, 13);
+            this.lblIsVAT.TabIndex = 218;
+            this.lblIsVAT.Text = "Có xuất hóa đơn không?";
             // 
             // txtProjectCode
             // 
@@ -854,31 +846,31 @@
             this.cboStatusNC.Size = new System.Drawing.Size(215, 21);
             this.cboStatusNC.TabIndex = 274;
             // 
-            // label23
+            // lblStatusNC
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(703, 209);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(108, 13);
-            this.label23.TabIndex = 273;
-            this.label23.Text = "Cách tính nhân công";
+            this.lblStatusNC.AutoSize = true;
+            this.lblStatusNC.Location = new System.Drawing.Point(703, 209);
+            this.lblStatusNC.Name = "lblStatusNC";
+            this.lblStatusNC.Size = new System.Drawing.Size(108, 13);
+            this.lblStatusNC.TabIndex = 273;
+            this.lblStatusNC.Text = "Cách tính nhân công";
             // 
-            // label24
+            // lblCustomerType
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(444, 209);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 13);
-            this.label24.TabIndex = 219;
-            this.label24.Text = "Loại KH";
+            this.lblCustomerType.AutoSize = true;
+            this.lblCustomerType.Location = new System.Drawing.Point(449, 209);
+            this.lblCustomerType.Name = "lblCustomerType";
+            this.lblCustomerType.Size = new System.Drawing.Size(45, 13);
+            this.lblCustomerType.TabIndex = 219;
+            this.lblCustomerType.Text = "Loại KH";
             // 
             // cboCustomerType
             // 
             this.cboCustomerType.FormattingEnabled = true;
             this.cboCustomerType.Items.AddRange(new object[] {
             "-----Chọn-----",
-            "EUS",
-            "OEM"});
+            "EUS - KH sử dụng cuối",
+            "OEM - KH thương mại"});
             this.cboCustomerType.Location = new System.Drawing.Point(498, 204);
             this.cboCustomerType.Name = "cboCustomerType";
             this.cboCustomerType.Size = new System.Drawing.Size(180, 21);
@@ -890,7 +882,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1038, 425);
             this.Controls.Add(this.cboStatusNC);
-            this.Controls.Add(this.label23);
+            this.Controls.Add(this.lblStatusNC);
             this.Controls.Add(this.groupSX);
             this.Controls.Add(this.groupKD);
             this.Controls.Add(this.txtCustomerPercent);
@@ -909,7 +901,7 @@
             this.Controls.Add(this.txtFinishCustomerName);
             this.Controls.Add(this.txtCustomerName);
             this.Controls.Add(this.txtPOnumber);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.lblPOnumber);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtFinishCustomerCode);
             this.Controls.Add(this.txtProjectName);
@@ -919,8 +911,8 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCustomerCode);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label28);
-            this.Controls.Add(this.label24);
+            this.Controls.Add(this.lblIsVAT);
+            this.Controls.Add(this.lblCustomerType);
             this.Controls.Add(this.txtProjectCode);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label1);
@@ -988,7 +980,7 @@
         private System.Windows.Forms.TextBox txtFinishCustomerName;
         private System.Windows.Forms.TextBox txtCustomerName;
         private System.Windows.Forms.TextBox txtPOnumber;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblPOnumber;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtFinishCustomerCode;
         private System.Windows.Forms.TextBox txtProjectName;
@@ -1000,7 +992,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label lblIsVAT;
         private System.Windows.Forms.TextBox txtProjectCode;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label1;
@@ -1024,8 +1016,8 @@
         private DevExpress.XtraEditors.TextEdit txtTotalBX_KD;
         private System.Windows.Forms.GroupBox groupSX;
         private System.Windows.Forms.ComboBox cboStatusNC;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label lblStatusNC;
+        private System.Windows.Forms.Label lblCustomerType;
         private System.Windows.Forms.ComboBox cboCustomerType;
     }
 }

@@ -321,7 +321,8 @@ namespace BMS
                 item.Qty = item.QtyT = TextUtils.ToDecimal(txtQtyT.EditValue);
             }
 
-            //item.Cr
+            item.CreatedBy = item.UpdatedBy = Global.AppUserName;
+            item.CreatedDate = item.UpdatedDate = DateTime.Now;
 
             item.ID = (int)C_QuotationDetail_SXBO.Instance.Insert(item);
 
@@ -348,10 +349,16 @@ namespace BMS
 
         private void btnImportExcel_Click(object sender, EventArgs e)
         {
-            //frmQuotationDetailImport frm = new frmQuotationDetailImport();
+            if (treeData.AllNodesCount > 0)
+            {
+                MessageBox.Show("Báo giá đã được thêm từ Excel.", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+            frmQuotationDetailImportSX frm = new frmQuotationDetailImportSX();
+            frm.Quotation = Quotation;
             //frm.QuotationID = Quotation.ID;
-            //frm.LoadDataChange += main_LoadDataChange;
-            //TextUtils.OpenForm(frm);
+            frm.LoadDataChange += main_LoadDataChange;
+            TextUtils.OpenForm(frm);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -411,6 +418,8 @@ namespace BMS
                         item.Qty = item.QtyT * parent.Qty;
                     }
 
+                    item.UpdatedDate = DateTime.Now;
+                    item.UpdatedBy = Global.AppUserName;
                     C_QuotationDetail_SXBO.Instance.Update(item);
                 }
                 #endregion

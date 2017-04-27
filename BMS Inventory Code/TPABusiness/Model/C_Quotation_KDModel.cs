@@ -31,6 +31,7 @@ namespace TPA.Model
 		private bool isApproved;
 		private int isVAT;
 		private int statusNC;
+        private int createdDepartmentID;       
 		private string createdBy;
 		private DateTime? createdDate;
 		private string updatedBy;
@@ -196,7 +197,12 @@ namespace TPA.Model
 			get { return statusNC; }
 			set { statusNC = value; }
 		}
-	
+        public int CreatedDepartmentID
+        {
+            get { return createdDepartmentID; }
+            set { createdDepartmentID = value; }
+        }
+
 		public string CreatedBy
 		{
 			get { return createdBy; }

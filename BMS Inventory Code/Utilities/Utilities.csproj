@@ -34,10 +34,10 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
-    <SccProjectName>%24/BMS Inv.root/BMS Inv</SccProjectName>
+    <!--<SccProjectName>%24/BMS Inv.root/BMS Inv</SccProjectName>
     <SccLocalPath>..</SccLocalPath>
     <SccAuxPath />
-    <SccProvider>MSSCCI:Dynamsoft SourceAnywhere Standalone</SccProvider>
+    <SccProvider>MSSCCI:Dynamsoft SourceAnywhere Standalone</SccProvider>-->
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

@@ -1121,8 +1121,462 @@ namespace BMS
             txtPass.Text = BMS.Utils.MD5.DecryptPassword(txtPass.Text.Trim());
         }
 
-       
+        public void LoadModulePriceTPAD(string moduleCode, bool usingStuffsPrice, out DataTable dtNoPrice, string projectCode)
+        {
+            DataTable dtDmvtFull = new DataTable();
+            dtNoPrice = new DataTable();
 
-        
+            #region Load tu danh muc vat tu
+            string _serverPathCK = string.Format("Thietke.Ck/{0}/{1}.Ck/VT.{1}.xlsm", moduleCode.Substring(0, 6), moduleCode);
+            try
+            {
+                if (DocUtils.CheckExits(_serverPathCK))
+                {
+                    #region Init table dmvt
+                    if (File.Exists("D:/VT." + moduleCode + ".xlsm"))
+                    {
+                        File.Delete("D:/VT." + moduleCode + ".xlsm");
+                    }
+                    //Download file danh mục vật tư
+                    DocUtils.DownloadFile("D:/", "VT." + moduleCode + ".xlsm", _serverPathCK);
+                    DataTable dtDMVT = TextUtils.ExcelToDatatable("D:/VT." + moduleCode + ".xlsm", "DMVT");
+                    File.Delete("D:/VT." + moduleCode + ".xlsm");
+
+                    dtDmvtFull = dtDMVT.AsEnumerable()
+                        .Where(row => TextUtils.ToInt(row.Field<string>("F1") == "" ||
+                            row.Field<string>("F1") == null ? "0" : row.Field<string>("F1").Substring(0, 1)) > 0)
+                        .CopyToDataTable();
+
+                    dtDmvtFull.Columns.Add("Price", typeof(decimal));
+                    dtDmvtFull.Columns.Add("TotalPrice", typeof(decimal));
+                    #endregion
+
+                    foreach (DataRow itemRow in dtDmvtFull.Rows)
+                    {
+                        string code = TextUtils.ToString(itemRow["F4"]);
+                        decimal qty = TextUtils.ToDecimal(itemRow["F7"]);
+                        //decimal qty = TextUtils.ToDecimal(itemRow["F7"]);
+                        string thongSo = TextUtils.ToString(itemRow["F3"]);
+                        string unit = TextUtils.ToString(itemRow["F6"]);
+                        string stt = TextUtils.ToString(itemRow["F1"]);
+                        decimal price = TextUtils.ToDecimal(itemRow["Price"]);
+                        string materialCode = code.Replace(" ", "").Replace("/", "#").Replace(")", "#");
+                        string sourceCode = TextUtils.ToString(itemRow["F5"]).Trim().Replace("/", "#").Replace(")", "#");
+                        string vatLieu = TextUtils.ToString(itemRow["F8"]);
+                        string hang = TextUtils.ToString(itemRow["F10"]);
+                        decimal weight = TextUtils.ToDecimal(itemRow["F9"]);
+
+                        #region Get Price of VT
+
+                        #region Set Qty
+                        string sttParent = "";
+                        string[] array = stt.Split('.');
+                        if (array.Length > 1)
+                        {
+                            for (int i = 0; i < array.Length; i++)
+                            {
+                                if (i == 0)
+                                {
+                                    sttParent += array[i];
+                                }
+                                else if (i == array.Length - 1)
+                                {
+                                    continue;
+                                }
+                                else
+                                {
+                                    sttParent += "." + array[i];
+                                }
+                            }
+
+                            DataRow[] drsParent = dtDmvtFull.Select("F1 = '" + sttParent + "'");
+                            itemRow["F7"] = TextUtils.ToString(qty * TextUtils.ToDecimal(drsParent[0]["F7"]));
+                            qty = TextUtils.ToDecimal(itemRow["F7"]);
+                        }
+                        #endregion
+
+                        if (code == moduleCode)
+                        {
+                            itemRow["Price"] = 0;
+                            itemRow["TotalPrice"] = 0;
+                            continue;
+                        }
+
+                        if (price > 0) continue;
+                        if (code.StartsWith("TPAD") && code.Length == 10)
+                        {
+                            #region Get Price of Thiet ke co khi con
+                            try
+                            {
+                                DataTable dtNO = new DataTable();
+                                LoadModulePriceTPAD(code, true, out dtNO, projectCode);
+                                if (dtNO.Rows.Count > 0)
+                                {
+                                    dtNoPrice.Merge(dtNO);
+                                }
+
+                                itemRow["Price"] = 1;//TextUtils.ToDecimal(dtChild.Compute("Sum(TotalPrice)", ""));
+                            }
+                            catch
+                            {
+                                itemRow["Price"] = 0;
+                            }
+                            #endregion
+                        }
+                        else if (code.StartsWith("PCB"))
+                        {
+                            #region Get Price of Thiet ke dien tu
+                            try
+                            {
+                                DataTable dtNO = new DataTable();
+                                DataTable dtDMVT_DT = TextUtils.LoadModulePricePCB(code, out dtNO);
+                                if (dtNO.Rows.Count > 0)
+                                {
+                                    dtNoPrice.Merge(dtNO);
+                                }
+                                itemRow["Price"] = TextUtils.ToDecimal(dtDMVT_DT.Compute("Sum(TotalPrice)", ""));
+                            }
+                            catch
+                            {
+                                itemRow["Price"] = 0;
+                            }
+                            #endregion
+                        }
+                        else
+                        {
+                            if (unit == "BỘ")
+                            {
+                                #region Get price of Bộ
+                                DataRow[] drs = dtDmvtFull.Select("F1 like '" + stt + ".%'");
+
+                                foreach (DataRow r in drs)
+                                {
+                                    if (thongSo == "HÀN")
+                                    {
+                                        r["Price"] = 1;
+                                        r["TotalPrice"] = 1;
+                                    }
+                                    //else
+                                    //{
+                                    //    r["F7"] = (qty * TextUtils.ToDecimal(r["F7"])).ToString();
+                                    //}
+                                }
+
+                                if (thongSo != "HÀN")
+                                {
+                                    itemRow["Price"] = 1;
+                                }
+                                else
+                                {
+                                    //string sql1 = "SELECT top 1 Price FROM  vGetPriceOfPart with(nolock)"
+                                    //                   + " WHERE Price > 1 AND replace(replace([PartsCode],'/','#'),')','#') = '" + materialCode + "'"
+                                    //                   + " ORDER BY DateAboutF DESC";
+                                    string sql1 = "exec spGetPriceOfPart '" + materialCode + "'";
+                                    DataTable dtOrderPrice = LibQLSX.Select(sql1);
+                                    if (dtOrderPrice.Rows.Count > 0)
+                                    {
+                                        itemRow["Price"] = TextUtils.ToDecimal(dtOrderPrice.Rows[0][0]);
+                                    }
+                                    else
+                                    {
+                                        itemRow["Price"] = 0;
+                                    }
+                                }
+                                #endregion
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    #region Get price of Vt
+                                    decimal currentPrice = 0;
+                                    if (sourceCode != "")
+                                    {
+                                        #region Nếu có vật tư gốc
+                                        DataTable dtUnitDefinition = LibQLSX.Select("SELECT * FROM [vUnitDefinition] with(nolock)"
+                                            + " WHERE REPLACE(REPLACE(replace(replace([PartsCode],'/','#'),')','#'), CHAR(13), ''), CHAR(10), '') = '" + sourceCode + "'");
+
+                                        //string sql1 = "SELECT top 1 Price FROM  vGetPriceOfPart with(nolock)"
+                                        //            + " WHERE Price > 1 AND replace(replace([PartsCode],'/','#'),')','#') = '" + sourceCode + "'"
+                                        //            + " ORDER BY DateAboutF DESC";
+                                        string sql1 = "exec spGetPriceOfPart '" + sourceCode + "'";
+                                        DataTable dtOrderPrice = LibQLSX.Select(sql1);
+                                        if (dtOrderPrice.Rows.Count > 0)
+                                        {
+                                            currentPrice = TextUtils.ToDecimal(dtOrderPrice.Rows[0][0]);
+                                        }
+
+                                        if (dtUnitDefinition.Rows.Count > 0)
+                                        {
+                                            DataRow[] drs = dtUnitDefinition.Select("UnitName = 'kg'");
+                                            if (drs.Length > 0)
+                                            {
+                                                decimal weightData = TextUtils.ToDecimal(drs[0]["Value"]);
+                                                itemRow["Price"] = (weight / weightData) * currentPrice;
+                                            }
+                                            else
+                                            {
+                                                if (currentPrice > 0)
+                                                {
+                                                    itemRow["Price"] = currentPrice;
+                                                }
+                                                else
+                                                {
+                                                    #region Giá theo hãng, vật liệu
+                                                    if (usingStuffsPrice)
+                                                    {
+                                                        DataTable dtStuffsHang = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where (Code = '' or Code is null) and Hang = N'" + hang + "'");
+                                                        if (dtStuffsHang.Rows.Count > 0)
+                                                        {
+                                                            itemRow["Price"] = TextUtils.ToDecimal(dtStuffsHang.Rows[0]["Price"]);
+                                                        }
+                                                        else
+                                                        {
+                                                            DataTable dtStuffsHangVl = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where Code = N'" + vatLieu
+                                                            + "' and Hang = N'" + hang + "'");
+
+                                                            if (dtStuffsHangVl.Rows.Count > 0)
+                                                            {
+                                                                bool isWeight = TextUtils.ToBoolean(dtStuffsHangVl.Rows[0]["TypeWeight"]);
+                                                                if (isWeight)
+                                                                {
+                                                                    itemRow["Price"] = weight * TextUtils.ToDecimal(dtStuffsHangVl.Rows[0]["Price"]);
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemRow["Price"] = TextUtils.ToDecimal(dtStuffsHangVl.Rows[0]["Price"]);
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                DataTable dtStuffsVT = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where Code = N'" + vatLieu + "'");
+                                                                if (dtStuffsVT.Rows.Count > 0)
+                                                                {
+                                                                    itemRow["Price"] = weight * TextUtils.ToDecimal(dtStuffsVT.Rows[0]["Price"]);
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemRow["Price"] = 0;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    #endregion
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            itemRow["Price"] = currentPrice;
+                                        }
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                        #region Không có vật tư gốc
+                                        if (thongSo == "TPA" && code.StartsWith("TPAD."))
+                                        {
+                                            #region Giá theo hãng, vật liệu
+                                            if (usingStuffsPrice)
+                                            {
+                                                DataTable dtStuffsHang = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where (Code = '' or Code is null) and Hang = N'" + hang + "'");
+                                                if (dtStuffsHang.Rows.Count > 0)
+                                                {
+                                                    itemRow["Price"] = TextUtils.ToDecimal(dtStuffsHang.Rows[0]["Price"]);
+                                                }
+                                                else
+                                                {
+                                                    DataTable dtStuffsHangVl = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where Code = N'" + vatLieu
+                                                    + "' and Hang = N'" + hang + "'");
+
+                                                    if (dtStuffsHangVl.Rows.Count > 0)
+                                                    {
+                                                        bool isWeight = TextUtils.ToBoolean(dtStuffsHangVl.Rows[0]["TypeWeight"]);
+                                                        if (isWeight)
+                                                        {
+                                                            itemRow["Price"] = weight * TextUtils.ToDecimal(dtStuffsHangVl.Rows[0]["Price"]);
+                                                        }
+                                                        else
+                                                        {
+                                                            itemRow["Price"] = TextUtils.ToDecimal(dtStuffsHangVl.Rows[0]["Price"]);
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        DataTable dtStuffsVT = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where Code = N'" + vatLieu + "'");
+                                                        if (dtStuffsVT.Rows.Count > 0)
+                                                        {
+                                                            itemRow["Price"] = weight * TextUtils.ToDecimal(dtStuffsVT.Rows[0]["Price"]);
+                                                        }
+                                                        else
+                                                        {
+                                                            itemRow["Price"] = 0;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            #endregion
+                                        }
+                                        else
+                                        {
+                                            //string sqlM = "SELECT top 1 Price FROM  vGetPriceOfPart with(nolock)"
+                                            //            + " WHERE Price > 1 AND replace(replace([PartsCode],'/','#'),')','#') = '" + materialCode + "'"
+                                            //            + " ORDER BY DateAboutF DESC";
+                                            string sqlM = "exec spGetPriceOfPart '" + materialCode + "'";
+                                            DataTable dtOrderPriceM = LibQLSX.Select(sqlM);
+                                            if (dtOrderPriceM.Rows.Count > 0)
+                                            {
+                                                currentPrice = TextUtils.ToDecimal(dtOrderPriceM.Rows[0][0]);
+                                            }
+                                            if (currentPrice > 0)
+                                            {
+                                                itemRow["Price"] = currentPrice;
+                                            }
+                                            else
+                                            {
+                                                if (thongSo.ToUpper() == "TPA")
+                                                {
+                                                    #region Giá theo hãng, vật liệu
+                                                    if (usingStuffsPrice)
+                                                    {
+                                                        DataTable dtStuffsHang = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where (Code = '' or Code is null) and Hang = N'" + hang + "'");
+                                                        if (dtStuffsHang.Rows.Count > 0)
+                                                        {
+                                                            itemRow["Price"] = TextUtils.ToDecimal(dtStuffsHang.Rows[0]["Price"]);
+                                                        }
+                                                        else
+                                                        {
+                                                            DataTable dtStuffsHangVl = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where Code = N'" + vatLieu
+                                                            + "' and Hang = N'" + hang + "'");
+
+                                                            if (dtStuffsHangVl.Rows.Count > 0)
+                                                            {
+                                                                bool isWeight = TextUtils.ToBoolean(dtStuffsHangVl.Rows[0]["TypeWeight"]);
+                                                                if (isWeight)
+                                                                {
+                                                                    itemRow["Price"] = weight * TextUtils.ToDecimal(dtStuffsHangVl.Rows[0]["Price"]);
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemRow["Price"] = TextUtils.ToDecimal(dtStuffsHangVl.Rows[0]["Price"]);
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                DataTable dtStuffsVT = TextUtils.Select("Select top 1 * from Stuffs with(nolock) where Code = N'" + vatLieu + "'");
+                                                                if (dtStuffsVT.Rows.Count > 0)
+                                                                {
+                                                                    itemRow["Price"] = weight * TextUtils.ToDecimal(dtStuffsVT.Rows[0]["Price"]);
+                                                                }
+                                                                else
+                                                                {
+                                                                    itemRow["Price"] = 0;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    #endregion
+                                                }
+                                            }
+                                        }
+
+                                        #endregion
+                                    }
+                                    #endregion
+                                }
+                                catch
+                                {
+                                    itemRow["Price"] = 0;
+                                }
+                            }
+                        }
+                        #endregion
+                    }
+                }
+            }
+            catch
+            {
+            }
+            #endregion
+
+            #region Set finish table
+            if (dtDmvtFull.Rows.Count > 0)
+            {
+                DataRow[] drs = dtDmvtFull.Select("Price = 0 or Price is null");
+                if (drs.Length > 0)
+                {
+                    if (dtNoPrice.Rows.Count > 0)
+                    {
+                        dtNoPrice.Merge(drs.CopyToDataTable());
+                    }
+                    else
+                    {
+                        dtNoPrice = drs.CopyToDataTable();
+                    }
+                }
+            }
+            #endregion
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            using (WaitDialogForm fWait = new WaitDialogForm("Vui lòng chờ trong giây lát...", "List Part with Price = 0 ..."))
+            {
+                DocUtils.InitFTPQLSX();
+
+                DataTable dtData = new DataTable();
+                dtData.Columns.Add("F1");
+                dtData.Columns.Add("F2");
+                dtData.Columns.Add("F3");
+                dtData.Columns.Add("F4");
+                dtData.Columns.Add("F5");
+                dtData.Columns.Add("F6");
+                dtData.Columns.Add("F7");
+                dtData.Columns.Add("F8");
+                dtData.Columns.Add("F9");
+                dtData.Columns.Add("F10");
+                dtData.Columns.Add("F11");
+                dtData.Columns.Add("F12");
+                //dtData.Columns.Add("TypeName");
+                //dtData.Columns.Add("Type");
+                dtData.Columns.Add("Price", typeof(decimal));
+                dtData.Columns.Add("TotalPrice", typeof(decimal));
+                //dtData.Columns.Add("NgungSuDung");
+
+                DataTable dtModule = LibQLSX.Select("select FolderCode from SourceCode where FolderCode like 'TPAD.%' order by FolderCode");
+                foreach (DataRow r in dtModule.Rows)
+                {
+                    try
+                    {
+                        string code = TextUtils.ToString(r["FolderCode"]);
+                        DataTable dtNoPrice = new DataTable();
+                        LoadModulePriceTPAD(code, true, out dtNoPrice, "");
+                        if (dtData.Rows.Count == 0)
+                        {
+                            if (dtNoPrice.Rows.Count > 0)
+                            {
+                                dtData = dtNoPrice;
+                            }
+                        }
+                        else
+                        {
+                            if (dtNoPrice.Rows.Count > 0)
+                                dtData.Merge(dtNoPrice);
+                        }
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+
+                if (dtData.Rows.Count > 0)
+                {
+                    string path = @"D:";
+                    TextUtils.DatatableToCSV(dtData, path + "\\PartNotPrice.csv");
+                    File.Move(path + "\\PartNotPrice.csv", path + "\\PartNotPrice.xls");
+                }
+            }
+        }
     }
 }

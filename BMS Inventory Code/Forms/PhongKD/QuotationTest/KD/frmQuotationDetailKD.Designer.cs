@@ -112,6 +112,11 @@
             this.repositoryItemSearchLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDepartmentId = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.repositoryItemSearchLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit3View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colRepoDepartmentId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRepoDepartmentName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnShowDirectCost = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExcel = new System.Windows.Forms.ToolStripButton();
@@ -141,6 +146,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit3View)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.mnuMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboProductGroup.Properties)).BeginInit();
@@ -627,7 +634,7 @@
             this.colQtyT.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colQtyT.Name = "colQtyT";
             this.colQtyT.Visible = true;
-            this.colQtyT.VisibleIndex = 5;
+            this.colQtyT.VisibleIndex = 6;
             this.colQtyT.Width = 63;
             // 
             // colVAT
@@ -647,7 +654,7 @@
             this.colVAT.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colVAT.Name = "colVAT";
             this.colVAT.Visible = true;
-            this.colVAT.VisibleIndex = 4;
+            this.colVAT.VisibleIndex = 5;
             this.colVAT.Width = 42;
             // 
             // gridColumn6
@@ -713,7 +720,7 @@
             this.colPriceVT.SummaryFooter = DevExpress.XtraTreeList.SummaryItemType.Sum;
             this.colPriceVT.SummaryFooterStrFormat = "{0:n0}";
             this.colPriceVT.Visible = true;
-            this.colPriceVT.VisibleIndex = 7;
+            this.colPriceVT.VisibleIndex = 8;
             this.colPriceVT.Width = 98;
             // 
             // colProductGroupID
@@ -816,7 +823,8 @@
             this.colTotalXL,
             this.colTotalCustomer,
             this.colPriceHD,
-            this.colCustomerType});
+            this.colCustomerType,
+            this.colDepartmentId});
             this.treeData.ContextMenuStrip = this.contextMenuStrip1;
             this.treeData.Location = new System.Drawing.Point(0, 148);
             this.treeData.Name = "treeData";
@@ -827,8 +835,9 @@
             this.repositoryItemMemoEdit3,
             this.repositoryItemSearchLookUpEdit1,
             this.repositoryItemTextEdit1,
-            this.repositoryItemSearchLookUpEdit2});
-            this.treeData.Size = new System.Drawing.Size(1573, 461);
+            this.repositoryItemSearchLookUpEdit2,
+            this.repositoryItemSearchLookUpEdit3});
+            this.treeData.Size = new System.Drawing.Size(1233, 461);
             this.treeData.TabIndex = 224;
             this.treeData.NodeCellStyle += new DevExpress.XtraTreeList.GetCustomNodeCellStyleEventHandler(this.treeData_NodeCellStyle);
             this.treeData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.treeData_KeyDown);
@@ -866,7 +875,7 @@
             this.colQty.Name = "colQty";
             this.colQty.OptionsColumn.AllowEdit = false;
             this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 6;
+            this.colQty.VisibleIndex = 7;
             this.colQty.Width = 59;
             // 
             // colTotalNC_KD
@@ -886,7 +895,7 @@
             this.colTotalNC_KD.Name = "colTotalNC_KD";
             this.colTotalNC_KD.OptionsColumn.AllowEdit = false;
             this.colTotalNC_KD.Visible = true;
-            this.colTotalNC_KD.VisibleIndex = 16;
+            this.colTotalNC_KD.VisibleIndex = 17;
             // 
             // colTotalDP
             // 
@@ -906,7 +915,7 @@
             this.colTotalDP.Name = "colTotalDP";
             this.colTotalDP.OptionsColumn.AllowEdit = false;
             this.colTotalDP.Visible = true;
-            this.colTotalDP.VisibleIndex = 19;
+            this.colTotalDP.VisibleIndex = 20;
             // 
             // colPriceKH
             // 
@@ -944,7 +953,7 @@
             this.colPriceCP.OptionsColumn.AllowEdit = false;
             this.colPriceCP.RowFooterSummaryStrFormat = "{0:n0}";
             this.colPriceCP.Visible = true;
-            this.colPriceCP.VisibleIndex = 8;
+            this.colPriceCP.VisibleIndex = 9;
             this.colPriceCP.Width = 101;
             // 
             // colPriceTPA
@@ -965,7 +974,7 @@
             this.colPriceTPA.Name = "colPriceTPA";
             this.colPriceTPA.OptionsColumn.AllowEdit = false;
             this.colPriceTPA.Visible = true;
-            this.colPriceTPA.VisibleIndex = 11;
+            this.colPriceTPA.VisibleIndex = 12;
             this.colPriceTPA.Width = 101;
             // 
             // colTotalNC
@@ -988,7 +997,7 @@
             this.colTotalNC.SummaryFooter = DevExpress.XtraTreeList.SummaryItemType.Sum;
             this.colTotalNC.SummaryFooterStrFormat = "{0:n0}";
             this.colTotalNC.Visible = true;
-            this.colTotalNC.VisibleIndex = 17;
+            this.colTotalNC.VisibleIndex = 18;
             // 
             // colTotalCP
             // 
@@ -1010,7 +1019,7 @@
             this.colTotalCP.SummaryFooter = DevExpress.XtraTreeList.SummaryItemType.Sum;
             this.colTotalCP.SummaryFooterStrFormat = "{0:n0}";
             this.colTotalCP.Visible = true;
-            this.colTotalCP.VisibleIndex = 18;
+            this.colTotalCP.VisibleIndex = 19;
             this.colTotalCP.Width = 78;
             // 
             // colHang
@@ -1027,7 +1036,7 @@
             this.colHang.FieldName = "Manufacture";
             this.colHang.Name = "colHang";
             this.colHang.Visible = true;
-            this.colHang.VisibleIndex = 22;
+            this.colHang.VisibleIndex = 23;
             // 
             // colOrigin
             // 
@@ -1043,7 +1052,7 @@
             this.colOrigin.FieldName = "Origin";
             this.colOrigin.Name = "colOrigin";
             this.colOrigin.Visible = true;
-            this.colOrigin.VisibleIndex = 23;
+            this.colOrigin.VisibleIndex = 24;
             // 
             // colParentID
             // 
@@ -1090,7 +1099,7 @@
             this.colTyLe.Name = "colTyLe";
             this.colTyLe.OptionsColumn.AllowEdit = false;
             this.colTyLe.Visible = true;
-            this.colTyLe.VisibleIndex = 24;
+            this.colTyLe.VisibleIndex = 25;
             // 
             // colPriceReal
             // 
@@ -1108,7 +1117,7 @@
             this.colPriceReal.Name = "colPriceReal";
             this.colPriceReal.OptionsColumn.AllowEdit = false;
             this.colPriceReal.Visible = true;
-            this.colPriceReal.VisibleIndex = 15;
+            this.colPriceReal.VisibleIndex = 16;
             this.colPriceReal.Width = 84;
             // 
             // colPriceTPA_PreVAT
@@ -1127,7 +1136,7 @@
             this.colPriceTPA_PreVAT.Name = "colPriceTPA_PreVAT";
             this.colPriceTPA_PreVAT.OptionsColumn.AllowEdit = false;
             this.colPriceTPA_PreVAT.Visible = true;
-            this.colPriceTPA_PreVAT.VisibleIndex = 9;
+            this.colPriceTPA_PreVAT.VisibleIndex = 10;
             // 
             // colPriceVAT_HD
             // 
@@ -1145,7 +1154,7 @@
             this.colPriceVAT_HD.Name = "colPriceVAT_HD";
             this.colPriceVAT_HD.OptionsColumn.AllowEdit = false;
             this.colPriceVAT_HD.Visible = true;
-            this.colPriceVAT_HD.VisibleIndex = 10;
+            this.colPriceVAT_HD.VisibleIndex = 11;
             // 
             // colTotalProfitTT
             // 
@@ -1163,7 +1172,7 @@
             this.colTotalProfitTT.Name = "colTotalProfitTT";
             this.colTotalProfitTT.OptionsColumn.AllowEdit = false;
             this.colTotalProfitTT.Visible = true;
-            this.colTotalProfitTT.VisibleIndex = 20;
+            this.colTotalProfitTT.VisibleIndex = 21;
             // 
             // colTotalProfitQD
             // 
@@ -1181,7 +1190,7 @@
             this.colTotalProfitQD.Name = "colTotalProfitQD";
             this.colTotalProfitQD.OptionsColumn.AllowEdit = false;
             this.colTotalProfitQD.Visible = true;
-            this.colTotalProfitQD.VisibleIndex = 21;
+            this.colTotalProfitQD.VisibleIndex = 22;
             // 
             // colTotalXL
             // 
@@ -1199,7 +1208,7 @@
             this.colTotalXL.Name = "colTotalXL";
             this.colTotalXL.OptionsColumn.AllowEdit = false;
             this.colTotalXL.Visible = true;
-            this.colTotalXL.VisibleIndex = 13;
+            this.colTotalXL.VisibleIndex = 14;
             // 
             // colTotalCustomer
             // 
@@ -1217,7 +1226,7 @@
             this.colTotalCustomer.Name = "colTotalCustomer";
             this.colTotalCustomer.OptionsColumn.AllowEdit = false;
             this.colTotalCustomer.Visible = true;
-            this.colTotalCustomer.VisibleIndex = 14;
+            this.colTotalCustomer.VisibleIndex = 15;
             // 
             // colPriceHD
             // 
@@ -1233,7 +1242,7 @@
             this.colPriceHD.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colPriceHD.Name = "colPriceHD";
             this.colPriceHD.Visible = true;
-            this.colPriceHD.VisibleIndex = 12;
+            this.colPriceHD.VisibleIndex = 13;
             // 
             // colCustomerType
             // 
@@ -1284,6 +1293,58 @@
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
             this.gridColumn10.VisibleIndex = 1;
+            // 
+            // colDepartmentId
+            // 
+            this.colDepartmentId.AppearanceCell.Options.UseTextOptions = true;
+            this.colDepartmentId.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.colDepartmentId.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colDepartmentId.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colDepartmentId.AppearanceHeader.Options.UseFont = true;
+            this.colDepartmentId.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDepartmentId.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDepartmentId.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colDepartmentId.Caption = "Phòng thiết kế";
+            this.colDepartmentId.ColumnEdit = this.repositoryItemSearchLookUpEdit3;
+            this.colDepartmentId.FieldName = "DepartmentId";
+            this.colDepartmentId.Name = "colDepartmentId";
+            this.colDepartmentId.Visible = true;
+            this.colDepartmentId.VisibleIndex = 4;
+            this.colDepartmentId.Width = 90;
+            // 
+            // repositoryItemSearchLookUpEdit3
+            // 
+            this.repositoryItemSearchLookUpEdit3.AutoHeight = false;
+            this.repositoryItemSearchLookUpEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSearchLookUpEdit3.Name = "repositoryItemSearchLookUpEdit3";
+            this.repositoryItemSearchLookUpEdit3.NullText = "";
+            this.repositoryItemSearchLookUpEdit3.View = this.repositoryItemSearchLookUpEdit3View;
+            // 
+            // repositoryItemSearchLookUpEdit3View
+            // 
+            this.repositoryItemSearchLookUpEdit3View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colRepoDepartmentId,
+            this.colRepoDepartmentName});
+            this.repositoryItemSearchLookUpEdit3View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit3View.Name = "repositoryItemSearchLookUpEdit3View";
+            this.repositoryItemSearchLookUpEdit3View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit3View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colRepoDepartmentId
+            // 
+            this.colRepoDepartmentId.Caption = "DepartmentId";
+            this.colRepoDepartmentId.FieldName = "DepartmentId";
+            this.colRepoDepartmentId.Name = "colRepoDepartmentId";
+            // 
+            // colRepoDepartmentName
+            // 
+            this.colRepoDepartmentName.Caption = "Phòng ban";
+            this.colRepoDepartmentName.FieldName = "DName";
+            this.colRepoDepartmentName.Name = "colRepoDepartmentName";
+            this.colRepoDepartmentName.Visible = true;
+            this.colRepoDepartmentName.VisibleIndex = 0;
+            this.colRepoDepartmentName.Width = 120;
             // 
             // contextMenuStrip1
             // 
@@ -1342,7 +1403,7 @@
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.mnuMenu.Size = new System.Drawing.Size(1573, 41);
+            this.mnuMenu.Size = new System.Drawing.Size(1233, 41);
             this.mnuMenu.TabIndex = 223;
             this.mnuMenu.Text = "toolStrip2";
             // 
@@ -1442,7 +1503,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1573, 610);
+            this.ClientSize = new System.Drawing.Size(1233, 610);
             this.Controls.Add(this.chkGetPriceVT);
             this.Controls.Add(this.btnDeletePriceHD);
             this.Controls.Add(this.btnPhanBo);
@@ -1471,6 +1532,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.treeData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit2View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit3View)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.mnuMenu.ResumeLayout(false);
             this.mnuMenu.PerformLayout();
@@ -1579,5 +1642,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colDepartmentId;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemSearchLookUpEdit3;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit3View;
+        private DevExpress.XtraGrid.Columns.GridColumn colRepoDepartmentId;
+        private DevExpress.XtraGrid.Columns.GridColumn colRepoDepartmentName;
     }
 }

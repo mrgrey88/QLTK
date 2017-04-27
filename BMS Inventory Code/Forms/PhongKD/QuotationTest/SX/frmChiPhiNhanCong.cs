@@ -24,8 +24,22 @@ namespace BMS
 
         private void frmChiPhiNhanCong_Load(object sender, EventArgs e)
         {
+            loadNCType();
             InsertLink();
             loadData();
+        }
+
+        void loadNCType()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("NCType");
+            dt.Rows.Add("A");
+            dt.Rows.Add("B");
+            dt.Rows.Add("C");
+
+            repositoryItemSearchLookUpEdit1.DataSource = dt;
+            repositoryItemSearchLookUpEdit1.DisplayMember = "NCType";
+            repositoryItemSearchLookUpEdit1.ValueMember = "NCType";
         }
 
         void InsertLink()
@@ -46,8 +60,8 @@ namespace BMS
                 //else
                 if (groupID > 0)
                 {
-                    string sql = "insert into [C_CostQuotationItemLinkNew] ([C_CostID],[C_QuotationDetail_SXID],[Price],[PersonNumber],[NumberDay],[TotalR],[IsDirect])"
-                                + " select ID ," + id + " as [C_QuotationDetail_SXID], 0 as b, 0 as c, 0 as d, 0 as e, 1 as f"
+                    string sql = "insert into [C_CostQuotationItemLinkNew] ([C_CostID],[C_QuotationDetail_SXID],[Price],[PersonNumber],[NumberDay],[TotalR],[IsDirect],[CostNCType])"
+                                + " select ID ," + id + " as [C_QuotationDetail_SXID], 0 as b, 0 as c, 0 as d, 0 as e, 1 as f, 'C' as g"
                                 + " from [C_Cost] m where m.IsDirectCost = 1 and ((select COUNT(ID) from [C_CostQuotationItemLinkNew] where [C_CostID] = m.ID and  [C_QuotationDetail_SXID] = " + id + ") = 0)";
                     LibQLSX.ExcuteSQL(sql);
                 }
@@ -56,8 +70,10 @@ namespace BMS
 
         void loadData()
         {
-            DataTable dt = LibQLSX.Select("select *,TongTien = Price*Qty  from vC_CostQuotationItemLinkSX where IsDirect = 1 and C_QuotationID = " + C_QuotationID);
+            DataTable dt = LibQLSX.Select("select *,TongTien = Price*Qty from vC_CostQuotationItemLinkSX where IsDirect = 1 and C_QuotationID = " + C_QuotationID);
             grdLink.DataSource = dt;
+            DataRow[] drs = dt.Select("C_ProductGroupID = 9");
+            colNCType.OptionsColumn.AllowEdit = (drs.Length > 0);
         }
 
         void save()
@@ -79,6 +95,7 @@ namespace BMS
                     link.TotalR = link.NumberDay * link.PersonNumber;
                     link.Price = link.TotalR * pricePerDay;
                     link.IsDirect = 1;
+                    link.CostNCType = TextUtils.ToString(grvLink.GetRowCellValue(i, colNCType));
                     C_CostQuotationItemLinkNewBO.Instance.Update(link);
                 }
                 IsSaved = true;
@@ -117,12 +134,27 @@ namespace BMS
 
         private void grvLink_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (e.Column == colNumberDay || e.Column == colPersonNumber)
+            if (e.Column == colNumberDay || e.Column == colPersonNumber || e.Column == colNCType)
             {
                 decimal numberDay = TextUtils.ToDecimal(grvLink.GetFocusedRowCellValue(colNumberDay));
                 decimal personNumber = TextUtils.ToDecimal(grvLink.GetFocusedRowCellValue(colPersonNumber));
                 decimal qty = TextUtils.ToDecimal(grvLink.GetFocusedRowCellValue(colQty));
-                decimal pricePerDay = TextUtils.ToDecimal(grvLink.GetFocusedRowCellValue(colPricePerDay));
+                decimal pricePerDay = 0;// TextUtils.ToDecimal(grvLink.GetFocusedRowCellValue(colPricePerDay));
+                
+                if (e.Column == colNCType)
+                {
+                    string ncType = TextUtils.ToString(grvLink.GetFocusedRowCellValue(colNCType));
+                    int costID = TextUtils.ToInt(grvLink.GetFocusedRowCellValue(colC_CostID));
+                    string sql = "select Price from C_CostNCType where C_CostID = " + costID + " and CostNCType = '" + ncType + "'";
+
+                    pricePerDay = TextUtils.ToDecimal(LibQLSX.ExcuteScalar(sql));                    
+                }
+                else
+                {
+                    pricePerDay = TextUtils.ToDecimal(grvLink.GetFocusedRowCellValue(colPricePerDay));
+                }
+
+                grvLink.SetFocusedRowCellValue(colPricePerDay, pricePerDay);
 
                 decimal price = numberDay * personNumber * pricePerDay;
 

@@ -45,7 +45,7 @@
             this.colTotalPrice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.mnuMenu = new System.Windows.Forms.ToolStrip();
             this.btnRefresh = new System.Windows.Forms.ToolStripButton();
-            this.txtTotalVT = new DevExpress.XtraEditors.TextEdit();
+            this.txtTotalVT_SX = new DevExpress.XtraEditors.TextEdit();
             this.txtTotalProfitQD = new DevExpress.XtraEditors.TextEdit();
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -96,9 +96,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtTotalTPA_PreVAT = new DevExpress.XtraEditors.TextEdit();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtTotalVT_MN = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             this.mnuMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotalVT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalVT_SX.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalProfitQD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalNC_KD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPriceSX_P.Properties)).BeginInit();
@@ -130,6 +133,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalTPA_PreVAT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalVT_MN.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // gridColumn7
@@ -210,7 +215,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 205);
+            this.label3.Location = new System.Drawing.Point(12, 240);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 205;
@@ -314,26 +319,26 @@
             this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // txtTotalVT
+            // txtTotalVT_SX
             // 
-            this.txtTotalVT.EditValue = "";
-            this.txtTotalVT.Location = new System.Drawing.Point(142, 178);
-            this.txtTotalVT.Name = "txtTotalVT";
-            this.txtTotalVT.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
-            this.txtTotalVT.Properties.Appearance.Options.UseFont = true;
-            this.txtTotalVT.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtTotalVT.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtTotalVT.Properties.DisplayFormat.FormatString = "n0";
-            this.txtTotalVT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtTotalVT.Properties.EditFormat.FormatString = "n0";
-            this.txtTotalVT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            this.txtTotalVT.Properties.Mask.EditMask = "n0";
-            this.txtTotalVT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtTotalVT.Properties.Mask.UseMaskAsDisplayFormat = true;
-            this.txtTotalVT.Properties.ReadOnly = true;
-            this.txtTotalVT.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtTotalVT.Size = new System.Drawing.Size(146, 21);
-            this.txtTotalVT.TabIndex = 270;
+            this.txtTotalVT_SX.EditValue = "";
+            this.txtTotalVT_SX.Location = new System.Drawing.Point(142, 178);
+            this.txtTotalVT_SX.Name = "txtTotalVT_SX";
+            this.txtTotalVT_SX.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.txtTotalVT_SX.Properties.Appearance.Options.UseFont = true;
+            this.txtTotalVT_SX.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtTotalVT_SX.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtTotalVT_SX.Properties.DisplayFormat.FormatString = "n0";
+            this.txtTotalVT_SX.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalVT_SX.Properties.EditFormat.FormatString = "n0";
+            this.txtTotalVT_SX.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalVT_SX.Properties.Mask.EditMask = "n0";
+            this.txtTotalVT_SX.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtTotalVT_SX.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTotalVT_SX.Properties.ReadOnly = true;
+            this.txtTotalVT_SX.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotalVT_SX.Size = new System.Drawing.Size(146, 21);
+            this.txtTotalVT_SX.TabIndex = 270;
             // 
             // txtTotalProfitQD
             // 
@@ -359,11 +364,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(103, 181);
+            this.label4.Location = new System.Drawing.Point(22, 181);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(116, 13);
             this.label4.TabIndex = 263;
-            this.label4.Text = "Vật tư";
+            this.label4.Text = "Vật tư sản xuất tại TPA";
             // 
             // label9
             // 
@@ -1112,14 +1117,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdSP.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdSP.Location = new System.Drawing.Point(5, 221);
+            this.grdSP.Location = new System.Drawing.Point(5, 259);
             this.grdSP.MainView = this.gridView1;
             this.grdSP.Name = "grdSP";
             this.grdSP.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit2,
             this.repositoryItemTextEdit2,
             this.repositoryItemCheckEdit2});
-            this.grdSP.Size = new System.Drawing.Size(1113, 489);
+            this.grdSP.Size = new System.Drawing.Size(1113, 451);
             this.grdSP.TabIndex = 224;
             this.grdSP.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -1176,6 +1181,57 @@
             this.textEdit2.Size = new System.Drawing.Size(63, 21);
             this.textEdit2.TabIndex = 244;
             // 
+            // textEdit1
+            // 
+            this.textEdit1.EditValue = "";
+            this.textEdit1.Location = new System.Drawing.Point(294, 211);
+            this.textEdit1.Name = "textEdit1";
+            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.textEdit1.Properties.Appearance.Options.UseFont = true;
+            this.textEdit1.Properties.Appearance.Options.UseTextOptions = true;
+            this.textEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.textEdit1.Properties.DisplayFormat.FormatString = "n2";
+            this.textEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.textEdit1.Properties.EditFormat.FormatString = "n2";
+            this.textEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.textEdit1.Properties.Mask.EditMask = "n2";
+            this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.textEdit1.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.textEdit1.Properties.ReadOnly = true;
+            this.textEdit1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textEdit1.Size = new System.Drawing.Size(63, 21);
+            this.textEdit1.TabIndex = 240;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(51, 215);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 13);
+            this.label6.TabIndex = 263;
+            this.label6.Text = "Vật tư mua ngoài";
+            // 
+            // txtTotalVT_MN
+            // 
+            this.txtTotalVT_MN.EditValue = "";
+            this.txtTotalVT_MN.Location = new System.Drawing.Point(142, 212);
+            this.txtTotalVT_MN.Name = "txtTotalVT_MN";
+            this.txtTotalVT_MN.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.txtTotalVT_MN.Properties.Appearance.Options.UseFont = true;
+            this.txtTotalVT_MN.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtTotalVT_MN.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtTotalVT_MN.Properties.DisplayFormat.FormatString = "n0";
+            this.txtTotalVT_MN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalVT_MN.Properties.EditFormat.FormatString = "n0";
+            this.txtTotalVT_MN.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalVT_MN.Properties.Mask.EditMask = "n0";
+            this.txtTotalVT_MN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtTotalVT_MN.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTotalVT_MN.Properties.ReadOnly = true;
+            this.txtTotalVT_MN.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotalVT_MN.Size = new System.Drawing.Size(146, 21);
+            this.txtTotalVT_MN.TabIndex = 270;
+            // 
             // frmQuotationReportKD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1184,8 +1240,10 @@
             this.Controls.Add(this.grdSP);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.mnuMenu);
-            this.Controls.Add(this.txtTotalVT);
+            this.Controls.Add(this.txtTotalVT_MN);
+            this.Controls.Add(this.txtTotalVT_SX);
             this.Controls.Add(this.txtTotalProfitQD);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtTotalNC_KD);
@@ -1197,6 +1255,7 @@
             this.Controls.Add(this.txtTotalProfitTPA_PHD);
             this.Controls.Add(this.txtCustomerValue_P);
             this.Controls.Add(this.txtTotalPB_P);
+            this.Controls.Add(this.textEdit1);
             this.Controls.Add(this.txtTotalVT_P);
             this.Controls.Add(this.txtTotalBX_P);
             this.Controls.Add(this.txtTotalNC_P);
@@ -1233,7 +1292,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             this.mnuMenu.ResumeLayout(false);
             this.mnuMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTotalVT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalVT_SX.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalProfitQD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalNC_KD.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPriceSX_P.Properties)).EndInit();
@@ -1265,6 +1324,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdSP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalTPA_PreVAT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalVT_MN.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1287,7 +1348,7 @@
         private System.Windows.Forms.ToolStripButton btnCreateFCM;
         private DevExpress.XtraGrid.Columns.GridColumn colTotalPrice;
         private System.Windows.Forms.ToolStrip mnuMenu;
-        private DevExpress.XtraEditors.TextEdit txtTotalVT;
+        private DevExpress.XtraEditors.TextEdit txtTotalVT_SX;
         private DevExpress.XtraEditors.TextEdit txtTotalProfitQD;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label9;
@@ -1339,5 +1400,8 @@
         private DevExpress.XtraEditors.TextEdit txtTotalTPA_PreVAT;
         private DevExpress.XtraEditors.TextEdit textEdit2;
         private System.Windows.Forms.ToolStripButton btnRefresh;
+        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private System.Windows.Forms.Label label6;
+        private DevExpress.XtraEditors.TextEdit txtTotalVT_MN;
     }
 }

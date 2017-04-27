@@ -45,11 +45,12 @@ namespace BMS
                 if (txtUserName.Text != "")
                 {
                     textBox2.Select();
-                }              
+                }
+                
             }
             else
                 this.Close();
-        }              
+        }
         private void btnOK_Click(object sender, EventArgs e)
         {            
             ProcessLogIn();           

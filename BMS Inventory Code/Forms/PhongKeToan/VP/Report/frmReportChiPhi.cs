@@ -80,13 +80,19 @@ namespace BMS
                     decimal total = 0;
                     for (int i = 1; i <= 12; i++)
                     {
-                        decimal value = TextUtils.ToDecimal(dtXangXe.Rows[i-1]["XangXe"]);
-                        decimal giaTriPB = tyle * value / 100;
-                        drs[0]["T" + i + "_PB"] = giaTriPB;
-                        drs[0]["T" + i] = giaTriPB;
-                        drs[0]["T" + i + "_TT"] = 0;
+                        try
+                        {
+                            decimal value = TextUtils.ToDecimal(dtXangXe.Rows[i - 1]["XangXe"]);
+                            decimal giaTriPB = tyle * value / 100;
+                            drs[0]["T" + i + "_PB"] = giaTriPB;
+                            drs[0]["T" + i] = giaTriPB;
+                            drs[0]["T" + i + "_TT"] = 0;
 
-                        total += giaTriPB;
+                            total += giaTriPB;
+                        }
+                        catch (Exception)
+                        {
+                        }
                     }
 
                     drs[0]["Total_PB"] = total;

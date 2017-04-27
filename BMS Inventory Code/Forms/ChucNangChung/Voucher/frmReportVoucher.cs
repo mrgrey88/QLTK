@@ -143,18 +143,6 @@ namespace BMS
             TextUtils.ExportExcel(grvData);
         }
 
-        private void grvData_CustomDrawCell(object sender, DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs e)
-        {
-            if (e.RowHandle < 0) return;
-            GridView View = sender as GridView;
-            DateTime completeDateDK = TextUtils.ToDate(View.GetRowCellValue(e.RowHandle, colCompletedDateDK).ToString());
-            string completeDate = TextUtils.ToString(View.GetRowCellValue(e.RowHandle, colCompletedDate));
-            if (completeDateDK.Date <= DateTime.Now.Date && completeDate == "")
-            {
-                e.Appearance.BackColor = Color.Yellow;
-            }
-        }
-
         private void cboType_SelectionChangeCommitted(object sender, EventArgs e)
         {
             loadData();
@@ -255,6 +243,18 @@ namespace BMS
                 CaseVoucherDebtBO.Instance.Update(cModel);
             }
             loadData();
+        }
+
+        private void grvData_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle < 0) return;
+            GridView View = sender as GridView;
+            DateTime completeDateDK = TextUtils.ToDate(View.GetRowCellValue(e.RowHandle, colCompletedDateDK).ToString());
+            string completeDate = TextUtils.ToString(View.GetRowCellValue(e.RowHandle, colCompletedDate));
+            if (completeDateDK.Date <= DateTime.Now.Date && completeDate == "")
+            {
+                e.Appearance.BackColor = Color.Yellow;
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.Utils;
 using System.Drawing.Imaging;
-
+//
 namespace BMS
 {
     public class LibQLSX

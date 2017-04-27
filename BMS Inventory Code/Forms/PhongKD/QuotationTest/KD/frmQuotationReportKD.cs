@@ -50,7 +50,8 @@ namespace BMS
                 txtTotalTPA_PreVAT.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalTPA_PreVAT"]);
                 txtTotalVAT.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalVAT_HD"]);
                 //txtTotalVAT.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalVAT_HD"]);
-                txtTotalVT.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalVT"]);
+                txtTotalVT_SX.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalVT_SX"]);
+                txtTotalVT_MN.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalVT_MN"]);
 
                 txtTotalNC.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalNC"]);
                 txtTotalPB.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalPB"]);
@@ -89,14 +90,24 @@ namespace BMS
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                localPath = fbd.SelectedPath + "\\FCM-KD- " + Quotation.Code + ".xlsx";
+                localPath = fbd.SelectedPath + "\\FCM-KD-" + Quotation.Code + ".xlsx";
             }
             else
             {
                 return;
             }
 
-            string filePath = Application.StartupPath + "\\Templates\\PhongKinhDoanh\\FCM-KD-TEMPLATE.xlsx";
+            string fileName = "";
+            if (Quotation.CreatedDepartmentID == 10)//KD1
+            {
+                fileName = "FCM-KD1.xlsx";
+            }
+            if (Quotation.CreatedDepartmentID == 16)//KD2
+            {
+                fileName = "FCM-KD2.xlsx";
+            }
+            string filePath = Application.StartupPath + "\\Templates\\PhongKinhDoanh\\" + fileName;
+            //string filePath = Application.StartupPath + "\\Templates\\PhongKinhDoanh\\FCM-KD-TEMPLATE.xlsx";
 
             try
             {
@@ -110,7 +121,7 @@ namespace BMS
 
             using (WaitDialogForm fWait = new WaitDialogForm("Vui lòng chờ trong giây lát...", "Đang tạo FCM..."))
             {
-                DataTable dtQuotation = LibQLSX.Select("exec spGetQuotation @QuotationID = " + Quotation.ID);
+                DataTable dtQuotation = LibQLSX.Select("exec [spGetQuotation] @QuotationID = " + Quotation.ID);
                 DataTable dtAllCost = LibQLSX.Select("exec [spReportCostWithQuotationKD] " + Quotation.ID);
                 DataTable dtGroup = TextUtils.GetDistinctDatatable(dtAllCost, "GroupCode");
 
@@ -145,17 +156,23 @@ namespace BMS
                     workSheet.Cells[20, 7] = TextUtils.ToDecimal(txtTotalTPA_PreVAT.EditValue);//Giá chưa VAT theo quy định phải bán
                     //Chi phí
                     workSheet.Cells[22, 7] = TextUtils.ToDecimal(txtTotalVAT.EditValue);//Thuế GTGT phải nộp
-                    //workSheet.Cells[23, 7] = TextUtils.ToDecimal(txtTotalXL.EditValue);//Xử lí phần gửi
-                    workSheet.Cells[24, 7] = TextUtils.ToDecimal(txtTotalCustomer.EditValue);//Khách hàng gửi
-                    workSheet.Cells[25, 7] = Quotation.TotalVC_KD;//Chi phí vận chuyển
-                    workSheet.Cells[26, 7] = Quotation.TotalBX_KD;//Chi phí bốc xếp
-                    workSheet.Cells[27, 7] = TextUtils.ToDecimal(txtTotalVT.EditValue);//Tổng chi phí Mua vào
-                    workSheet.Cells[28, 7] = TextUtils.ToDecimal(txtTotalNC.EditValue);//Chi phí cố định - Nhân công gián tiếp 
-                    workSheet.Cells[29, 7] = TextUtils.ToDecimal(txtTotalNC_KD.EditValue);//Chi phí cố định - Nhân công KD
-                    workSheet.Cells[30, 7] = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N08'"));//Chi phí quản lí N08
-                    workSheet.Cells[31, 7] = TextUtils.ToDecimal(txtTotalDP.EditValue);//Chi phí dự phòng
-                    workSheet.Cells[32, 7] = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N11'"));//Chi phí bảo hành
-                    workSheet.Cells[33, 7] = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N09'"));//Chi phí lãi vay
+
+                    workSheet.Cells[24, 7] = TextUtils.ToDecimal(txtTotalXL.EditValue);//Xử lí phần gửi
+                    workSheet.Cells[25, 7] = TextUtils.ToDecimal(txtTotalCustomer.EditValue);//Khách hàng gửi
+
+                    workSheet.Cells[26, 7] = Quotation.TotalVC_KD;//Chi phí vận chuyển
+                    workSheet.Cells[27, 7] = Quotation.TotalBX_KD;//Chi phí bốc xếp
+
+                    workSheet.Cells[29, 7] = TextUtils.ToDecimal(txtTotalVT_SX.EditValue);//Mua tại TPA
+                    workSheet.Cells[30, 7] = TextUtils.ToDecimal(txtTotalNC.EditValue);//Mua ngoài TPA
+
+                    workSheet.Cells[31, 7] = TextUtils.ToDecimal(txtTotalNC.EditValue);//Chi phí cố định - Nhân công gián tiếp 
+                    workSheet.Cells[32, 7] = TextUtils.ToDecimal(txtTotalNC_KD.EditValue);//Chi phí cố định - Nhân công KD
+                    workSheet.Cells[33, 7] = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N08'"));//Chi phí quản lí N08
+                    workSheet.Cells[34, 7] = TextUtils.ToDecimal(txtTotalDP.EditValue);//Chi phí dự phòng
+
+                    workSheet.Cells[38, 7] = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N11'"));//Chi phí bảo hành
+                    workSheet.Cells[39, 7] = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N09'"));//Chi phí lãi vay
 
                     for (int i = dtGroup.Rows.Count - 1; i >= 0; i--)
                     {
@@ -167,29 +184,29 @@ namespace BMS
 
                         for (int k = listCost.Length - 1; k >= 0; k--)
                         {
-                            workSheet.Cells[36, 2] = TextUtils.ToString(listCost[k]["Code"]);
-                            workSheet.Cells[36, 3] = TextUtils.ToString(listCost[k]["Name"]);
-                            //workSheet.Cells[36, 4] = TextUtils.ToString(listCost[k]["Name"]);
-                            workSheet.Cells[36, 5] = "Đồng";
-                            //workSheet.Cells[36, 6] = TextUtils.ToDecimal(listCost[k]["Qty"]);
-                            workSheet.Cells[36, 7] = TextUtils.ToDecimal(listCost[k]["TotalPrice"]);                            
+                            workSheet.Cells[42, 2] = TextUtils.ToString(listCost[k]["Code"]);
+                            workSheet.Cells[42, 3] = TextUtils.ToString(listCost[k]["Name"]);
+                            //workSheet.Cells[42, 4] = TextUtils.ToString(listCost[k]["Name"]);
+                            workSheet.Cells[42, 5] = "Đồng";
+                            //workSheet.Cells[42, 6] = TextUtils.ToDecimal(listCost[k]["Qty"]);
+                            workSheet.Cells[42, 7] = TextUtils.ToDecimal(listCost[k]["TotalPrice"]);
 
-                            ((Excel.Range)workSheet.Rows[36]).Insert();
-                            Excel.Range range = workSheet.get_Range(workSheet.Cells[36, 3], workSheet.Cells[36, 4]);
+                            ((Excel.Range)workSheet.Rows[42]).Insert();
+                            Excel.Range range = workSheet.get_Range(workSheet.Cells[42, 3], workSheet.Cells[42, 4]);
                             range.Merge(true);
                         }
 
-                        workSheet.Cells[36, 2] = TextUtils.ToString(dtGroup.Rows[i]["GroupCode"]);
-                        workSheet.Cells[36, 3] = TextUtils.ToString(dtGroup.Rows[i]["GroupName"]);
+                        workSheet.Cells[42, 2] = TextUtils.ToString(dtGroup.Rows[i]["GroupCode"]);
+                        workSheet.Cells[42, 3] = TextUtils.ToString(dtGroup.Rows[i]["GroupName"]);
 
-                        ((Excel.Range)workSheet.Rows[36]).Font.Bold = true;
-                        ((Excel.Range)workSheet.Rows[36]).Insert();
-                        Excel.Range range1 = workSheet.get_Range(workSheet.Cells[36, 3], workSheet.Cells[36, 4]);
+                        ((Excel.Range)workSheet.Rows[42]).Font.Bold = true;
+                        ((Excel.Range)workSheet.Rows[42]).Insert();
+                        Excel.Range range1 = workSheet.get_Range(workSheet.Cells[42, 3], workSheet.Cells[42, 4]);
                         range1.Merge(true);
                     }
 
-                    ((Excel.Range)workSheet.Rows[35]).Delete();
-                    ((Excel.Range)workSheet.Rows[35]).Delete();
+                    ((Excel.Range)workSheet.Rows[41]).Delete();
+                    ((Excel.Range)workSheet.Rows[41]).Delete();
                 }
                 catch (Exception ex)
                 {

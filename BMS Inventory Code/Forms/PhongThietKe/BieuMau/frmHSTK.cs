@@ -354,6 +354,7 @@ namespace BMS
 
                     doc = word.Documents.Open((localFilePath + fileName));
                     doc.Activate();
+
                     TextUtils.FindReplaceAnywhere(word, ".CODE", "." + _productCodeDT);
                     TextUtils.FindReplaceAnywhere(word, "<productname>", _productNameDT);
                     TextUtils.FindReplaceAnywhere(word, "<tenmach>", txtTenMachIn.Text.Trim());

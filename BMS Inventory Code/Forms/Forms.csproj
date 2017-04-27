@@ -34,10 +34,14 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -385,11 +389,11 @@
     <Compile Include="PhongDuAn\DuAn\frmProjectProblemAction.Designer.cs">
       <DependentUpon>frmProjectProblemAction.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhongDuAn\DuAn\frmProjectProblemManagercs.cs">
+    <Compile Include="PhongDuAn\DuAn\frmProjectProblemManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PhongDuAn\DuAn\frmProjectProblemManagercs.Designer.cs">
-      <DependentUpon>frmProjectProblemManagercs.cs</DependentUpon>
+    <Compile Include="PhongDuAn\DuAn\frmProjectProblemManager.Designer.cs">
+      <DependentUpon>frmProjectProblemManager.cs</DependentUpon>
     </Compile>
     <Compile Include="PhongDuAn\DuAn\frmProjectProblemReport.cs">
       <SubType>Form</SubType>
@@ -445,6 +449,12 @@
     <Compile Include="PhongKD\QuotationTest\SX\frmChiPhiNhanCong.Designer.cs">
       <DependentUpon>frmChiPhiNhanCong.cs</DependentUpon>
     </Compile>
+    <Compile Include="PhongKD\QuotationTest\SX\frmQuotationDetailImportSX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhongKD\QuotationTest\SX\frmQuotationDetailImportSX.Designer.cs">
+      <DependentUpon>frmQuotationDetailImportSX.cs</DependentUpon>
+    </Compile>
     <Compile Include="PhongKD\QuotationTest\SX\frmQuotationDetailSX.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,10 +503,10 @@
     <Compile Include="PhongKD\Quotation\frmQuotation.Designer.cs">
       <DependentUpon>frmQuotation.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhongKD\Quotation\frmQuotationDetailImport.cs">
+    <Compile Include="PhongKD\QuotationTest\KD\frmQuotationDetailImport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PhongKD\Quotation\frmQuotationDetailImport.Designer.cs">
+    <Compile Include="PhongKD\QuotationTest\KD\frmQuotationDetailImport.Designer.cs">
       <DependentUpon>frmQuotationDetailImport.cs</DependentUpon>
     </Compile>
     <Compile Include="PhongKD\Quotation\frmQuotationDetailManagementNew.cs">
@@ -534,6 +544,12 @@
     </Compile>
     <Compile Include="PhongKeToan\Config\frmSetRateOfPhanXuong_KMP.Designer.cs">
       <DependentUpon>frmSetRateOfPhanXuong_KMP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhongKeToan\frmTongHopChucNangKeToan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhongKeToan\frmTongHopChucNangKeToan.Designer.cs">
+      <DependentUpon>frmTongHopChucNangKeToan.cs</DependentUpon>
     </Compile>
     <Compile Include="PhongKeToan\VP\FCM\frmFCMdetail.cs">
       <SubType>Form</SubType>
@@ -1894,8 +1910,8 @@
     <EmbeddedResource Include="PhongDuAn\DuAn\frmProjectProblemAction.resx">
       <DependentUpon>frmProjectProblemAction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PhongDuAn\DuAn\frmProjectProblemManagercs.resx">
-      <DependentUpon>frmProjectProblemManagercs.cs</DependentUpon>
+    <EmbeddedResource Include="PhongDuAn\DuAn\frmProjectProblemManager.resx">
+      <DependentUpon>frmProjectProblemManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PhongDuAn\DuAn\frmProjectProblemReport.resx">
       <DependentUpon>frmProjectProblemReport.cs</DependentUpon>
@@ -1924,6 +1940,9 @@
     <EmbeddedResource Include="PhongKD\QuotationTest\SX\frmChiPhiNhanCong.resx">
       <DependentUpon>frmChiPhiNhanCong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PhongKD\QuotationTest\SX\frmQuotationDetailImportSX.resx">
+      <DependentUpon>frmQuotationDetailImportSX.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PhongKD\QuotationTest\SX\frmQuotationDetailSX.resx">
       <DependentUpon>frmQuotationDetailSX.cs</DependentUpon>
     </EmbeddedResource>
@@ -1948,7 +1967,7 @@
     <EmbeddedResource Include="PhongKD\Quotation\frmQuotation.resx">
       <DependentUpon>frmQuotation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PhongKD\Quotation\frmQuotationDetailImport.resx">
+    <EmbeddedResource Include="PhongKD\QuotationTest\KD\frmQuotationDetailImport.resx">
       <DependentUpon>frmQuotationDetailImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PhongKD\Quotation\frmQuotationDetailManagementNew.resx">
@@ -1968,6 +1987,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PhongKeToan\Config\frmSetRateOfPhanXuong_KMP.resx">
       <DependentUpon>frmSetRateOfPhanXuong_KMP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhongKeToan\frmTongHopChucNangKeToan.resx">
+      <DependentUpon>frmTongHopChucNangKeToan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PhongKeToan\VP\FCM\frmFCMdetail.resx">
       <DependentUpon>frmFCMdetail.cs</DependentUpon>

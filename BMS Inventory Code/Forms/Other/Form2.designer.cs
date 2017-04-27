@@ -71,6 +71,7 @@
             this.btnTest2 = new System.Windows.Forms.Button();
             this.txtType = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.treeData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -529,11 +530,22 @@
             this.label1.TabIndex = 226;
             this.label1.Text = "Loại chi phí\r\n0 - chi phí sản xuất\r\n1 - chi phí KD1\r\n2 - chi phí KD2";
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(438, 592);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(207, 37);
+            this.button5.TabIndex = 227;
+            this.button5.Text = "Xuất danh sách vật tư không có giá trong DMVT";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 733);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtType);
             this.Controls.Add(this.txtPass);
@@ -622,6 +634,7 @@
         private System.Windows.Forms.Button btnTest2;
         private System.Windows.Forms.TextBox txtType;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button5;
     }
 }
 

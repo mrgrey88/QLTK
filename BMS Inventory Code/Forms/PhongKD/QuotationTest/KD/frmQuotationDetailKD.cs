@@ -34,6 +34,7 @@ namespace BMS
             btnSave.Enabled = btnPhanBo.Enabled = btnDeletePriceHD.Enabled = btnAddModule.Enabled = btnImportExcel.Enabled = !Quotation.IsApproved;
             loadModule();
             loadProductGroup();
+            loadDepartment();
             loadProduct();
             loadQuotationItem();
             loadCustomerType();
@@ -87,6 +88,15 @@ namespace BMS
             repositoryItemSearchLookUpEdit2.DataSource = dtCustomerType.Copy();
             repositoryItemSearchLookUpEdit2.DisplayMember = "Name";
             repositoryItemSearchLookUpEdit2.ValueMember = "ID";
+        }
+
+        void loadDepartment()
+        {
+            DataTable tbl = LibQLSX.Select(@"SELECT * FROM Departments WITH(NOLOCK) where DepartmentId in ('D028','D009')");//phòng thiết kế 1, 2
+
+            repositoryItemSearchLookUpEdit3.DataSource = tbl.Copy();
+            repositoryItemSearchLookUpEdit3.DisplayMember = "DName";
+            repositoryItemSearchLookUpEdit3.ValueMember = "DepartmentId";
         }
 
         void loadProduct()
@@ -235,10 +245,10 @@ namespace BMS
             item.C_QuotationID = Quotation.ID;
             item.ParentID = TextUtils.ToInt(cboProduct.EditValue);
             item.C_ProductGroupID = TextUtils.ToInt(cboProductGroup.EditValue);
-            if (item.C_ProductGroupID > 0)
-            {
+            //if (item.C_ProductGroupID > 0)
+            //{
                 item.PriceVT = TextUtils.ToDecimal(txtPriceVTSX.EditValue);
-            }
+            //}
             if (item.ParentID > 0)
             {
                 item.QtyT = TextUtils.ToDecimal(txtQtyT.EditValue);
@@ -302,13 +312,16 @@ namespace BMS
 
             DataTable dtSource = (DataTable)treeData.DataSource;
             DataRow[] drsQty = dtSource.Select("(QtyT is null or QtyT = 0) and C_ProductGroupID > 0");
-            DataRow[] drsVatTu = dtSource.Select("(PriceVT is null or PriceVT = 0) and C_ProductGroupID > 0");
-            if (drsQty.Length > 0)
+            //DataRow[] drsVatTu = dtSource.Select("(PriceVT is null or PriceVT = 0) and C_ProductGroupID > 0");
+            int checkVT = dtSource.AsEnumerable().Count(o => TextUtils.ToDecimal(o.Field<decimal>("PriceVT")) == 0 && TextUtils.ToInt(o.Field<object>("C_ProductGroupID")) > 0);
+            int checkQty = dtSource.AsEnumerable().Count(o => TextUtils.ToDecimal(o.Field<decimal>("QtyT")) == 0 && TextUtils.ToInt(o.Field<object>("C_ProductGroupID")) > 0);
+
+            if (checkQty > 0)
             {
                 MessageBox.Show("Bạn chưa nhập số lượng cho các hạng mục.", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
-            if (drsVatTu.Length > 0)
+            if (checkVT > 0)
             {
                 MessageBox.Show("Bạn chưa nhập đủ VẬT TƯ SẢN XUẤT cho các hạng mục.", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
@@ -331,7 +344,7 @@ namespace BMS
                     item.C_ProductGroupID = TextUtils.ToInt(treeData.GetNodeByVisibleIndex(i).GetValue(colProductGroupID));
                     item.VAT = TextUtils.ToDecimal(treeData.GetNodeByVisibleIndex(i).GetValue(colVAT));
                     item.QtyT = TextUtils.ToDecimal(treeData.GetNodeByVisibleIndex(i).GetValue(colQtyT));
-
+                    item.DepartmentId = TextUtils.ToString(treeData.GetNodeByVisibleIndex(i).GetValue(colDepartmentId));
                     //item.CustomerType = TextUtils.ToInt(treeData.GetNodeByVisibleIndex(i).GetValue(colCustomerType));
 
                     int parentID = TextUtils.ToInt(treeData.GetNodeByVisibleIndex(i).GetValue(colParentID));
@@ -362,7 +375,7 @@ namespace BMS
 
                     if (item.ParentID == 0 && item.C_ProductGroupID == 0) continue;
 
-                    DataTable dtProductGroup = LibQLSX.Select("select top 1 ProfitPercentKD, CustomerPercent, ProfitPercentKD_OEM from C_ProductGroup where ID = " + item.C_ProductGroupID);
+                    DataTable dtProductGroup = LibQLSX.Select("select top 1 ProfitPercentKD, CustomerPercentKD1, CustomerPercentKD2, ProfitPercentKD_OEM from C_ProductGroup where ID = " + item.C_ProductGroupID);
                     decimal profitPercent = 0;
                     if (Quotation.CustomerType == 1)//EUS
                     {
@@ -374,7 +387,16 @@ namespace BMS
                     }
                     
                     //decimal profitPercent = TextUtils.ToDecimal(LibQLSX.ExcuteScalar("select top 1 ProfitPercentKD from C_ProductGroup where ID = " + item.C_ProductGroupID)) / 100;
-                    decimal xuLyPhanGuiPercent = dtProductGroup.Rows.Count > 0 ? TextUtils.ToDecimal(dtProductGroup.Rows[0]["CustomerPercent"]) / 100 : 0;
+                    decimal xuLyPhanGuiPercent = 0;
+                    if (Quotation.DepartmentId == "D018")
+                    {
+                        xuLyPhanGuiPercent = dtProductGroup.Rows.Count > 0 ? TextUtils.ToDecimal(dtProductGroup.Rows[0]["CustomerPercentKD1"]) / 100 : 0;
+                    }
+                    else
+                    {
+                        xuLyPhanGuiPercent = dtProductGroup.Rows.Count > 0 ? TextUtils.ToDecimal(dtProductGroup.Rows[0]["CustomerPercentKD2"]) / 100 : 0;
+                    }
+                    
                     decimal tienMat = (Quotation.CustomerCash * item.PriceVT) / totalCostVT;
                     decimal priceDuPhong = (Quotation.TotalDP_KD * item.PriceVT) / totalCostVT;
                     

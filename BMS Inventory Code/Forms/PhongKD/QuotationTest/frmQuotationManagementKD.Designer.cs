@@ -85,6 +85,7 @@
             this.colTotalXL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalCustomer = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotalDP = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCreatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             this.mnuMenu.SuspendLayout();
@@ -179,7 +180,7 @@
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.mnuMenu.Size = new System.Drawing.Size(1518, 42);
+            this.mnuMenu.Size = new System.Drawing.Size(1545, 42);
             this.mnuMenu.TabIndex = 250;
             this.mnuMenu.Text = "toolStrip2";
             // 
@@ -365,8 +366,8 @@
             this.colDeliveryTime.Name = "colDeliveryTime";
             this.colDeliveryTime.OptionsColumn.AllowEdit = false;
             this.colDeliveryTime.Visible = true;
-            this.colDeliveryTime.VisibleIndex = 8;
-            this.colDeliveryTime.Width = 104;
+            this.colDeliveryTime.VisibleIndex = 9;
+            this.colDeliveryTime.Width = 70;
             // 
             // label7
             // 
@@ -404,8 +405,8 @@
             this.colDName.Name = "colDName";
             this.colDName.OptionsColumn.AllowEdit = false;
             this.colDName.Visible = true;
-            this.colDName.VisibleIndex = 7;
-            this.colDName.Width = 189;
+            this.colDName.VisibleIndex = 8;
+            this.colDName.Width = 161;
             // 
             // grdData
             // 
@@ -420,7 +421,7 @@
             this.grdData.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1,
             this.repositoryItemCheckEdit1});
-            this.grdData.Size = new System.Drawing.Size(1518, 542);
+            this.grdData.Size = new System.Drawing.Size(1545, 542);
             this.grdData.TabIndex = 251;
             this.grdData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvData});
@@ -484,7 +485,8 @@
             this.colTotalDP,
             this.colDName,
             this.colStatusText,
-            this.colIsApproved});
+            this.colIsApproved,
+            this.colCreatedBy});
             this.grvData.GridControl = this.grdData;
             this.grvData.HorzScrollStep = 5;
             this.grvData.Name = "grvData";
@@ -544,7 +546,7 @@
             this.colProjectCode.Name = "colProjectCode";
             this.colProjectCode.OptionsColumn.AllowEdit = false;
             this.colProjectCode.Visible = true;
-            this.colProjectCode.VisibleIndex = 3;
+            this.colProjectCode.VisibleIndex = 4;
             this.colProjectCode.Width = 127;
             // 
             // colProjectName
@@ -563,7 +565,7 @@
             this.colProjectName.Name = "colProjectName";
             this.colProjectName.OptionsColumn.AllowEdit = false;
             this.colProjectName.Visible = true;
-            this.colProjectName.VisibleIndex = 4;
+            this.colProjectName.VisibleIndex = 5;
             this.colProjectName.Width = 293;
             // 
             // colCustomerCode
@@ -581,7 +583,7 @@
             this.colCustomerCode.Name = "colCustomerCode";
             this.colCustomerCode.OptionsColumn.AllowEdit = false;
             this.colCustomerCode.Visible = true;
-            this.colCustomerCode.VisibleIndex = 5;
+            this.colCustomerCode.VisibleIndex = 6;
             this.colCustomerCode.Width = 125;
             // 
             // colCustomerName
@@ -600,7 +602,7 @@
             this.colCustomerName.Name = "colCustomerName";
             this.colCustomerName.OptionsColumn.AllowEdit = false;
             this.colCustomerName.Visible = true;
-            this.colCustomerName.VisibleIndex = 6;
+            this.colCustomerName.VisibleIndex = 7;
             this.colCustomerName.Width = 265;
             // 
             // colCustomerCodeF
@@ -876,11 +878,26 @@
             this.colTotalDP.Name = "colTotalDP";
             this.colTotalDP.OptionsColumn.AllowEdit = false;
             // 
+            // colCreatedBy
+            // 
+            this.colCreatedBy.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colCreatedBy.AppearanceHeader.Options.UseFont = true;
+            this.colCreatedBy.AppearanceHeader.Options.UseTextOptions = true;
+            this.colCreatedBy.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colCreatedBy.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colCreatedBy.Caption = "Người tạo";
+            this.colCreatedBy.FieldName = "CreatedBy";
+            this.colCreatedBy.Name = "colCreatedBy";
+            this.colCreatedBy.OptionsColumn.AllowEdit = false;
+            this.colCreatedBy.Visible = true;
+            this.colCreatedBy.VisibleIndex = 3;
+            this.colCreatedBy.Width = 118;
+            // 
             // frmQuotationManagementKD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1518, 587);
+            this.ClientSize = new System.Drawing.Size(1545, 587);
             this.Controls.Add(this.cboYear);
             this.Controls.Add(this.mnuMenu);
             this.Controls.Add(this.label7);
@@ -959,5 +976,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTotalXL;
         private DevExpress.XtraGrid.Columns.GridColumn colTotalCustomer;
         private DevExpress.XtraGrid.Columns.GridColumn colTotalDP;
+        private DevExpress.XtraGrid.Columns.GridColumn colCreatedBy;
     }
 }

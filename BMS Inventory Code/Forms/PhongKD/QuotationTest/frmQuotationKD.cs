@@ -29,6 +29,7 @@ namespace BMS
             InitializeComponent();
         }
 
+        bool _isTK = false;
         private void frmQuotationKD_Load(object sender, EventArgs e)
         {
             loadDepartment();
@@ -68,11 +69,25 @@ namespace BMS
 
                 this.Text += ": " + CurrentQuotation.Code;
             }
+
+            _isTK = Global.DepartmentID == 1 || Global.DepartmentID == 18;
+
+            groupKD.Visible = !_isTK;
+            groupSX.Visible = _isTK;
+
+            lblIsVAT.Visible = cboIsVAT.Visible =lblCustomerType.Visible = cboCustomerType.Visible = lblPOnumber.Visible = txtPOnumber.Visible= !_isTK;
+            lblStatusNC.Visible = cboStatusNC.Visible = _isTK;
+
+            if (Global.DepartmentID == 10)//Phòng kinh doanh 1
+            {
+                cboCustomerType.SelectedIndex = 1;//EUS
+                cboCustomerType.Enabled = false;
+            }
         }
 
         void loadDepartment()
         {
-            DataTable dt = LibQLSX.Select("select * from Departments where [DepartmentId] in ('D018','D019')");
+            DataTable dt = LibQLSX.Select("select * from Departments where [DepartmentId] in ('D018','D019','D009','D028')");
             cboDepartment.DataSource = dt;
             cboDepartment.DisplayMember = "DName";
             cboDepartment.ValueMember = "DepartmentId";
@@ -105,7 +120,7 @@ namespace BMS
             }
             else
             {
-                DataTable dt;
+                DataTable dt = new DataTable();
                 if (CurrentQuotation.ID > 0)
                 {
                     dt = TextUtils.Select("select Code from C_Quotation_KD where upper(Replace(Code,' ','')) = '"
@@ -116,50 +131,11 @@ namespace BMS
                     dt = TextUtils.Select("select Code from C_Quotation_KD where upper(Replace(Code,' ','')) = '"
                         + txtCode.Text.Trim().ToUpper() + "'");
                 }
-                if (dt != null)
+                if (dt.Rows.Count > 0)
                 {
-                    if (dt.Rows.Count > 0)
-                    {
-                        MessageBox.Show("Mã này đã tồn tại!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        return false;
-                    }
+                    MessageBox.Show("Mã báo giá này đã tồn tại!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return false;
                 }
-            }
-
-            //if (txtName.Text.Trim() == "")
-            //{
-            //    MessageBox.Show("Xin hãy điền Tên.", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //    return false;
-            //}
-
-            //if (TextUtils.ToInt(leParentCat.EditValue) == 0)
-            //{
-            //    MessageBox.Show("Xin hãy chọn một nhóm!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //    return false;
-            //}
-
-            if (cboStatus.SelectedIndex < 1)
-            {
-                MessageBox.Show("Xin hãy chọn một trạng thái!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return false;
-            }
-
-            if (cboCustomerType.SelectedIndex < 1)
-            {
-                MessageBox.Show("Xin hãy chọn một loại khách hàng!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return false;
-            }
-
-            if (cboStatusNC.SelectedIndex < 1)
-            {
-                MessageBox.Show("Xin hãy chọn một cách tính chi phí nhân công!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return false;
-            }
-
-            if (cboIsVAT.SelectedIndex < 1)
-            {
-                MessageBox.Show("Xin hãy chọn một tình trạng VAT!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return false;
             }
 
             if (cboDepartment.SelectedIndex == -1)
@@ -168,12 +144,33 @@ namespace BMS
                 return false;
             }
 
-            //if (TextUtils.ToDecimal(txtDeliveryTime.EditValue) <= 0)
-            //{
-            //    MessageBox.Show("Xin hãy thêm ngày giao hàng!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            //    return false;
-            //}
+            if (cboStatus.SelectedIndex < 1)
+            {
+                MessageBox.Show("Xin hãy chọn một trạng thái!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return false;
+            }
 
+            if (!_isTK)
+            {
+                if (cboCustomerType.SelectedIndex < 1)
+                {
+                    MessageBox.Show("Xin hãy chọn một loại khách hàng!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return false;
+                }
+
+                if (cboIsVAT.SelectedIndex < 1)
+                {
+                    MessageBox.Show("Xin hãy chọn một tình trạng VAT!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return false;
+                }
+            }
+
+            if (cboStatusNC.SelectedIndex < 1 && _isTK)
+            {
+                MessageBox.Show("Xin hãy chọn một cách tính chi phí nhân công!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return false;
+            }
+            
             return true;
         }
 
@@ -221,6 +218,7 @@ namespace BMS
 
                 if (CurrentQuotation.ID <= 0)
                 {
+                    CurrentQuotation.CreatedDepartmentID = Global.DepartmentID;
                     CurrentQuotation.CreatedDate = DateTime.Now;
                     CurrentQuotation.CreatedBy = Global.AppUserName;
                     CurrentQuotation.ID = (int)pt.Insert(CurrentQuotation);

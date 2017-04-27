@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,7 +39,9 @@ namespace BMS
         
         void LoadInfoSearch()
         {
-            DataTable dt = LibQLSX.Select("exec spGetQuotation " + TextUtils.ToInt(cboYear.SelectedItem));
+            List<int> listDepartmentID = new List<int>(new int[] { 1, 10, 16, 18 });
+
+            DataTable dt = LibQLSX.Select("exec spGetQuotation " + TextUtils.ToInt(cboYear.SelectedItem) + ",0" + (!listDepartmentID.Contains(Global.DepartmentID) ? "" : ", " + Global.DepartmentID));
             grdData.DataSource = dt;
             if (_rownIndex >= grvData.RowCount)
                 _rownIndex = 0;

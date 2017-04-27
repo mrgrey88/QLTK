@@ -66,6 +66,8 @@
             this.colIsTHTK = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.colIsYCVT = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xemChiTiếtVậtTưToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đãYCVTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,6 +85,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtTienDo = new DevExpress.XtraEditors.TextEdit();
             this.btnDeadlineSXLR = new System.Windows.Forms.Button();
+            this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colIsProjectProblem = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.xemVấnĐềDựÁnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboProject.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvProject)).BeginInit();
@@ -277,7 +282,11 @@
             this.colLR,
             this.treeListColumn6,
             this.colIsTHTK,
-            this.colIsYCVT});
+            this.colIsYCVT,
+            this.treeListColumn1,
+            this.treeListColumn2,
+            this.treeListColumn3,
+            this.colIsProjectProblem});
             this.treeData.ContextMenuStrip = this.contextMenuStrip1;
             this.treeData.CustomizationFormBounds = new System.Drawing.Rectangle(1080, 179, 216, 323);
             filterCondition1.Column = this.colNameHD;
@@ -455,6 +464,8 @@
             this.colDateAboutE.Format.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colDateAboutE.Name = "colDateAboutE";
             this.colDateAboutE.OptionsColumn.AllowEdit = false;
+            this.colDateAboutE.Visible = true;
+            this.colDateAboutE.VisibleIndex = 16;
             this.colDateAboutE.Width = 91;
             // 
             // colTotalDateAboutENull
@@ -566,7 +577,7 @@
             this.treeListColumn6.AppearanceHeader.Options.UseTextOptions = true;
             this.treeListColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.treeListColumn6.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.treeListColumn6.Caption = "Số ĐNNK";
+            this.treeListColumn6.Caption = "ĐNNK";
             this.treeListColumn6.FieldName = "ImportCode";
             this.treeListColumn6.Name = "treeListColumn6";
             this.treeListColumn6.OptionsColumn.AllowEdit = false;
@@ -587,7 +598,7 @@
             this.colIsTHTK.Name = "colIsTHTK";
             this.colIsTHTK.OptionsColumn.AllowEdit = false;
             this.colIsTHTK.Visible = true;
-            this.colIsTHTK.VisibleIndex = 13;
+            this.colIsTHTK.VisibleIndex = 14;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -608,16 +619,52 @@
             this.colIsYCVT.Name = "colIsYCVT";
             this.colIsYCVT.OptionsColumn.AllowEdit = false;
             this.colIsYCVT.Visible = true;
-            this.colIsYCVT.VisibleIndex = 14;
+            this.colIsYCVT.VisibleIndex = 15;
+            // 
+            // treeListColumn1
+            // 
+            this.treeListColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.treeListColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.treeListColumn1.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.treeListColumn1.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListColumn1.Caption = "Số chỉ thị";
+            this.treeListColumn1.FieldName = "ProjectDirectionID";
+            this.treeListColumn1.Name = "treeListColumn1";
+            this.treeListColumn1.OptionsColumn.AllowEdit = false;
+            this.treeListColumn1.Visible = true;
+            this.treeListColumn1.VisibleIndex = 17;
+            // 
+            // treeListColumn2
+            // 
+            this.treeListColumn2.AppearanceCell.Options.UseTextOptions = true;
+            this.treeListColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn2.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.treeListColumn2.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.treeListColumn2.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn2.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn2.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListColumn2.Caption = "KCS";
+            this.treeListColumn2.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.treeListColumn2.FieldName = "IsKCS";
+            this.treeListColumn2.Name = "treeListColumn2";
+            this.treeListColumn2.OptionsColumn.AllowEdit = false;
+            this.treeListColumn2.Visible = true;
+            this.treeListColumn2.VisibleIndex = 18;
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.xemChiTiếtVậtTưToolStripMenuItem,
             this.đãYCVTToolStripMenuItem,
-            this.chưaYCVTToolStripMenuItem});
+            this.chưaYCVTToolStripMenuItem,
+            this.xemVấnĐềDựÁnToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(171, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(171, 92);
             // 
             // xemChiTiếtVậtTưToolStripMenuItem
             // 
@@ -777,6 +824,41 @@
             this.btnDeadlineSXLR.UseVisualStyleBackColor = true;
             this.btnDeadlineSXLR.Click += new System.EventHandler(this.btnDeadlineSXLR_Click);
             // 
+            // treeListColumn3
+            // 
+            this.treeListColumn3.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.treeListColumn3.AppearanceHeader.Options.UseFont = true;
+            this.treeListColumn3.AppearanceHeader.Options.UseTextOptions = true;
+            this.treeListColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.treeListColumn3.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.treeListColumn3.Caption = "Số ĐNNK";
+            this.treeListColumn3.FieldName = "ImportCodeFact";
+            this.treeListColumn3.Name = "treeListColumn3";
+            this.treeListColumn3.Visible = true;
+            this.treeListColumn3.VisibleIndex = 13;
+            // 
+            // colIsProjectProblem
+            // 
+            this.colIsProjectProblem.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colIsProjectProblem.AppearanceHeader.Options.UseFont = true;
+            this.colIsProjectProblem.AppearanceHeader.Options.UseTextOptions = true;
+            this.colIsProjectProblem.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colIsProjectProblem.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colIsProjectProblem.Caption = "Có vấn đề";
+            this.colIsProjectProblem.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.colIsProjectProblem.FieldName = "IsProjectProblem";
+            this.colIsProjectProblem.Name = "colIsProjectProblem";
+            this.colIsProjectProblem.OptionsColumn.AllowEdit = false;
+            this.colIsProjectProblem.Visible = true;
+            this.colIsProjectProblem.VisibleIndex = 19;
+            // 
+            // xemVấnĐềDựÁnToolStripMenuItem
+            // 
+            this.xemVấnĐềDựÁnToolStripMenuItem.Name = "xemVấnĐềDựÁnToolStripMenuItem";
+            this.xemVấnĐềDựÁnToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.xemVấnĐềDựÁnToolStripMenuItem.Text = "Xem vấn đề dự án";
+            this.xemVấnĐềDựÁnToolStripMenuItem.Click += new System.EventHandler(this.xemVấnĐềDựÁnToolStripMenuItem_Click);
+            // 
             // frmListModuleOfProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -870,5 +952,10 @@
         private System.Windows.Forms.ToolStripMenuItem đãYCVTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chưaYCVTToolStripMenuItem;
         private System.Windows.Forms.Button btnDeadlineSXLR;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn3;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colIsProjectProblem;
+        private System.Windows.Forms.ToolStripMenuItem xemVấnĐềDựÁnToolStripMenuItem;
     }
 }

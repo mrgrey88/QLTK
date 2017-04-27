@@ -164,6 +164,7 @@
             this.btnExcel.Tag = "";
             this.btnExcel.Text = "Xuất bảng kê";
             this.btnExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExcel.Visible = false;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
             // toolStripSeparator1

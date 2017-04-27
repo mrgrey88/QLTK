@@ -1285,7 +1285,6 @@ D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmBaoGiaManagement.r
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmBaoGiaCost.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmProjectProblem.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmProjectProblemAction.resources
-D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmProjectProblemManagercs.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmProjectProblemReport.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmProjectProblemReportUser.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmEquipmentManagement.resources
@@ -1533,3 +1532,6 @@ D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmChiPhiNhanCong.res
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmQuotationReportSX.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmYCMVTwarningNew.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmReportChiPhi_FCMnew.resources
+D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmQuotationDetailImportSX.resources
+D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmTongHopChucNangKeToan.resources
+D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmProjectProblemManager.resources

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,7 @@ namespace BMS
             //FilterCondition fc1 = new FilterCondition(FilterConditionEnum.Equals, colPercentExport, 100);
             //treeData.FilterConditions.Add(fc);
             //treeData.FilterConditions.Add(fc1);
+            colQty.Fixed = colNameTK.Fixed = colCodeTK.Fixed = colNameHD.Fixed = colCodeHD.Fixed = DevExpress.XtraTreeList.Columns.FixedStyle.Left;
         }
 
         void loadProject()
@@ -182,11 +184,14 @@ namespace BMS
         private void btnExecl_Click(object sender, EventArgs e)
         {
             string projectCode = TextUtils.ToString(grvProject.GetFocusedRowCellValue(colProjectCode));
+            string filePath = "";
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog()==DialogResult.OK)
             {
-                treeData.ExportToXls(fbd.SelectedPath + "/" + projectCode + ".xls");
+                filePath = fbd.SelectedPath + "/" + projectCode + ".xls";
+                treeData.ExportToXls(filePath);
             }
+            Process.Start(filePath);
         }
 
         private void đãYCVTToolStripMenuItem_Click(object sender, EventArgs e)
@@ -225,6 +230,17 @@ namespace BMS
 
                 MessageBox.Show("Thay đổi deadline SXLR thành công!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void xemVấnĐềDựÁnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool isProblem = TextUtils.ToBoolean(treeData.FocusedNode.GetValue(colIsProjectProblem));
+            if (!isProblem) return;
+
+            frmProjectProblemManager frm = new frmProjectProblemManager();
+            frm.ModuleCode = TextUtils.ToString(treeData.FocusedNode.GetValue(colCodeTK));
+            frm.ProjectCode = TextUtils.ToString(grvProject.GetFocusedRowCellValue(colProjectCode));
+            frm.Show();
         }
     }
 }

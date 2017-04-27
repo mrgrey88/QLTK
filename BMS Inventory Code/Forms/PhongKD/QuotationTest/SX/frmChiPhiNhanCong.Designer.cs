@@ -51,6 +51,9 @@
             this.colID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grvLink = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPrice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNCType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemSearchLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
+            this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdLink = new DevExpress.XtraGrid.GridControl();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,10 +65,13 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.mnuMenu = new System.Windows.Forms.ToolStrip();
+            this.colProductGroupCode = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLink)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLink)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.mnuMenu.SuspendLayout();
@@ -90,7 +96,7 @@
             this.colQty.Name = "colQty";
             this.colQty.OptionsColumn.AllowEdit = false;
             this.colQty.Visible = true;
-            this.colQty.VisibleIndex = 6;
+            this.colQty.VisibleIndex = 8;
             this.colQty.Width = 66;
             // 
             // colC_CostID
@@ -120,7 +126,7 @@
             this.colPricePerDay.Name = "colPricePerDay";
             this.colPricePerDay.OptionsColumn.AllowEdit = false;
             this.colPricePerDay.Visible = true;
-            this.colPricePerDay.VisibleIndex = 4;
+            this.colPricePerDay.VisibleIndex = 6;
             this.colPricePerDay.Width = 100;
             // 
             // colProductCode
@@ -152,8 +158,6 @@
             this.colParentName.FieldName = "ParentName";
             this.colParentName.Name = "colParentName";
             this.colParentName.OptionsColumn.AllowEdit = false;
-            this.colParentName.Visible = true;
-            this.colParentName.VisibleIndex = 9;
             this.colParentName.Width = 300;
             // 
             // repositoryItemMemoEdit1
@@ -182,7 +186,7 @@
             this.colModuleName.Name = "colModuleName";
             this.colModuleName.OptionsColumn.AllowEdit = false;
             this.colModuleName.Visible = true;
-            this.colModuleName.VisibleIndex = 8;
+            this.colModuleName.VisibleIndex = 10;
             this.colModuleName.Width = 300;
             // 
             // colModuleCode
@@ -220,7 +224,7 @@
             this.colNumberDay.FieldName = "NumberDay";
             this.colNumberDay.Name = "colNumberDay";
             this.colNumberDay.Visible = true;
-            this.colNumberDay.VisibleIndex = 3;
+            this.colNumberDay.VisibleIndex = 4;
             this.colNumberDay.Width = 73;
             // 
             // repositoryItemTextEdit1
@@ -248,7 +252,7 @@
             this.colPersonNumber.FieldName = "PersonNumber";
             this.colPersonNumber.Name = "colPersonNumber";
             this.colPersonNumber.Visible = true;
-            this.colPersonNumber.VisibleIndex = 2;
+            this.colPersonNumber.VisibleIndex = 3;
             this.colPersonNumber.Width = 81;
             // 
             // colTongTien
@@ -264,7 +268,7 @@
             this.colTongTien.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TongTien", "{0:n0}")});
             this.colTongTien.Visible = true;
-            this.colTongTien.VisibleIndex = 7;
+            this.colTongTien.VisibleIndex = 9;
             this.colTongTien.Width = 150;
             // 
             // colName
@@ -339,7 +343,9 @@
             this.colC_CostID,
             this.colQty,
             this.colTongTien,
-            this.colPrice});
+            this.colPrice,
+            this.colNCType,
+            this.colProductGroupCode});
             this.grvLink.GridControl = this.grdLink;
             this.grvLink.GroupCount = 2;
             this.grvLink.Name = "grvLink";
@@ -368,8 +374,43 @@
             this.colPrice.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Price", "{0:n0}")});
             this.colPrice.Visible = true;
-            this.colPrice.VisibleIndex = 5;
+            this.colPrice.VisibleIndex = 7;
             this.colPrice.Width = 96;
+            // 
+            // colNCType
+            // 
+            this.colNCType.AppearanceCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colNCType.AppearanceCell.Options.UseFont = true;
+            this.colNCType.AppearanceCell.Options.UseTextOptions = true;
+            this.colNCType.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNCType.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colNCType.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colNCType.AppearanceHeader.Options.UseFont = true;
+            this.colNCType.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNCType.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNCType.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colNCType.Caption = "Loại nhân công";
+            this.colNCType.ColumnEdit = this.repositoryItemSearchLookUpEdit1;
+            this.colNCType.FieldName = "CostNCType";
+            this.colNCType.Name = "colNCType";
+            this.colNCType.Visible = true;
+            this.colNCType.VisibleIndex = 5;
+            // 
+            // repositoryItemSearchLookUpEdit1
+            // 
+            this.repositoryItemSearchLookUpEdit1.AutoHeight = false;
+            this.repositoryItemSearchLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSearchLookUpEdit1.Name = "repositoryItemSearchLookUpEdit1";
+            this.repositoryItemSearchLookUpEdit1.NullText = "";
+            this.repositoryItemSearchLookUpEdit1.View = this.repositoryItemSearchLookUpEdit1View;
+            // 
+            // repositoryItemSearchLookUpEdit1View
+            // 
+            this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
+            this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // grdLink
             // 
@@ -383,8 +424,9 @@
             this.grdLink.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemMemoEdit1,
             this.repositoryItemTextEdit1,
-            this.repositoryItemCheckEdit1});
-            this.grdLink.Size = new System.Drawing.Size(1297, 649);
+            this.repositoryItemCheckEdit1,
+            this.repositoryItemSearchLookUpEdit1});
+            this.grdLink.Size = new System.Drawing.Size(1464, 649);
             this.grdLink.TabIndex = 188;
             this.grdLink.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvLink});
@@ -485,15 +527,30 @@
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.mnuMenu.Size = new System.Drawing.Size(1297, 41);
+            this.mnuMenu.Size = new System.Drawing.Size(1464, 41);
             this.mnuMenu.TabIndex = 187;
             this.mnuMenu.Text = "toolStrip2";
+            // 
+            // colProductGroupCode
+            // 
+            this.colProductGroupCode.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colProductGroupCode.AppearanceHeader.Options.UseFont = true;
+            this.colProductGroupCode.AppearanceHeader.Options.UseTextOptions = true;
+            this.colProductGroupCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colProductGroupCode.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colProductGroupCode.Caption = "Ngành hàng";
+            this.colProductGroupCode.FieldName = "ProductGroupCode";
+            this.colProductGroupCode.Name = "colProductGroupCode";
+            this.colProductGroupCode.OptionsColumn.AllowEdit = false;
+            this.colProductGroupCode.Visible = true;
+            this.colProductGroupCode.VisibleIndex = 2;
+            this.colProductGroupCode.Width = 81;
             // 
             // frmChiPhiNhanCong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 693);
+            this.ClientSize = new System.Drawing.Size(1464, 693);
             this.Controls.Add(this.grdLink);
             this.Controls.Add(this.mnuMenu);
             this.Name = "frmChiPhiNhanCong";
@@ -504,6 +561,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLink)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLink)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.mnuMenu.ResumeLayout(false);
@@ -546,5 +605,9 @@
         private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.ToolStrip mnuMenu;
         private DevExpress.XtraGrid.Columns.GridColumn colPrice;
+        private DevExpress.XtraGrid.Columns.GridColumn colNCType;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemSearchLookUpEdit1;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn colProductGroupCode;
     }
 }

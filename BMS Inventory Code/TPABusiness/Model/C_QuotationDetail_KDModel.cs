@@ -7,6 +7,7 @@ namespace TPA.Model
 		private int iD;
 		private int c_QuotationID;
 		private int c_ProductGroupID;
+        private string departmentId;
 		private int parentID;
 		private string moduleCode;
 		private string moduleName;
@@ -56,7 +57,12 @@ namespace TPA.Model
 			get { return c_ProductGroupID; }
 			set { c_ProductGroupID = value; }
 		}
-	
+        public string DepartmentId
+        {
+            get { return departmentId; }
+            set { departmentId = value; }
+        }
+
 		public int ParentID
 		{
 			get { return parentID; }

@@ -1148,7 +1148,6 @@ namespace BMS
                                         {
                                             if (dtNoPrice.Rows.Count > 0)
                                                 dtData.Merge(dtNoPrice);
-
                                         }
 
                                         //Lấy danh sách các vật tư phụ của module

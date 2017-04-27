@@ -348,12 +348,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hủyDuyệtToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(130, 26);
             // 
             // hủyDuyệtToolStripMenuItem
             // 
             this.hủyDuyệtToolStripMenuItem.Name = "hủyDuyệtToolStripMenuItem";
-            this.hủyDuyệtToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hủyDuyệtToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.hủyDuyệtToolStripMenuItem.Text = "Hủy duyệt";
             this.hủyDuyệtToolStripMenuItem.Click += new System.EventHandler(this.hủyDuyệtToolStripMenuItem_Click);
             // 
@@ -618,7 +618,7 @@
             this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(112, 33);
-            this.btnNew.Tag = "frmQuotationManagement_ListModule";
+            this.btnNew.Tag = "frmQuotationManagementKD_ListModuleKD";
             this.btnNew.Text = "Danh sách thiết bị";
             this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -635,7 +635,7 @@
             this.btnReport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(55, 33);
-            this.btnReport.Tag = "frmQuotationManagement_Report";
+            this.btnReport.Tag = "frmQuotationManagementKD_ReportKD";
             this.btnReport.Text = "Báo cáo";
             this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);

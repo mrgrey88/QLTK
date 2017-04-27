@@ -13,6 +13,7 @@ namespace TPA.Model
 		private decimal numberDay;
 		private decimal totalR;
 		private int isDirect;
+		private string costNCType;
 		public int ID
 		{
 			get { return iD; }
@@ -65,6 +66,12 @@ namespace TPA.Model
 		{
 			get { return isDirect; }
 			set { isDirect = value; }
+		}
+	
+		public string CostNCType
+		{
+			get { return costNCType; }
+			set { costNCType = value; }
 		}
 	
 	}
