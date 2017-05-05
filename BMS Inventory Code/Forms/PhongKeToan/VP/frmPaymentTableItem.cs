@@ -352,6 +352,12 @@ namespace BMS
                 return;
             }
 
+            if (TextUtils.ToDecimal(txtVAT.EditValue)<0)
+            {
+                MessageBox.Show("VAT không không hợp lệ, Vật tư chưa điền VAT!", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (_type == 0)
             {
                 DataRow[] drs = _dtItem.Select("Code = '" + txtCode.Text.Trim() + "'");
@@ -962,6 +968,10 @@ namespace BMS
                     for (int i = 0; i < dtItem.Rows.Count; i++)
                     {
                         string orderCode = TextUtils.ToString(dtItem.Rows[i]["Code"]);
+                        if (orderCode == "NCC1016.201702.007")
+                        {
+                            MessageBox.Show("a");
+                        }
                         string listProjects = TextUtils.ToString(dtItem.Rows[i]["Target"]);
                         decimal vat = TextUtils.ToDecimal(dtItem.Rows[i]["VAT"]);
                         decimal delivery = TextUtils.ToDecimal(dtItem.Rows[i]["DeliveryCost"]);
