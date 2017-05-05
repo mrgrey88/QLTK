@@ -11,6 +11,11 @@ using TPA.Business;
 using TPA.Utils;
 using System.Collections;
 using DevExpress.Utils;
+using System.Diagnostics;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.IO;
+using BMS.Model;
+using BMS.Business;
 
 namespace BMS
 {
@@ -201,7 +206,7 @@ namespace BMS
                     sql = "select *, ValuePercentSX = (select top 1 ValuePercentSX from vC_CostProductGroupLinkNew where C_CostID = a.ID and [C_ProductGroupID] = "
                     + item.C_ProductGroupID + ") from vC_CostNew a where IsUse = 1 and IsDeleted = 0 and GroupCode in ('N01','N08','N09','N11')";
                 }
-                
+
                 DataTable dtCost = LibQLSX.Select(sql);
 
                 foreach (DataRow row in dtCost.Rows)
@@ -220,7 +225,7 @@ namespace BMS
                     //}
                     //else
                     //{
-                        link.Price = TextUtils.ToDecimal(row["ValuePercentSX"]) / 100 * item.PriceTPA;
+                    link.Price = TextUtils.ToDecimal(row["ValuePercentSX"]) / 100 * item.PriceTPA;
                     //}
 
                     if (link.ID == 0)
@@ -665,7 +670,7 @@ namespace BMS
         {
             if (Quotation.StatusNC != 2)
             {
-                MessageBox.Show("Báo giá này Nhân công tính theo tỉ lệ %.",TextUtils.Caption,MessageBoxButtons.OK,MessageBoxIcon.Stop);
+                MessageBox.Show("Báo giá này Nhân công tính theo tỉ lệ %.", TextUtils.Caption, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
@@ -679,6 +684,227 @@ namespace BMS
                     btnSave_Click(null, null);
                 }
             }
+        }
+
+        void exportBaoGia()
+        {
+            if (treeData.AllNodesCount == 0) return;
+
+            string localPath = "";
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                localPath = fbd.SelectedPath + "\\Bao Gia - " + Quotation.Code + ".xls";
+            }
+            else
+            {
+                return;
+            }
+
+            string filePath = Application.StartupPath + "\\Templates\\PhongKinhDoanh\\BaoGia.xls";
+
+            try
+            {
+                File.Copy(filePath, localPath, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + Environment.NewLine + ex.Message);
+                return;
+            }
+
+            using (WaitDialogForm fWait = new WaitDialogForm("Vui lòng chờ trong giây lát...", "Đang tạo báo giá..."))
+            {
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+                Excel.Application app = default(Excel.Application);
+                Excel.Workbook workBoook = default(Excel.Workbook);
+                Excel.Worksheet workSheet = default(Excel.Worksheet);
+                try
+                {
+                    app = new Excel.Application();
+                    app.Workbooks.Open(localPath);
+                    workBoook = app.Workbooks[1];
+                    workSheet = (Excel.Worksheet)workBoook.Worksheets[1];
+
+                    DataTable dtItem = LibQLSX.Select("select * from vC_QuotationDetail_SX with(nolock) where ParentID = 0 and C_QuotationID = " + Quotation.ID);
+
+                    for (int i = dtItem.Rows.Count - 1; i >= 0; i--)
+                    {
+                        int id = TextUtils.ToInt(dtItem.Rows[i]["ID"]);
+                        string moduleCode1 = TextUtils.ToString(dtItem.Rows[i]["ModuleCode"]);
+                        string moduleName1 = TextUtils.ToString(dtItem.Rows[i]["ModuleName"]);
+                        decimal qty1 = TextUtils.ToDecimal(dtItem.Rows[i]["Qty"]);
+                        decimal price1 = TextUtils.ToDecimal(dtItem.Rows[i]["PriceTPA"]);
+                        string hang1 = TextUtils.ToString(dtItem.Rows[i]["Manufacture"]);
+                        //string total1 = TextUtils.ToDecimal(dtItem.Rows[i]["TotalTPA"]).ToString("n0");
+                        int parentID = TextUtils.ToInt(dtItem.Rows[i]["ParentID"]);
+                        DataTable dtC = LibQLSX.Select("select * from vC_QuotationDetail_SX with(nolock) where ParentID = " + id);
+
+                        if (dtC.Rows.Count == 0)
+                        {
+                            if (moduleCode1.ToUpper().StartsWith("TPAD.") && moduleCode1.Length == 10)
+                            {
+                                try
+                                {
+                                    string spec = TextUtils.ToString(TextUtils.ExcuteScalar("select top 1 Specifications from Modules where Code = '" + moduleCode1 + "'"));
+                                    if (spec.Length > 0)
+                                    {
+                                        string[] thongSo = spec.Split('\n');
+                                        for (int k = thongSo.Length - 1; k >= 0; k--)
+                                        {
+                                            workSheet.Cells[16, 3] = thongSo[k];
+                                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        ((Excel.Range)workSheet.Rows[16]).Insert();
+                                        ((Excel.Range)workSheet.Rows[16]).Insert();
+                                    }
+                                }
+                                catch
+                                {
+                                }
+                            }
+                            else
+                            {
+                                ((Excel.Range)workSheet.Rows[16]).Insert();
+                                ((Excel.Range)workSheet.Rows[16]).Insert();
+                            }
+
+                            workSheet.Cells[16, 2] = (i + 1);
+                            workSheet.Cells[16, 3] = moduleName1.ToUpper();
+                            workSheet.Cells[16, 4] = moduleCode1.ToUpper();
+                            workSheet.Cells[16, 5] = hang1;
+                            workSheet.Cells[16, 6] = "BỘ";
+                            workSheet.Cells[16, 7] = qty1.ToString("n0");
+                            workSheet.Cells[16, 8] = price1.ToString("n0");
+                            workSheet.Cells[16, 9] = qty1 * price1;
+                            ((Excel.Range)workSheet.Rows[16]).Font.Bold = true;
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                        }
+                        else
+                        {
+                            decimal sumPrice = 0;
+
+                            #region Add child module
+                            for (int j = dtC.Rows.Count - 1; j >= 0; j--)
+                            {
+                                string moduleCode = TextUtils.ToString(dtC.Rows[j]["ModuleCode"]);
+                                string moduleName = TextUtils.ToString(dtC.Rows[j]["ModuleName"]);
+                                string qty = TextUtils.ToDecimal(dtC.Rows[j]["QtyT"]).ToString("n0");
+                                string price = TextUtils.ToDecimal(dtC.Rows[j]["PriceTPA"]).ToString("n0");
+                                string hang = TextUtils.ToString(dtC.Rows[j]["Manufacture"]);
+                                //string total = TextUtils.ToDecimal(dtC.Rows[j]["TotalTPA"]).ToString("n0");
+                                sumPrice += TextUtils.ToDecimal(qty) * TextUtils.ToDecimal(price);
+
+                                if (moduleCode.ToUpper().StartsWith("TPAD.") && moduleCode.Length == 10)
+                                {
+                                    try
+                                    {
+                                        string spec = TextUtils.ToString(TextUtils.ExcuteScalar("select top 1 Specifications from Modules where Code = '" + moduleCode + "'"));
+                                        if (spec.Length > 0)
+                                        {
+                                            string[] thongSo = spec.Split('\n');
+                                            for (int k = thongSo.Length - 1; k >= 0; k--)
+                                            {
+                                                workSheet.Cells[16, 3] = thongSo[k];
+                                                ((Excel.Range)workSheet.Rows[16]).Insert();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                                        }
+                                    }
+                                    catch
+                                    {
+                                    }
+                                }
+                                else
+                                {
+                                    ((Excel.Range)workSheet.Rows[16]).Insert();
+                                    ((Excel.Range)workSheet.Rows[16]).Insert();
+                                }
+
+                                workSheet.Cells[16, 2] = (i + 1) + "." + (j + 1);
+                                workSheet.Cells[16, 3] = moduleName;//.ToUpper();
+                                workSheet.Cells[16, 4] = moduleCode;//.ToUpper();
+                                workSheet.Cells[16, 5] = hang;
+                                workSheet.Cells[16, 6] = "";
+                                workSheet.Cells[16, 7] = qty;
+                                workSheet.Cells[16, 8] = price;
+                                //workSheet.Cells[16, 9] = total;
+                                ((Excel.Range)workSheet.Rows[16]).Font.Bold = true;
+                                ((Excel.Range)workSheet.Rows[16]).Insert();
+                            }
+                            #endregion
+
+                            #region Add Parent
+                            workSheet.Cells[16, 3] = "'* Thông số kỹ thuật chi tiết";
+                            ((Excel.Range)workSheet.Rows[16]).Font.Bold = true;
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+
+                            for (int j = dtC.Rows.Count - 1; j >= 0; j--)
+                            {
+                                string moduleName = TextUtils.ToString(dtC.Rows[j]["ModuleName"]);
+                                string qty = TextUtils.ToDecimal(dtC.Rows[j]["QtyT"]).ToString("n0");
+                                workSheet.Cells[16, 3] = qty + " " + moduleName;
+                                ((Excel.Range)workSheet.Rows[16]).Insert();
+                            }
+
+                            workSheet.Cells[16, 3] = "'* Danh mục thiết bị";
+                            ((Excel.Range)workSheet.Rows[16]).Font.Bold = true;
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+
+                            workSheet.Cells[16, 3] = "'* Nội dung thực hành";
+                            ((Excel.Range)workSheet.Rows[16]).Font.Bold = true;
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+
+                            workSheet.Cells[16, 3] = "'- Xuất xứ: Việt Nam";
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                            workSheet.Cells[16, 3] = "'- Hãng sản xuất: TPA";
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                            workSheet.Cells[16, 3] = "'- Model: " + TextUtils.ToString(dtItem.Rows[i]["ModuleCode"]);
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+
+                            workSheet.Cells[16, 2] = (i + 1);
+                            workSheet.Cells[16, 3] = moduleName1.ToUpper();
+                            workSheet.Cells[16, 4] = moduleCode1.ToUpper();
+                            workSheet.Cells[16, 5] = hang1;
+                            workSheet.Cells[16, 6] = "BỘ";
+                            workSheet.Cells[16, 7] = qty1.ToString("n0");
+                            workSheet.Cells[16, 8] = sumPrice.ToString("n0");
+                            workSheet.Cells[16, 9] = qty1 * sumPrice;
+                            ((Excel.Range)workSheet.Rows[16]).Font.Bold = true;
+                            ((Excel.Range)workSheet.Rows[16]).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Yellow);// Color.Yellow;
+                            ((Excel.Range)workSheet.Rows[16]).Insert();
+                            #endregion
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (app != null)
+                    {
+                        app.ActiveWorkbook.Save();
+                        app.Workbooks.Close();
+                        app.Quit();
+                    }
+                }
+            }
+        }
+
+        private void btnCreateBaoGia_Click(object sender, EventArgs e)
+        {
+            exportBaoGia();
         }
     }
 }

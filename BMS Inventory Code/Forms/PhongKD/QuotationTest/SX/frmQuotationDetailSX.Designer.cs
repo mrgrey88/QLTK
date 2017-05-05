@@ -114,6 +114,8 @@
             this.cboProductGroup = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.grvCboCostGroup = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCreateBaoGia = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.grvCboProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQtyT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVAT.Properties)).BeginInit();
@@ -1192,7 +1194,9 @@
             this.toolStripSeparator1,
             this.btnExcel,
             this.toolStripSeparator2,
-            this.btnCPNC});
+            this.btnCPNC,
+            this.toolStripSeparator3,
+            this.btnCreateBaoGia});
             this.mnuMenu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
@@ -1291,6 +1295,23 @@
             this.groupBox1.Size = new System.Drawing.Size(974, 94);
             this.groupBox1.TabIndex = 225;
             this.groupBox1.TabStop = false;
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 23);
+            // 
+            // btnCreateBaoGia
+            // 
+            this.btnCreateBaoGia.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateBaoGia.Image = ((System.Drawing.Image)(resources.GetObject("btnCreateBaoGia.Image")));
+            this.btnCreateBaoGia.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCreateBaoGia.Name = "btnCreateBaoGia";
+            this.btnCreateBaoGia.Size = new System.Drawing.Size(76, 33);
+            this.btnCreateBaoGia.Tag = "";
+            this.btnCreateBaoGia.Text = "Tạo báo giá";
+            this.btnCreateBaoGia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCreateBaoGia.Click += new System.EventHandler(this.btnCreateBaoGia_Click);
             // 
             // frmQuotationDetailSX
             // 
@@ -1417,5 +1438,7 @@
         private DevExpress.XtraTreeList.Columns.TreeListColumn colTotalVC;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colTotalBX;
         private DevExpress.XtraTreeList.Columns.TreeListColumn colPriceCP;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton btnCreateBaoGia;
     }
 }
