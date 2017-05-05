@@ -157,14 +157,25 @@ namespace BMS
                     //Chi phí
                     workSheet.Cells[22, 7] = TextUtils.ToDecimal(txtTotalVAT.EditValue);//Thuế GTGT phải nộp
 
-                    workSheet.Cells[24, 7] = TextUtils.ToDecimal(txtTotalXL.EditValue);//Xử lí phần gửi
-                    workSheet.Cells[25, 7] = TextUtils.ToDecimal(txtTotalCustomer.EditValue);//Khách hàng gửi
+                    //Khách hàng gửi
+                    if (Quotation.CreatedDepartmentID == 10)//KD1
+                    {
+                        workSheet.Cells[23, 7] = Quotation.CustomerCash;//Chênh lệch chi- thu xúc tiền bán hàng 
+                        workSheet.Cells[24, 7] = TextUtils.ToDecimal(txtTotalXL.EditValue);//Xử lí phần gửi
+                        workSheet.Cells[25, 7] = Quotation.CustomerCash + TextUtils.ToDecimal(txtTotalXL.EditValue);//Khách hàng gửi
+                    }
+                    else
+                    {
+                        workSheet.Cells[23, 7] = Quotation.CustomerCash - TextUtils.ToDecimal(txtTotalXL.EditValue);//Chênh lệch chi- thu xúc tiền bán hàng 
+                        workSheet.Cells[24, 7] = TextUtils.ToDecimal(txtTotalXL.EditValue);//Xử lí phần gửi
+                        workSheet.Cells[25, 7] = Quotation.CustomerCash;//Khách hàng gửi
+                    }
 
                     workSheet.Cells[26, 7] = Quotation.TotalVC_KD;//Chi phí vận chuyển
                     workSheet.Cells[27, 7] = Quotation.TotalBX_KD;//Chi phí bốc xếp
 
                     workSheet.Cells[29, 7] = TextUtils.ToDecimal(txtTotalVT_SX.EditValue);//Mua tại TPA
-                    workSheet.Cells[30, 7] = TextUtils.ToDecimal(txtTotalNC.EditValue);//Mua ngoài TPA
+                    workSheet.Cells[30, 7] = TextUtils.ToDecimal(txtTotalVT_MN.EditValue);//Mua ngoài TPA
 
                     workSheet.Cells[31, 7] = TextUtils.ToDecimal(txtTotalNC.EditValue);//Chi phí cố định - Nhân công gián tiếp 
                     workSheet.Cells[32, 7] = TextUtils.ToDecimal(txtTotalNC_KD.EditValue);//Chi phí cố định - Nhân công KD
@@ -207,6 +218,66 @@ namespace BMS
 
                     ((Excel.Range)workSheet.Rows[41]).Delete();
                     ((Excel.Range)workSheet.Rows[41]).Delete();
+
+                    Excel.Worksheet workSheet2 = (Excel.Worksheet)workBoook.Worksheets[2];
+                    DataTable dtItem = LibQLSX.Select("select * from vC_QuotationDetail_KD with(nolock) where ParentID = 0 and C_QuotationID = " + Quotation.ID);
+
+                    for (int i = dtItem.Rows.Count - 1; i >= 0; i--)
+                    {
+                        int id = TextUtils.ToInt(dtItem.Rows[i]["ID"]);
+                        DataTable dtC = LibQLSX.Select("select * from vC_QuotationDetail_KD with(nolock) where ParentID = " + id);
+
+                        for (int j = dtC.Rows.Count - 1; j >= 0; j--)
+                        {
+                            workSheet2.Cells[5, 1] = (i + 1) + "." + (j + 1);
+                            workSheet2.Cells[5, 2] = TextUtils.ToString(dtC.Rows[j]["ModuleName"]);
+                            workSheet2.Cells[5, 3] = TextUtils.ToString(dtC.Rows[j]["ModuleCode"]);
+                            workSheet2.Cells[5, 4] = TextUtils.ToString(dtC.Rows[j]["Manufacture"]);
+                            workSheet2.Cells[5, 5] = TextUtils.ToString(dtC.Rows[j]["Origin"]);
+                            workSheet2.Cells[5, 6] = TextUtils.ToString(dtC.Rows[j]["DCode"]);
+                            workSheet2.Cells[5, 7] = TextUtils.ToString(dtC.Rows[j]["C_ProductGroupCode"]);
+                            workSheet2.Cells[5, 8] = TextUtils.ToString(dtC.Rows[j]["Qty"]);
+                            workSheet2.Cells[5, 17] = TextUtils.ToString(dtC.Rows[j]["PriceVT"]);
+                            workSheet2.Cells[5, 18] = TextUtils.ToDecimal(dtC.Rows[j]["VAT"]) / 100;
+
+                            workSheet2.Cells[5, 22] = TextUtils.ToString(dtC.Rows[j]["PriceTPA_PreVAT"]);
+                            workSheet2.Cells[5, 23] = TextUtils.ToString(dtC.Rows[j]["PriceTPA"]);
+                            workSheet2.Cells[5, 24] = TextUtils.ToString(dtC.Rows[j]["PriceVAT_HD"]);
+                            workSheet2.Cells[5, 25] = TextUtils.ToDecimal(dtC.Rows[j]["PriceHD"]) * (1 - TextUtils.ToDecimal(dtC.Rows[j]["VAT"]) / 100);
+                            workSheet2.Cells[5, 26] = TextUtils.ToDecimal(dtC.Rows[j]["Qty"]) * TextUtils.ToDecimal(dtC.Rows[j]["PriceHD"]);
+                            workSheet2.Cells[5, 27] = TextUtils.ToDecimal(dtC.Rows[j]["Qty"]) * TextUtils.ToDecimal(dtC.Rows[j]["PriceVT"]);
+
+                            ((Excel.Range)workSheet2.Rows[5]).Insert();
+                        }
+
+                        workSheet2.Cells[5, 1] = i + 1;
+                        workSheet2.Cells[5, 2] = TextUtils.ToString(dtItem.Rows[i]["ModuleName"]);
+                        workSheet2.Cells[5, 3] = TextUtils.ToString(dtItem.Rows[i]["ModuleCode"]);
+                        workSheet2.Cells[5, 4] = TextUtils.ToString(dtItem.Rows[i]["Manufacture"]);
+                        workSheet2.Cells[5, 5] = TextUtils.ToString(dtItem.Rows[i]["Origin"]);
+                        workSheet2.Cells[5, 6] = TextUtils.ToString(dtItem.Rows[i]["DCode"]);
+                        workSheet2.Cells[5, 8] = TextUtils.ToString(dtItem.Rows[i]["Qty"]);
+                        
+                        if (dtC.Rows.Count == 0)
+                        {
+                            workSheet2.Cells[5, 7] = TextUtils.ToString(dtItem.Rows[i]["C_ProductGroupCode"]);
+                            workSheet2.Cells[5, 17] = TextUtils.ToString(dtItem.Rows[i]["PriceVT"]);
+                            workSheet2.Cells[5, 18] = TextUtils.ToDecimal(dtItem.Rows[i]["VAT"]) / 100;
+
+                            workSheet2.Cells[5, 22] = TextUtils.ToString(dtItem.Rows[i]["PriceTPA_PreVAT"]);
+                            workSheet2.Cells[5, 23] = TextUtils.ToString(dtItem.Rows[i]["PriceTPA"]);
+                            workSheet2.Cells[5, 24] = TextUtils.ToString(dtItem.Rows[i]["PriceVAT_HD"]);
+                            workSheet2.Cells[5, 25] = TextUtils.ToDecimal(dtItem.Rows[i]["PriceHD"]) * (1 - TextUtils.ToDecimal(dtItem.Rows[i]["VAT"]) / 100);
+                            workSheet2.Cells[5, 26] = TextUtils.ToDecimal(dtItem.Rows[i]["Qty"]) * TextUtils.ToDecimal(dtItem.Rows[i]["PriceHD"]);
+                            workSheet2.Cells[5, 27] = TextUtils.ToDecimal(dtItem.Rows[i]["Qty"]) * TextUtils.ToDecimal(dtItem.Rows[i]["PriceVT"]);
+                        }
+
+                        ((Excel.Range)workSheet2.Rows[5]).Font.Bold = true;
+                        ((Excel.Range)workSheet2.Rows[5]).Insert();
+                    }
+
+                    ((Excel.Range)workSheet2.Rows[4]).Delete();
+                    ((Excel.Range)workSheet2.Rows[4]).Delete();
                 }
                 catch (Exception ex)
                 {

@@ -45,6 +45,8 @@ namespace BMS
             {
                 colModuleCode.OptionsColumn.AllowEdit = true;
             }
+
+            colPercentXLKH.Visible = Quotation.DepartmentId == "D018";//KD1
         }
 
         void loadModule()
@@ -249,6 +251,11 @@ namespace BMS
             //{
                 item.PriceVT = TextUtils.ToDecimal(txtPriceVTSX.EditValue);
             //}
+
+            string sql = "select top 1 " + (Quotation.DepartmentId == "D018" ? "CustomerPercentKD1" : "CustomerPercentKD2")
+                + " from C_ProductGroup where ID = " + item.C_ProductGroupID;
+            item.PercentXLKH = TextUtils.ToDecimal(LibQLSX.ExcuteScalar(sql));
+
             if (item.ParentID > 0)
             {
                 item.QtyT = TextUtils.ToDecimal(txtQtyT.EditValue);
@@ -298,7 +305,8 @@ namespace BMS
         private void btnImportExcel_Click(object sender, EventArgs e)
         {
             frmQuotationDetailImport frm = new frmQuotationDetailImport();
-            frm.QuotationID = Quotation.ID;
+            //frm.QuotationID = Quotation.ID;
+            frm.Quotation = Quotation;
             frm.LoadDataChange += main_LoadDataChange;
             TextUtils.OpenForm(frm);
         }
@@ -347,6 +355,8 @@ namespace BMS
                     item.DepartmentId = TextUtils.ToString(treeData.GetNodeByVisibleIndex(i).GetValue(colDepartmentId));
                     //item.CustomerType = TextUtils.ToInt(treeData.GetNodeByVisibleIndex(i).GetValue(colCustomerType));
 
+                    item.PercentXLKH = TextUtils.ToDecimal(treeData.GetNodeByVisibleIndex(i).GetValue(colPercentXLKH));
+
                     int parentID = TextUtils.ToInt(treeData.GetNodeByVisibleIndex(i).GetValue(colParentID));
                     if (parentID == 0)
                     {
@@ -387,17 +397,21 @@ namespace BMS
                     }
                     
                     //decimal profitPercent = TextUtils.ToDecimal(LibQLSX.ExcuteScalar("select top 1 ProfitPercentKD from C_ProductGroup where ID = " + item.C_ProductGroupID)) / 100;
-                    decimal xuLyPhanGuiPercent = 0;
-                    if (Quotation.DepartmentId == "D018")
-                    {
-                        xuLyPhanGuiPercent = dtProductGroup.Rows.Count > 0 ? TextUtils.ToDecimal(dtProductGroup.Rows[0]["CustomerPercentKD1"]) / 100 : 0;
-                    }
-                    else
-                    {
-                        xuLyPhanGuiPercent = dtProductGroup.Rows.Count > 0 ? TextUtils.ToDecimal(dtProductGroup.Rows[0]["CustomerPercentKD2"]) / 100 : 0;
-                    }
+                    decimal xuLyPhanGuiPercent = item.PercentXLKH;
+                    //if (Quotation.DepartmentId == "D018")//KD1
+                    //{
+                    //    xuLyPhanGuiPercent = dtProductGroup.Rows.Count > 0 ? TextUtils.ToDecimal(dtProductGroup.Rows[0]["CustomerPercentKD1"]) / 100 : 0;
+                    //}
+                    //else
+                    //{
+                    //    xuLyPhanGuiPercent = dtProductGroup.Rows.Count > 0 ? TextUtils.ToDecimal(dtProductGroup.Rows[0]["CustomerPercentKD2"]) / 100 : 0;
+                    //}
                     
                     decimal tienMat = (Quotation.CustomerCash * item.PriceVT) / totalCostVT;
+                    if (Quotation.DepartmentId == "D018")
+                    {
+                        tienMat = tienMat / (1 - xuLyPhanGuiPercent / 100);
+                    }
                     decimal priceDuPhong = (Quotation.TotalDP_KD * item.PriceVT) / totalCostVT;
                     
                     decimal totalPercentCP = TextUtils.ToDecimal(LibQLSX.ExcuteScalar("select Sum(" + (Quotation.DepartmentId == "D018" ? "ValuePercentKD1" : "ValuePercentKD2")

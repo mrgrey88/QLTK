@@ -129,6 +129,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPercentXLKH = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grvCboProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQtyT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVAT.Properties)).BeginInit();
@@ -824,7 +825,8 @@
             this.colTotalCustomer,
             this.colPriceHD,
             this.colCustomerType,
-            this.colDepartmentId});
+            this.colDepartmentId,
+            this.colPercentXLKH});
             this.treeData.ContextMenuStrip = this.contextMenuStrip1;
             this.treeData.Location = new System.Drawing.Point(0, 148);
             this.treeData.Name = "treeData";
@@ -895,7 +897,7 @@
             this.colTotalNC_KD.Name = "colTotalNC_KD";
             this.colTotalNC_KD.OptionsColumn.AllowEdit = false;
             this.colTotalNC_KD.Visible = true;
-            this.colTotalNC_KD.VisibleIndex = 17;
+            this.colTotalNC_KD.VisibleIndex = 18;
             // 
             // colTotalDP
             // 
@@ -915,7 +917,7 @@
             this.colTotalDP.Name = "colTotalDP";
             this.colTotalDP.OptionsColumn.AllowEdit = false;
             this.colTotalDP.Visible = true;
-            this.colTotalDP.VisibleIndex = 20;
+            this.colTotalDP.VisibleIndex = 21;
             // 
             // colPriceKH
             // 
@@ -953,7 +955,7 @@
             this.colPriceCP.OptionsColumn.AllowEdit = false;
             this.colPriceCP.RowFooterSummaryStrFormat = "{0:n0}";
             this.colPriceCP.Visible = true;
-            this.colPriceCP.VisibleIndex = 9;
+            this.colPriceCP.VisibleIndex = 10;
             this.colPriceCP.Width = 101;
             // 
             // colPriceTPA
@@ -974,7 +976,7 @@
             this.colPriceTPA.Name = "colPriceTPA";
             this.colPriceTPA.OptionsColumn.AllowEdit = false;
             this.colPriceTPA.Visible = true;
-            this.colPriceTPA.VisibleIndex = 12;
+            this.colPriceTPA.VisibleIndex = 13;
             this.colPriceTPA.Width = 101;
             // 
             // colTotalNC
@@ -997,7 +999,7 @@
             this.colTotalNC.SummaryFooter = DevExpress.XtraTreeList.SummaryItemType.Sum;
             this.colTotalNC.SummaryFooterStrFormat = "{0:n0}";
             this.colTotalNC.Visible = true;
-            this.colTotalNC.VisibleIndex = 18;
+            this.colTotalNC.VisibleIndex = 19;
             // 
             // colTotalCP
             // 
@@ -1019,7 +1021,7 @@
             this.colTotalCP.SummaryFooter = DevExpress.XtraTreeList.SummaryItemType.Sum;
             this.colTotalCP.SummaryFooterStrFormat = "{0:n0}";
             this.colTotalCP.Visible = true;
-            this.colTotalCP.VisibleIndex = 19;
+            this.colTotalCP.VisibleIndex = 20;
             this.colTotalCP.Width = 78;
             // 
             // colHang
@@ -1036,7 +1038,7 @@
             this.colHang.FieldName = "Manufacture";
             this.colHang.Name = "colHang";
             this.colHang.Visible = true;
-            this.colHang.VisibleIndex = 23;
+            this.colHang.VisibleIndex = 24;
             // 
             // colOrigin
             // 
@@ -1052,7 +1054,7 @@
             this.colOrigin.FieldName = "Origin";
             this.colOrigin.Name = "colOrigin";
             this.colOrigin.Visible = true;
-            this.colOrigin.VisibleIndex = 24;
+            this.colOrigin.VisibleIndex = 25;
             // 
             // colParentID
             // 
@@ -1099,7 +1101,7 @@
             this.colTyLe.Name = "colTyLe";
             this.colTyLe.OptionsColumn.AllowEdit = false;
             this.colTyLe.Visible = true;
-            this.colTyLe.VisibleIndex = 25;
+            this.colTyLe.VisibleIndex = 26;
             // 
             // colPriceReal
             // 
@@ -1117,7 +1119,7 @@
             this.colPriceReal.Name = "colPriceReal";
             this.colPriceReal.OptionsColumn.AllowEdit = false;
             this.colPriceReal.Visible = true;
-            this.colPriceReal.VisibleIndex = 16;
+            this.colPriceReal.VisibleIndex = 17;
             this.colPriceReal.Width = 84;
             // 
             // colPriceTPA_PreVAT
@@ -1136,7 +1138,7 @@
             this.colPriceTPA_PreVAT.Name = "colPriceTPA_PreVAT";
             this.colPriceTPA_PreVAT.OptionsColumn.AllowEdit = false;
             this.colPriceTPA_PreVAT.Visible = true;
-            this.colPriceTPA_PreVAT.VisibleIndex = 10;
+            this.colPriceTPA_PreVAT.VisibleIndex = 11;
             // 
             // colPriceVAT_HD
             // 
@@ -1154,7 +1156,7 @@
             this.colPriceVAT_HD.Name = "colPriceVAT_HD";
             this.colPriceVAT_HD.OptionsColumn.AllowEdit = false;
             this.colPriceVAT_HD.Visible = true;
-            this.colPriceVAT_HD.VisibleIndex = 11;
+            this.colPriceVAT_HD.VisibleIndex = 12;
             // 
             // colTotalProfitTT
             // 
@@ -1172,7 +1174,7 @@
             this.colTotalProfitTT.Name = "colTotalProfitTT";
             this.colTotalProfitTT.OptionsColumn.AllowEdit = false;
             this.colTotalProfitTT.Visible = true;
-            this.colTotalProfitTT.VisibleIndex = 21;
+            this.colTotalProfitTT.VisibleIndex = 22;
             // 
             // colTotalProfitQD
             // 
@@ -1190,7 +1192,7 @@
             this.colTotalProfitQD.Name = "colTotalProfitQD";
             this.colTotalProfitQD.OptionsColumn.AllowEdit = false;
             this.colTotalProfitQD.Visible = true;
-            this.colTotalProfitQD.VisibleIndex = 22;
+            this.colTotalProfitQD.VisibleIndex = 23;
             // 
             // colTotalXL
             // 
@@ -1208,7 +1210,7 @@
             this.colTotalXL.Name = "colTotalXL";
             this.colTotalXL.OptionsColumn.AllowEdit = false;
             this.colTotalXL.Visible = true;
-            this.colTotalXL.VisibleIndex = 14;
+            this.colTotalXL.VisibleIndex = 15;
             // 
             // colTotalCustomer
             // 
@@ -1226,7 +1228,7 @@
             this.colTotalCustomer.Name = "colTotalCustomer";
             this.colTotalCustomer.OptionsColumn.AllowEdit = false;
             this.colTotalCustomer.Visible = true;
-            this.colTotalCustomer.VisibleIndex = 15;
+            this.colTotalCustomer.VisibleIndex = 16;
             // 
             // colPriceHD
             // 
@@ -1242,7 +1244,7 @@
             this.colPriceHD.Format.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colPriceHD.Name = "colPriceHD";
             this.colPriceHD.Visible = true;
-            this.colPriceHD.VisibleIndex = 13;
+            this.colPriceHD.VisibleIndex = 14;
             // 
             // colCustomerType
             // 
@@ -1499,6 +1501,20 @@
             this.gridColumn8.VisibleIndex = 1;
             this.gridColumn8.Width = 100;
             // 
+            // colPercentXLKH
+            // 
+            this.colPercentXLKH.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.colPercentXLKH.AppearanceHeader.Options.UseFont = true;
+            this.colPercentXLKH.AppearanceHeader.Options.UseTextOptions = true;
+            this.colPercentXLKH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colPercentXLKH.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.colPercentXLKH.Caption = "% KH";
+            this.colPercentXLKH.ColumnEdit = this.repositoryItemTextEdit1;
+            this.colPercentXLKH.FieldName = "PercentXLKH";
+            this.colPercentXLKH.Name = "colPercentXLKH";
+            this.colPercentXLKH.Visible = true;
+            this.colPercentXLKH.VisibleIndex = 9;
+            // 
             // frmQuotationDetailKD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1647,5 +1663,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit3View;
         private DevExpress.XtraGrid.Columns.GridColumn colRepoDepartmentId;
         private DevExpress.XtraGrid.Columns.GridColumn colRepoDepartmentName;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colPercentXLKH;
     }
 }

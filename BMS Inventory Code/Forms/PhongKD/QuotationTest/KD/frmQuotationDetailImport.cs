@@ -14,7 +14,8 @@ namespace BMS
 {
     public partial class frmQuotationDetailImport : _Forms
     {
-        public int QuotationID = 0;
+        public C_Quotation_KDModel Quotation = new C_Quotation_KDModel();
+        //public int QuotationID = 0;
         public delegate void LoadDataChangeHandler(object sender, EventArgs e);
         public event LoadDataChangeHandler LoadDataChange;
 
@@ -87,11 +88,11 @@ namespace BMS
                     decimal qty = TextUtils.ToDecimal(row["F7"]);
 
                     C_QuotationDetail_KDModel item = new C_QuotationDetail_KDModel();
-                    item.C_QuotationID = QuotationID;
+                    item.C_QuotationID = Quotation.ID;
                     item.ParentID = 0;
                     item.Qty = item.QtyT = qty;
                     item.PriceVT = TextUtils.ToDecimal(row["F8"]);
-                    item.PriceVT = item.PriceVT;
+                    //item.PriceVT = item.PriceVT;
                     item.Manufacture = TextUtils.ToString(row["F9"]);
                     item.ModuleCode = TextUtils.ToString(row["F4"]);
                     item.ModuleName = TextUtils.ToString(row["F3"]);
@@ -99,8 +100,13 @@ namespace BMS
                     item.VAT = TextUtils.ToDecimal(row["F6"]) * 100;
                     item.PriceHD = TextUtils.ToDecimal(row["F12"]);
 
-                    DataTable dtGroup = LibQLSX.Select("select ID from C_ProductGroup where Code = '" + TextUtils.ToString(row["F5"]) + "'");
-                    item.C_ProductGroupID = dtGroup.Rows.Count > 0 ? TextUtils.ToInt(dtGroup.Rows[0][0]) : 0;
+                    //DataTable dtGroup = LibQLSX.Select();
+                    string sqlGroup = "select ID from C_ProductGroup where Code = '" + TextUtils.ToString(row["F5"]) + "'";
+                    item.C_ProductGroupID = TextUtils.ToInt(LibQLSX.ExcuteScalar(sqlGroup)); //dtGroup.Rows.Count > 0 ? TextUtils.ToInt(dtGroup.Rows[0][0]) : 0;
+
+                    string sqlPercentXLKH = "select top 1 " + (Quotation.DepartmentId == "D018" ? "CustomerPercentKD1" : "CustomerPercentKD2")
+                                + " from C_ProductGroup where ID = " + item.C_ProductGroupID;
+                    item.PercentXLKH = TextUtils.ToDecimal(LibQLSX.ExcuteScalar(sqlPercentXLKH));
 
                     item.ID = (int)pt.Insert(item);
                     count++;
@@ -119,15 +125,19 @@ namespace BMS
                         groupID = dtGroupC.Rows.Count > 0 ? TextUtils.ToInt(dtGroupC.Rows[0][0]) : 0;
 
                         C_QuotationDetail_KDModel itemC = new C_QuotationDetail_KDModel();
-                        itemC.C_QuotationID = QuotationID;
+                        itemC.C_QuotationID = Quotation.ID;
                         itemC.ParentID = item.ID;
                         itemC.C_ProductGroupID = groupID;
+
+                        string sqlPercentXLKH1 = "select top 1 " + (Quotation.DepartmentId == "D018" ? "CustomerPercentKD1" : "CustomerPercentKD2")
+                                + " from C_ProductGroup where ID = " + itemC.C_ProductGroupID;
+                        item.PercentXLKH = TextUtils.ToDecimal(LibQLSX.ExcuteScalar(sqlPercentXLKH1));
 
                         itemC.VAT = TextUtils.ToDecimal(rowC["F6"]) * 100;
                         itemC.Qty = qtyC * item.Qty;
                         itemC.QtyT = qtyC;
                         itemC.PriceVT = TextUtils.ToDecimal(rowC["F8"]);
-                        itemC.PriceVT = itemC.PriceVT;
+                        //itemC.PriceVT = itemC.PriceVT;
 
                         itemC.ModuleName = TextUtils.ToString(rowC["F3"]);
                         itemC.ModuleCode = TextUtils.ToString(rowC["F4"]);
@@ -175,5 +185,7 @@ namespace BMS
                 }
             }
         }
+
+        
     }
 }
