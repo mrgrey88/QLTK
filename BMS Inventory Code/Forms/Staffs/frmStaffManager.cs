@@ -127,5 +127,20 @@ namespace BMS
                 }
             }
         }
+
+        private void grvData_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == (Keys.C))
+            {
+                try
+                {
+                    string text = TextUtils.ToString(grvData.GetFocusedRowCellValue(grvData.FocusedColumn));
+                    Clipboard.SetText(text);
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
     }
 }
