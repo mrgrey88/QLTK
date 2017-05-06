@@ -1578,5 +1578,34 @@ namespace BMS
                 }
             }
         }
+
+        private void btnUpdatePriceVT_Click(object sender, EventArgs e)
+        {
+            string filePath = "";
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = false;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                filePath = ofd.FileName;
+            }
+            else
+            {
+                return;
+            }
+
+            DataTable dt = TextUtils.ExcelToDatatableNoHeader(filePath, "Sheet1");
+
+            int count = 0;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (i == 0) continue;
+                string Code = TextUtils.ToString(dt.Rows[i]["F2"]);
+                decimal price = TextUtils.ToDecimal(dt.Rows[i]["F4"]);
+                string sql = "update Parts set Price = " + price + ", UpdatedPriceDate = GETDATE() where PartsCode = '" + Code + "'";
+                LibQLSX.ExcuteSQL(sql);
+                count++;
+            }
+            MessageBox.Show(count.ToString());
+        }
     }
 }
