@@ -14,6 +14,7 @@ namespace TPA.Model
 		private string moduleCodeHD;
 		private string moduleNameHD;
 		private decimal vAT;
+        private decimal percentXLKH;
 		private decimal qty;
 		private decimal qtyT;
 		private decimal priceVT;
@@ -98,7 +99,12 @@ namespace TPA.Model
 			get { return vAT; }
 			set { vAT = value; }
 		}
-	
+
+        public decimal PercentXLKH
+        {
+            get { return percentXLKH; }
+            set { percentXLKH = value; }
+        }
 		public decimal Qty
 		{
 			get { return qty; }

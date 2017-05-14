@@ -993,6 +993,8 @@ namespace BMS
             //MessageBox.Show("Lai cuoi la: " + value.ToString("n2"));
             //resetCostProductGroupLink();
             //UpdateC_CostProductGroupLink();
+
+            DataTable dtLink = TextUtils.GetDMVT("TPAD.A0102", false);
         }
 
         private void btnTest2_Click(object sender, EventArgs e)

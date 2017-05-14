@@ -303,10 +303,10 @@ namespace BMS
 
         private void btnImportExcel_Click(object sender, EventArgs e)
         {
-            frmQuotationDetailImport frm = new frmQuotationDetailImport();
-            frm.QuotationID = Quotation.ID;
-            frm.LoadDataChange += main_LoadDataChange;
-            TextUtils.OpenForm(frm);
+            //frmQuotationDetailImport frm = new frmQuotationDetailImport();
+            //frm.QuotationID = Quotation.ID;
+            //frm.LoadDataChange += main_LoadDataChange;
+            //TextUtils.OpenForm(frm);
         }
 
         private void btnPhanBo_Click(object sender, EventArgs e)

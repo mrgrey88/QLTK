@@ -53,6 +53,7 @@ namespace BMS
                 txtTotalDP.EditValue = Quotation.TotalDP_SX;
                 txtTotalVC.EditValue = Quotation.TotalCPVCHB_C13;
                 txtTotalBX.EditValue = Quotation.TotalBXHB_C52;
+                txtTotalDiLai.EditValue = Quotation.TotalDiLai;
 
                 //txtTotalNC_KD.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalNC_KD"]);
                 //txtTotalReal.EditValue = TextUtils.ToDecimal(txtTotalHD.EditValue) - TextUtils.ToDecimal(txtTotalVC.EditValue);
@@ -166,18 +167,18 @@ namespace BMS
 
                     //Chi phí phân bổ khác
                     decimal totalPB_QuanLy = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N08'"));
-                    workSheet.Cells[33, 6] = totalPB_QuanLy / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                    workSheet.Cells[33, 9] = totalPB_QuanLy;//Chi phí quản lí
+                    workSheet.Cells[35, 6] = totalPB_QuanLy / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                    workSheet.Cells[35, 9] = totalPB_QuanLy;//Chi phí quản lí
 
                     decimal totalPB_TaiChinh = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N09'"));
-                    workSheet.Cells[34, 6] = totalPB_TaiChinh / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                    workSheet.Cells[34, 9] = totalPB_TaiChinh;//Chi phí tài chính và lãi vay
+                    workSheet.Cells[36, 6] = totalPB_TaiChinh / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                    workSheet.Cells[36, 9] = totalPB_TaiChinh;//Chi phí tài chính và lãi vay
 
-                    workSheet.Cells[35, 9] = TextUtils.ToDecimal(txtTotalDP.EditValue);//Chi phí dự phòng
+                    workSheet.Cells[37, 9] = TextUtils.ToDecimal(txtTotalDP.EditValue);//Chi phí dự phòng
 
                     decimal totalPB_BaoHanh = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N11'"));
-                    workSheet.Cells[36, 6] = totalPB_BaoHanh / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                    workSheet.Cells[36, 9] = totalPB_BaoHanh;//Chi phí bảo hành
+                    workSheet.Cells[43, 6] = totalPB_BaoHanh / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                    workSheet.Cells[43, 9] = totalPB_BaoHanh;//Chi phí bảo hành
 
                     if (Quotation.StatusNC == 1)
                     {
@@ -191,20 +192,23 @@ namespace BMS
                         workSheet.Cells[25, 9] = totalNC_SXLR;//Chi phí cố định - đầu nhân viên SXLR
 
                         //Chi phí kỹ thuật
-                        workSheet.Cells[27, 9] = TextUtils.ToDecimal(txtTotalVC.EditValue);//Chi phí vận chuyển hàng bán
-                        workSheet.Cells[28, 9] = TextUtils.ToDecimal(txtTotalBX.EditValue);//Chi phí bốc xếp hàng bán
+                        workSheet.Cells[28, 9] = TextUtils.ToDecimal(txtTotalVC.EditValue);//Chi phí vận chuyển hàng bán
+                        workSheet.Cells[29, 9] = TextUtils.ToDecimal(txtTotalDiLai.EditValue);// Chi phí đi lại
+
+                        //workSheet.Cells[27, 9] = TextUtils.ToDecimal(txtTotalVC.EditValue);//Chi phí vận chuyển hàng bán
+                        workSheet.Cells[30, 9] = TextUtils.ToDecimal(txtTotalBX.EditValue);//Chi phí bốc xếp hàng bán
 
                         decimal totalKT_Service = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N04'"));
-                        workSheet.Cells[29, 6] = totalKT_Service / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                        workSheet.Cells[29, 9] = totalKT_Service;//Chi phí cố bộ phận Service (Lắp đặt, chuyển giao, follow)
+                        workSheet.Cells[31, 6] = totalKT_Service / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                        workSheet.Cells[31, 9] = totalKT_Service;//Chi phí cố bộ phận Service (Lắp đặt, chuyển giao, follow)
 
                         decimal totalKT_SXLR = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N07.02'"));
-                        workSheet.Cells[30, 6] = totalKT_SXLR / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                        workSheet.Cells[30, 9] = totalKT_SXLR;//Chi phí bộ phận SXLR  (Lắp đặt, chuyển giao, follow)
+                        workSheet.Cells[32, 6] = totalKT_SXLR / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                        workSheet.Cells[32, 9] = totalKT_SXLR;//Chi phí bộ phận SXLR  (Lắp đặt, chuyển giao, follow)
 
                         decimal totalKT_TK = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "GroupCode = 'N07.03'"));
-                        workSheet.Cells[31, 6] = totalKT_TK / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                        workSheet.Cells[31, 9] = totalKT_TK;//Chi phí bộ phận thiết kế (Lắp đặt, chuyển giao, follow)
+                        workSheet.Cells[33, 6] = totalKT_TK / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                        workSheet.Cells[33, 9] = totalKT_TK;//Chi phí bộ phận thiết kế (Lắp đặt, chuyển giao, follow)
                         
                     }
                     else
@@ -219,20 +223,23 @@ namespace BMS
                         workSheet.Cells[25, 9] = totalNC_SXLR;//Chi phí cố định - đầu nhân viên SXLR
 
                         //Chi phí kỹ thuật
-                        workSheet.Cells[27, 9] = TextUtils.ToDecimal(txtTotalVC.EditValue);//Chi phí vận chuyển hàng bán
-                        workSheet.Cells[28, 9] = TextUtils.ToDecimal(txtTotalBX.EditValue);//Chi phí bốc xếp hàng bán
+                        workSheet.Cells[28, 9] = TextUtils.ToDecimal(txtTotalVC.EditValue);//Chi phí vận chuyển hàng bán
+                        workSheet.Cells[29, 9] = TextUtils.ToDecimal(txtTotalDiLai.EditValue);// Chi phí đi lại
+
+                        //workSheet.Cells[27, 9] = TextUtils.ToDecimal(txtTotalVC.EditValue);//Chi phí vận chuyển hàng bán
+                        //workSheet.Cells[28, 9] = TextUtils.ToDecimal(txtTotalBX.EditValue);//Chi phí bốc xếp hàng bán
 
                         decimal totalKT_Service = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "Code = 'C09P12'"));
-                        workSheet.Cells[29, 6] = totalKT_Service / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                        workSheet.Cells[29, 9] = totalKT_Service;//Chi phí cố bộ phận Service (Lắp đặt, chuyển giao, follow)
+                        workSheet.Cells[31, 6] = totalKT_Service / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                        workSheet.Cells[31, 9] = totalKT_Service;//Chi phí cố bộ phận Service (Lắp đặt, chuyển giao, follow)
 
                         decimal totalKT_SXLR = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "Code = 'PLD'"));
-                        workSheet.Cells[30, 6] = totalKT_SXLR / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                        workSheet.Cells[30, 9] = totalKT_SXLR;//Chi phí bộ phận SXLR  (Lắp đặt, chuyển giao, follow)
+                        workSheet.Cells[32, 6] = totalKT_SXLR / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                        workSheet.Cells[32, 9] = totalKT_SXLR;//Chi phí bộ phận SXLR  (Lắp đặt, chuyển giao, follow)
 
                         decimal totalKT_TK = TextUtils.ToDecimal(dtAllCost.Compute("Sum(TotalPrice)", "Code = 'PCG'"));
-                        workSheet.Cells[31, 6] = totalKT_TK / TextUtils.ToDecimal(txtTotalTPA.EditValue);
-                        workSheet.Cells[31, 9] = totalKT_TK;//Chi phí bộ phận thiết kế (Lắp đặt, chuyển giao, follow)
+                        workSheet.Cells[33, 6] = totalKT_TK / TextUtils.ToDecimal(txtTotalTPA.EditValue);
+                        workSheet.Cells[33, 9] = totalKT_TK;//Chi phí bộ phận thiết kế (Lắp đặt, chuyển giao, follow)
                     }
                     
 
@@ -246,29 +253,29 @@ namespace BMS
 
                         for (int k = listCost.Length - 1; k >= 0; k--)
                         {
-                            workSheet.Cells[39, 2] = TextUtils.ToString(listCost[k]["Code"]);
-                            workSheet.Cells[39, 3] = TextUtils.ToString(listCost[k]["Name"]);
-                            //workSheet.Cells[39, 4] = TextUtils.ToString(listCost[k]["Name"]);
-                            workSheet.Cells[39, 5] = "Đồng";
-                            //workSheet.Cells[39, 6] = TextUtils.ToDecimal(listCost[k]["Qty"]);
-                            workSheet.Cells[39, 8] = TextUtils.ToDecimal(listCost[k]["TotalPrice"]);
+                            workSheet.Cells[46, 2] = TextUtils.ToString(listCost[k]["Code"]);
+                            workSheet.Cells[46, 3] = TextUtils.ToString(listCost[k]["Name"]);
+                            //workSheet.Cells[46, 4] = TextUtils.ToString(listCost[k]["Name"]);
+                            workSheet.Cells[46, 5] = "Đồng";
+                            //workSheet.Cells[46, 6] = TextUtils.ToDecimal(listCost[k]["Qty"]);
+                            workSheet.Cells[46, 8] = TextUtils.ToDecimal(listCost[k]["TotalPrice"]);
 
-                            ((Excel.Range)workSheet.Rows[39]).Insert();
-                            Excel.Range range = workSheet.get_Range(workSheet.Cells[39, 3], workSheet.Cells[39, 4]);
+                            ((Excel.Range)workSheet.Rows[46]).Insert();
+                            Excel.Range range = workSheet.get_Range(workSheet.Cells[46, 3], workSheet.Cells[46, 4]);
                             range.Merge(true);
                         }
 
-                        workSheet.Cells[39, 2] = TextUtils.ToString(dtGroup.Rows[i]["GroupCode"]);
-                        workSheet.Cells[39, 3] = TextUtils.ToString(dtGroup.Rows[i]["GroupName"]);
+                        workSheet.Cells[46, 2] = TextUtils.ToString(dtGroup.Rows[i]["GroupCode"]);
+                        workSheet.Cells[46, 3] = TextUtils.ToString(dtGroup.Rows[i]["GroupName"]);
 
-                        ((Excel.Range)workSheet.Rows[39]).Font.Bold = true;
-                        ((Excel.Range)workSheet.Rows[39]).Insert();
-                        Excel.Range range1 = workSheet.get_Range(workSheet.Cells[39, 3], workSheet.Cells[39, 4]);
+                        ((Excel.Range)workSheet.Rows[46]).Font.Bold = true;
+                        ((Excel.Range)workSheet.Rows[46]).Insert();
+                        Excel.Range range1 = workSheet.get_Range(workSheet.Cells[46, 3], workSheet.Cells[46, 4]);
                         range1.Merge(true);
                     }
 
-                    ((Excel.Range)workSheet.Rows[38]).Delete();
-                    ((Excel.Range)workSheet.Rows[38]).Delete();
+                    ((Excel.Range)workSheet.Rows[45]).Delete();
+                    ((Excel.Range)workSheet.Rows[45]).Delete();
                 }
                 catch (Exception ex)
                 {

@@ -60,6 +60,7 @@ namespace BMS
                 txtDeliveryTime.EditValue = CurrentQuotation.DeliveryTime;
                 txtTotalVC_KD.EditValue = CurrentQuotation.TotalVC_KD;
                 txtTotalBX_KD.EditValue = CurrentQuotation.TotalBX_KD;
+                txtTotalDiLai.EditValue = CurrentQuotation.TotalDiLai;
 
                 //San xuat
                 txtTotalDP_SX.EditValue = CurrentQuotation.TotalDP_SX;
@@ -209,6 +210,8 @@ namespace BMS
 
                 CurrentQuotation.TotalBX_KD = TextUtils.ToDecimal(txtTotalBX_KD.EditValue);
                 CurrentQuotation.TotalVC_KD = TextUtils.ToDecimal(txtTotalVC_KD.EditValue);
+
+                CurrentQuotation.TotalDiLai = TextUtils.ToDecimal(txtTotalDiLai.EditValue);
 
                 CurrentQuotation.StatusNC = cboStatusNC.SelectedIndex;
                 CurrentQuotation.CustomerType = cboCustomerType.SelectedIndex; 

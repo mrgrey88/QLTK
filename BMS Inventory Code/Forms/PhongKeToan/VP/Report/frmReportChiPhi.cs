@@ -75,7 +75,7 @@ namespace BMS
                 {                    
                     string sql = "SELECT Sum(ISNULL(C_PSNO,0)) XangXe,C_Month FROM [V_XNTC_REPORT] where (C_KMP_MA = 'C17') and C_Year = " + year + " Group by C_Month";
                     DataTable dtXangXe = LibIE.Select(sql);
-                    decimal tyle =TextUtils.ToDecimal(LibIE.ExcuteScalar("select top 1 TYLE from T_DM_PHANXUONG_KMP where PK_KMP = 41 and PK_PHANXUONG = " + dID));
+                    decimal tyle = TextUtils.ToDecimal(LibIE.ExcuteScalar("select top 1 TYLE from T_DM_PHANXUONG_KMP where PK_KMP = 41 and PK_PHANXUONG = " + dID));
 
                     decimal total = 0;
                     for (int i = 1; i <= 12; i++)

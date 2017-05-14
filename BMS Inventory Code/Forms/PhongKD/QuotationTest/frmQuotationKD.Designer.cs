@@ -98,6 +98,8 @@
             this.lblStatusNC = new System.Windows.Forms.Label();
             this.lblCustomerType = new System.Windows.Forms.Label();
             this.cboCustomerType = new System.Windows.Forms.ComboBox();
+            this.txtTotalDiLai = new DevExpress.XtraEditors.TextEdit();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtDeliveryTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalHD.Properties)).BeginInit();
             this.mnuMenu.SuspendLayout();
@@ -118,6 +120,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalVC_KD.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalBX_KD.Properties)).BeginInit();
             this.groupSX.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalDiLai.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtDeliveryTime
@@ -650,7 +653,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(91, 46);
+            this.label13.Location = new System.Drawing.Point(91, 29);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(106, 13);
             this.label13.TabIndex = 229;
@@ -659,7 +662,7 @@
             // txtTotalDP_SX
             // 
             this.txtTotalDP_SX.EditValue = "";
-            this.txtTotalDP_SX.Location = new System.Drawing.Point(202, 43);
+            this.txtTotalDP_SX.Location = new System.Drawing.Point(202, 26);
             this.txtTotalDP_SX.Name = "txtTotalDP_SX";
             this.txtTotalDP_SX.Properties.DisplayFormat.FormatString = "n0";
             this.txtTotalDP_SX.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -675,7 +678,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(88, 72);
+            this.label15.Location = new System.Drawing.Point(88, 55);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(109, 13);
             this.label15.TabIndex = 229;
@@ -685,7 +688,7 @@
             // txtTotalVCBX
             // 
             this.txtTotalVCBX.EditValue = "";
-            this.txtTotalVCBX.Location = new System.Drawing.Point(202, 69);
+            this.txtTotalVCBX.Location = new System.Drawing.Point(202, 52);
             this.txtTotalVCBX.Name = "txtTotalVCBX";
             this.txtTotalVCBX.Properties.DisplayFormat.FormatString = "n0";
             this.txtTotalVCBX.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -702,7 +705,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(49, 106);
+            this.label16.Location = new System.Drawing.Point(49, 89);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(148, 13);
             this.label16.TabIndex = 229;
@@ -711,7 +714,7 @@
             // txtTotalCPVCHB_C13
             // 
             this.txtTotalCPVCHB_C13.EditValue = "";
-            this.txtTotalCPVCHB_C13.Location = new System.Drawing.Point(202, 103);
+            this.txtTotalCPVCHB_C13.Location = new System.Drawing.Point(202, 86);
             this.txtTotalCPVCHB_C13.Name = "txtTotalCPVCHB_C13";
             this.txtTotalCPVCHB_C13.Properties.DisplayFormat.FormatString = "n0";
             this.txtTotalCPVCHB_C13.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -727,7 +730,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(67, 132);
+            this.label17.Location = new System.Drawing.Point(67, 115);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(130, 13);
             this.label17.TabIndex = 229;
@@ -736,7 +739,7 @@
             // txtTotalBXHB_C52
             // 
             this.txtTotalBXHB_C52.EditValue = "";
-            this.txtTotalBXHB_C52.Location = new System.Drawing.Point(202, 129);
+            this.txtTotalBXHB_C52.Location = new System.Drawing.Point(202, 112);
             this.txtTotalBXHB_C52.Name = "txtTotalBXHB_C52";
             this.txtTotalBXHB_C52.Properties.DisplayFormat.FormatString = "n0";
             this.txtTotalBXHB_C52.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -823,7 +826,9 @@
             this.groupSX.Controls.Add(this.label13);
             this.groupSX.Controls.Add(this.label15);
             this.groupSX.Controls.Add(this.label16);
+            this.groupSX.Controls.Add(this.label9);
             this.groupSX.Controls.Add(this.label17);
+            this.groupSX.Controls.Add(this.txtTotalDiLai);
             this.groupSX.Controls.Add(this.txtTotalBXHB_C52);
             this.groupSX.Controls.Add(this.txtTotalDP_SX);
             this.groupSX.Controls.Add(this.txtTotalVCBX);
@@ -875,6 +880,31 @@
             this.cboCustomerType.Name = "cboCustomerType";
             this.cboCustomerType.Size = new System.Drawing.Size(180, 21);
             this.cboCustomerType.TabIndex = 250;
+            // 
+            // txtTotalDiLai
+            // 
+            this.txtTotalDiLai.EditValue = "";
+            this.txtTotalDiLai.Location = new System.Drawing.Point(202, 139);
+            this.txtTotalDiLai.Name = "txtTotalDiLai";
+            this.txtTotalDiLai.Properties.DisplayFormat.FormatString = "n0";
+            this.txtTotalDiLai.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalDiLai.Properties.EditFormat.FormatString = "n0";
+            this.txtTotalDiLai.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalDiLai.Properties.Mask.EditMask = "n0";
+            this.txtTotalDiLai.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtTotalDiLai.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTotalDiLai.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtTotalDiLai.Size = new System.Drawing.Size(145, 20);
+            this.txtTotalDiLai.TabIndex = 258;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(131, 142);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(66, 13);
+            this.label9.TabIndex = 229;
+            this.label9.Text = "Chi phí đi lại";
             // 
             // frmQuotationKD
             // 
@@ -943,6 +973,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalBX_KD.Properties)).EndInit();
             this.groupSX.ResumeLayout(false);
             this.groupSX.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalDiLai.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1019,5 +1050,7 @@
         private System.Windows.Forms.Label lblStatusNC;
         private System.Windows.Forms.Label lblCustomerType;
         private System.Windows.Forms.ComboBox cboCustomerType;
+        private System.Windows.Forms.Label label9;
+        private DevExpress.XtraEditors.TextEdit txtTotalDiLai;
     }
 }

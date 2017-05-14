@@ -85,6 +85,9 @@
             this.txtTotalTPA_PreVAT = new DevExpress.XtraEditors.TextEdit();
             this.txtTotalTPA = new DevExpress.XtraEditors.TextEdit();
             this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtTotalDiLai = new DevExpress.XtraEditors.TextEdit();
+            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.grdSP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit2)).BeginInit();
@@ -111,6 +114,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalVAT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalTPA_PreVAT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalTPA.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalDiLai.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // grdSP
@@ -494,7 +499,7 @@
             // txtTotalProfitTPA_PHD
             // 
             this.txtTotalProfitTPA_PHD.EditValue = "";
-            this.txtTotalProfitTPA_PHD.Location = new System.Drawing.Point(968, 51);
+            this.txtTotalProfitTPA_PHD.Location = new System.Drawing.Point(969, 79);
             this.txtTotalProfitTPA_PHD.Name = "txtTotalProfitTPA_PHD";
             this.txtTotalProfitTPA_PHD.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.txtTotalProfitTPA_PHD.Properties.Appearance.Options.UseFont = true;
@@ -746,7 +751,7 @@
             // txtTotalProfit
             // 
             this.txtTotalProfit.EditValue = "";
-            this.txtTotalProfit.Location = new System.Drawing.Point(816, 51);
+            this.txtTotalProfit.Location = new System.Drawing.Point(817, 79);
             this.txtTotalProfit.Name = "txtTotalProfit";
             this.txtTotalProfit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
             this.txtTotalProfit.Properties.Appearance.Options.UseFont = true;
@@ -803,7 +808,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(757, 55);
+            this.label18.Location = new System.Drawing.Point(758, 83);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(54, 13);
             this.label18.TabIndex = 308;
@@ -966,6 +971,57 @@
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label2.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(746, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.TabIndex = 308;
+            this.label5.Text = "Chi phí đi lại";
+            // 
+            // txtTotalDiLai
+            // 
+            this.txtTotalDiLai.EditValue = "";
+            this.txtTotalDiLai.Location = new System.Drawing.Point(817, 51);
+            this.txtTotalDiLai.Name = "txtTotalDiLai";
+            this.txtTotalDiLai.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.txtTotalDiLai.Properties.Appearance.Options.UseFont = true;
+            this.txtTotalDiLai.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtTotalDiLai.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtTotalDiLai.Properties.DisplayFormat.FormatString = "n0";
+            this.txtTotalDiLai.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalDiLai.Properties.EditFormat.FormatString = "n0";
+            this.txtTotalDiLai.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.txtTotalDiLai.Properties.Mask.EditMask = "n0";
+            this.txtTotalDiLai.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtTotalDiLai.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.txtTotalDiLai.Properties.ReadOnly = true;
+            this.txtTotalDiLai.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtTotalDiLai.Size = new System.Drawing.Size(146, 21);
+            this.txtTotalDiLai.TabIndex = 314;
+            // 
+            // textEdit2
+            // 
+            this.textEdit2.EditValue = "";
+            this.textEdit2.Location = new System.Drawing.Point(969, 51);
+            this.textEdit2.Name = "textEdit2";
+            this.textEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold);
+            this.textEdit2.Properties.Appearance.Options.UseFont = true;
+            this.textEdit2.Properties.Appearance.Options.UseTextOptions = true;
+            this.textEdit2.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.textEdit2.Properties.DisplayFormat.FormatString = "n2";
+            this.textEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.textEdit2.Properties.EditFormat.FormatString = "n0";
+            this.textEdit2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.textEdit2.Properties.Mask.EditMask = "n2";
+            this.textEdit2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.textEdit2.Properties.Mask.UseMaskAsDisplayFormat = true;
+            this.textEdit2.Properties.ReadOnly = true;
+            this.textEdit2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textEdit2.Size = new System.Drawing.Size(63, 21);
+            this.textEdit2.TabIndex = 295;
+            // 
             // frmQuotationReportSX
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -977,6 +1033,7 @@
             this.Controls.Add(this.txtTotalVT);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtTotalCustomer_P);
+            this.Controls.Add(this.textEdit2);
             this.Controls.Add(this.txtTotalProfitTPA_PHD);
             this.Controls.Add(this.txtCustomerValue_P);
             this.Controls.Add(this.txtTotalPB_P);
@@ -988,11 +1045,13 @@
             this.Controls.Add(this.txtTotalDP);
             this.Controls.Add(this.txtTotalNC);
             this.Controls.Add(this.txtTotalPB);
+            this.Controls.Add(this.txtTotalDiLai);
             this.Controls.Add(this.txtTotalVC);
             this.Controls.Add(this.txtTotalProfit);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.txtTotalHD);
@@ -1035,6 +1094,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalVAT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalTPA_PreVAT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalTPA.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTotalDiLai.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1098,5 +1159,8 @@
         private DevExpress.XtraEditors.TextEdit txtTotalTPA;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripButton btnRefresh;
+        private System.Windows.Forms.Label label5;
+        private DevExpress.XtraEditors.TextEdit txtTotalDiLai;
+        private DevExpress.XtraEditors.TextEdit textEdit2;
     }
 }

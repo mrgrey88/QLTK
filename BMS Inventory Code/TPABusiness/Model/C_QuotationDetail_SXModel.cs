@@ -22,6 +22,8 @@ namespace TPA.Model
 		private decimal totalNC;
 		private decimal totalPB_DA;
 		private decimal totalPB;
+        private decimal priceDiLai;
+
 		private decimal priceCP;
 		private decimal priceTPA;
 		private decimal priceHD;
@@ -146,7 +148,12 @@ namespace TPA.Model
 			get { return totalPB; }
 			set { totalPB = value; }
 		}
-	
+
+        public decimal PriceDiLai
+        {
+            get { return priceDiLai; }
+            set { priceDiLai = value; }
+        }
 		public decimal PriceCP
 		{
 			get { return priceCP; }

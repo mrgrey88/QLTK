@@ -593,11 +593,17 @@
     <Compile Include="PhongKeToan\VP\Report\frmReportChiPhi_FCM.Designer.cs">
       <DependentUpon>frmReportChiPhi_FCM.cs</DependentUpon>
     </Compile>
-    <Compile Include="PhongKeToan\VP\Report\frmReportChiPhi_FCMnew.cs">
+    <Compile Include="PhongKeToan\VP\Report\frmReportChiPhi_FCM_KD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PhongKeToan\VP\Report\frmReportChiPhi_FCMnew.Designer.cs">
-      <DependentUpon>frmReportChiPhi_FCMnew.cs</DependentUpon>
+    <Compile Include="PhongKeToan\VP\Report\frmReportChiPhi_FCM_KD.Designer.cs">
+      <DependentUpon>frmReportChiPhi_FCM_KD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhongKeToan\VP\Report\frmReportChiPhi_FCM_SX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhongKeToan\VP\Report\frmReportChiPhi_FCM_SX.Designer.cs">
+      <DependentUpon>frmReportChiPhi_FCM_SX.cs</DependentUpon>
     </Compile>
     <Compile Include="PhongKeToan\VP\Report\frmReportDoanhThu.cs">
       <SubType>Form</SubType>
@@ -2012,8 +2018,11 @@
     <EmbeddedResource Include="PhongKeToan\VP\Report\frmReportChiPhi_FCM.resx">
       <DependentUpon>frmReportChiPhi_FCM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PhongKeToan\VP\Report\frmReportChiPhi_FCMnew.resx">
-      <DependentUpon>frmReportChiPhi_FCMnew.cs</DependentUpon>
+    <EmbeddedResource Include="PhongKeToan\VP\Report\frmReportChiPhi_FCM_KD.resx">
+      <DependentUpon>frmReportChiPhi_FCM_KD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhongKeToan\VP\Report\frmReportChiPhi_FCM_SX.resx">
+      <DependentUpon>frmReportChiPhi_FCM_SX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PhongKeToan\VP\Report\frmReportDoanhThu.resx">
       <DependentUpon>frmReportDoanhThu.cs</DependentUpon>

@@ -422,24 +422,24 @@ namespace BMS
                     item.TotalVC = Quotation.TotalVC_KD * item.PriceVT / totalCostVT;
                     item.TotalDP = priceDuPhong;
                     item.TotalCustomer = tienMat;
-                    item.TotalXL = Quotation.IsVAT == 1 ? xuLyPhanGuiPercent * tienMat : 0;
+                    item.TotalXL = Quotation.IsVAT == 1 ? xuLyPhanGuiPercent/100 * tienMat : 0;
                     
                     item.PriceCP = (item.PriceVT + item.TotalBX + item.TotalVC + priceDuPhong) * (1 + profitPercent) / (1 - totalPercentCP * (1 + profitPercent));
-                    
-                    item.PriceTPA = item.TotalXL + tienMat + item.PriceCP * (1 + item.VAT / 100);
+                    decimal priceKHG = Quotation.DepartmentId == "D018" ? tienMat : (item.TotalXL + tienMat);
+                    item.PriceTPA = priceKHG + item.PriceCP * (1 + item.VAT / 100);
                     item.PriceTPA_PreVAT = item.PriceTPA / (1 + item.VAT / 100);
                     item.PriceVAT = (item.PriceTPA_PreVAT - tienMat) * item.VAT / 100;
                     item.PriceVAT_HD = ((item.PriceHD / (1 + item.VAT / 100)) - tienMat - item.TotalXL) * item.VAT / 100;
 
-                    item.PriceReal = item.PriceHD - item.TotalXL - tienMat;
+                    item.PriceReal = item.PriceHD - priceKHG - item.PriceVAT_HD;
 
                     C_QuotationDetail_KDBO.Instance.Update(item);
 
                     calculateCost(item);
 
-                    decimal totalAllCP = (item.TotalVC + item.TotalBX + item.PriceVT + item.TotalNC + item.TotalNC_KD + item.TotalPB);
+                    decimal totalAllCP = (item.TotalVC + item.TotalBX + item.PriceVT + item.TotalNC + item.TotalNC_KD + item.TotalPB + item.TotalDP);
                     item.TotalProfitQD = item.PriceCP - totalAllCP;
-                    item.TotalProfitTT = item.PriceHD - item.PriceVAT_HD - item.TotalXL - item.TotalCustomer - totalAllCP;
+                    item.TotalProfitTT = item.PriceHD - totalAllCP - item.PriceVAT_HD - (Quotation.DepartmentId == "D018" ? (item.TotalXL + priceKHG) : (item.TotalXL + item.TotalCustomer));
                     C_QuotationDetail_KDBO.Instance.Update(item);
                 }
                 #endregion

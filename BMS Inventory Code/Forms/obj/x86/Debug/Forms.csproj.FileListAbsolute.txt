@@ -1531,7 +1531,8 @@ D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmQuotationDetailSX.
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmChiPhiNhanCong.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmQuotationReportSX.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmYCMVTwarningNew.resources
-D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmReportChiPhi_FCMnew.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmQuotationDetailImportSX.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmTongHopChucNangKeToan.resources
 D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmProjectProblemManager.resources
+D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmReportChiPhi_FCM_SX.resources
+D:\TanPhat\QLTK\BMS Inventory Code\Forms\obj\x86\Debug\BMS.frmReportChiPhi_FCM_KD.resources

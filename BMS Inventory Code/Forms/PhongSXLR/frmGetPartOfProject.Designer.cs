@@ -98,7 +98,7 @@
             // 
             // cboProject
             // 
-            this.cboProject.Location = new System.Drawing.Point(52, 12);
+            this.cboProject.Location = new System.Drawing.Point(52, 10);
             this.cboProject.Name = "cboProject";
             this.cboProject.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -195,7 +195,7 @@
             // btnReloadData
             // 
             this.btnReloadData.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReloadData.Location = new System.Drawing.Point(710, 11);
+            this.btnReloadData.Location = new System.Drawing.Point(710, 9);
             this.btnReloadData.Name = "btnReloadData";
             this.btnReloadData.Size = new System.Drawing.Size(91, 23);
             this.btnReloadData.TabIndex = 221;
@@ -206,7 +206,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 15);
+            this.label6.Location = new System.Drawing.Point(10, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 220;
@@ -1037,7 +1037,7 @@
             "Chưa đến ngày về",
             "Đã xuất kho",
             "Chưa có PO"});
-            this.cboStatus.Location = new System.Drawing.Point(376, 12);
+            this.cboStatus.Location = new System.Drawing.Point(376, 10);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(328, 21);
             this.cboStatus.TabIndex = 224;
@@ -1045,7 +1045,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(315, 16);
+            this.label1.Location = new System.Drawing.Point(315, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 225;

@@ -23,6 +23,7 @@ namespace TPA.Model
 		private decimal totalVCBX;
 		private decimal totalCPVCHB_C13;
 		private decimal totalBXHB_C52;
+        private decimal totalDiLai;
 		private decimal deliveryTime;
 		private int status;
 		private bool isCustomerVAT;
@@ -149,7 +150,11 @@ namespace TPA.Model
 			get { return totalBXHB_C52; }
 			set { totalBXHB_C52 = value; }
 		}
-	
+        public decimal TotalDiLai
+        {
+            get { return totalDiLai; }
+            set { totalDiLai = value; }
+        }
 		public decimal DeliveryTime
 		{
 			get { return deliveryTime; }

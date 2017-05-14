@@ -45,6 +45,8 @@ namespace BMS
             DataTable dtQuotation = C_CostBO.Instance.LoadDataFromSP("spReportQuotationKD", "Source", paraName, paraValue);
             if (dtQuotation.Rows.Count > 0)
             {
+                decimal vat = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalVAT_HD"]);
+
                 txtTotalHD.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalHD"]);
                 txtTotalTPA.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalTPA"]);
                 txtTotalTPA_PreVAT.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalTPA_PreVAT"]);
@@ -60,7 +62,10 @@ namespace BMS
                 txtTotalCustomer.EditValue = Quotation.CustomerCash;
 
                 txtTotalNC_KD.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalNC_KD"]);
-                txtTotalReal.EditValue = TextUtils.ToDecimal(txtTotalHD.EditValue) - TextUtils.ToDecimal(txtTotalXL.EditValue);
+
+                decimal chiXucTienBH = Quotation.DepartmentId == "D018" ? Quotation.CustomerCash + TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalXL"]) : Quotation.CustomerCash;
+                txtTotalReal.EditValue = TextUtils.ToDecimal(txtTotalHD.EditValue) - chiXucTienBH - vat;
+
                 txtTotalProfitTT.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalProfitTT"]);
                 txtTotalProfitQD.EditValue = TextUtils.ToDecimal(dtQuotation.Rows[0]["TotalProfitQD"]);
             }
@@ -142,7 +147,7 @@ namespace BMS
                     workSheet.Cells[5, 4] = TextUtils.ToString(Quotation.ProjectCode);
                     workSheet.Cells[6, 4] = TextUtils.ToString(Quotation.ProjectName);
                     workSheet.Cells[7, 4] = TextUtils.ToString(Quotation.CustomerName);
-                    workSheet.Cells[9, 4] = TextUtils.ToString(dtQuotation.Rows[0]["DName"]);                    
+                    workSheet.Cells[9, 4] = TextUtils.ToString(dtQuotation.Rows[0]["DName"]);
                     workSheet.Cells[8, 7] = TextUtils.ToString(dtQuotation.Rows[0]["StatusText"]);
                     workSheet.Cells[9, 7] = TextUtils.ToString(Quotation.POnumber);
                     //Lợi nhuận

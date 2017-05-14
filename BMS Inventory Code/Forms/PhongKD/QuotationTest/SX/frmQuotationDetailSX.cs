@@ -456,6 +456,7 @@ namespace BMS
                         item.TotalDP = Quotation.TotalDP_SX * (item.TotalPercentCP_NC + totalVT) / (totalAllPercentCP_NC + totalAllVT);//dự phòng
                         item.TotalVC = Quotation.TotalCPVCHB_C13 * (item.TotalPercentCP_NC + totalVT) / (totalAllPercentCP_NC + totalAllVT);//vận chuyển
                         item.TotalBX = Quotation.TotalBXHB_C52 * (item.TotalPercentCP_NC + totalVT) / (totalAllPercentCP_NC + totalAllVT);//bốc xếp
+                        item.PriceDiLai = Quotation.TotalDiLai * (item.TotalPercentCP_NC + totalVT) / (totalAllPercentCP_NC + totalAllVT);//Đi lại
 
                         item.TotalPB_DA = item.TotalDP + item.TotalVC + item.TotalBX;
 
@@ -496,6 +497,7 @@ namespace BMS
                         item.TotalDP = Quotation.TotalDP_SX * (item.TotalNC + totalVT) / (totalAllNC + totalAllVT);//dự phòng
                         item.TotalVC = Quotation.TotalCPVCHB_C13 * (item.TotalNC + totalVT) / (totalAllNC + totalAllVT);//vận chuyển
                         item.TotalBX = Quotation.TotalBXHB_C52 * (item.TotalNC + totalVT) / (totalAllNC + totalAllVT);//bốc xếp
+                        item.PriceDiLai = Quotation.TotalDiLai * (item.TotalNC + totalVT) / (totalAllNC + totalAllVT);//Đi lại
 
                         item.TotalPB_DA = item.TotalDP + item.TotalVC + item.TotalBX;
 
@@ -694,7 +696,7 @@ namespace BMS
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                localPath = fbd.SelectedPath + "\\Bao Gia - " + Quotation.Code + ".xls";
+                localPath = fbd.SelectedPath + "\\SX." + Quotation.Code + ".xls";
             }
             else
             {
@@ -731,22 +733,21 @@ namespace BMS
                     for (int i = dtItem.Rows.Count - 1; i >= 0; i--)
                     {
                         int id = TextUtils.ToInt(dtItem.Rows[i]["ID"]);
-                        string moduleCode1 = TextUtils.ToString(dtItem.Rows[i]["ModuleCode"]);
-                        string moduleName1 = TextUtils.ToString(dtItem.Rows[i]["ModuleName"]);
-                        decimal qty1 = TextUtils.ToDecimal(dtItem.Rows[i]["Qty"]);
-                        decimal price1 = TextUtils.ToDecimal(dtItem.Rows[i]["PriceTPA"]);
-                        string hang1 = TextUtils.ToString(dtItem.Rows[i]["Manufacture"]);
-                        //string total1 = TextUtils.ToDecimal(dtItem.Rows[i]["TotalTPA"]).ToString("n0");
-                        int parentID = TextUtils.ToInt(dtItem.Rows[i]["ParentID"]);
+                        string moduleCodeP = TextUtils.ToString(dtItem.Rows[i]["ModuleCode"]);
+                        string moduleNameP = TextUtils.ToString(dtItem.Rows[i]["ModuleName"]);
+                        decimal qtyP = TextUtils.ToDecimal(dtItem.Rows[i]["Qty"]);
+                        decimal priceP = TextUtils.ToDecimal(dtItem.Rows[i]["PriceHD"]);
+                        string hangP = TextUtils.ToString(dtItem.Rows[i]["Manufacture"]);
                         DataTable dtC = LibQLSX.Select("select * from vC_QuotationDetail_SX with(nolock) where ParentID = " + id);
 
-                        if (dtC.Rows.Count == 0)
+                        if (dtC.Rows.Count == 0)//nếu thiết bị không có thiết bị con
                         {
-                            if (moduleCode1.ToUpper().StartsWith("TPAD.") && moduleCode1.Length == 10)
+                            #region Add Parent
+                            if (moduleCodeP.ToUpper().StartsWith("TPAD.") && moduleCodeP.Length == 10)
                             {
                                 try
                                 {
-                                    string spec = TextUtils.ToString(TextUtils.ExcuteScalar("select top 1 Specifications from Modules where Code = '" + moduleCode1 + "'"));
+                                    string spec = TextUtils.ToString(TextUtils.ExcuteScalar("select top 1 Specifications from Modules where Code = '" + moduleCodeP + "'"));
                                     if (spec.Length > 0)
                                     {
                                         string[] thongSo = spec.Split('\n');
@@ -773,15 +774,16 @@ namespace BMS
                             }
 
                             workSheet.Cells[16, 2] = (i + 1);
-                            workSheet.Cells[16, 3] = moduleName1.ToUpper();
-                            workSheet.Cells[16, 4] = moduleCode1.ToUpper();
-                            workSheet.Cells[16, 5] = hang1;
+                            workSheet.Cells[16, 3] = moduleNameP.ToUpper();
+                            workSheet.Cells[16, 4] = moduleCodeP.ToUpper();
+                            workSheet.Cells[16, 5] = hangP;
                             workSheet.Cells[16, 6] = "BỘ";
-                            workSheet.Cells[16, 7] = qty1.ToString("n0");
-                            workSheet.Cells[16, 8] = price1.ToString("n0");
-                            workSheet.Cells[16, 9] = qty1 * price1;
+                            workSheet.Cells[16, 7] = qtyP.ToString("n0");
+                            workSheet.Cells[16, 8] = priceP.ToString("n0");
+                            workSheet.Cells[16, 9] = qtyP * priceP;
                             ((Excel.Range)workSheet.Rows[16]).Font.Bold = true;
                             ((Excel.Range)workSheet.Rows[16]).Insert();
+                            #endregion
                         }
                         else
                         {
@@ -793,7 +795,7 @@ namespace BMS
                                 string moduleCode = TextUtils.ToString(dtC.Rows[j]["ModuleCode"]);
                                 string moduleName = TextUtils.ToString(dtC.Rows[j]["ModuleName"]);
                                 string qty = TextUtils.ToDecimal(dtC.Rows[j]["QtyT"]).ToString("n0");
-                                string price = TextUtils.ToDecimal(dtC.Rows[j]["PriceTPA"]).ToString("n0");
+                                string price = TextUtils.ToDecimal(dtC.Rows[j]["PriceHD"]).ToString("n0");
                                 string hang = TextUtils.ToString(dtC.Rows[j]["Manufacture"]);
                                 //string total = TextUtils.ToDecimal(dtC.Rows[j]["TotalTPA"]).ToString("n0");
                                 sumPrice += TextUtils.ToDecimal(qty) * TextUtils.ToDecimal(price);
@@ -868,17 +870,17 @@ namespace BMS
                             ((Excel.Range)workSheet.Rows[16]).Insert();
                             workSheet.Cells[16, 3] = "'- Hãng sản xuất: TPA";
                             ((Excel.Range)workSheet.Rows[16]).Insert();
-                            workSheet.Cells[16, 3] = "'- Model: " + TextUtils.ToString(dtItem.Rows[i]["ModuleCode"]);
+                            workSheet.Cells[16, 3] = "'- Model: " + moduleCodeP;
                             ((Excel.Range)workSheet.Rows[16]).Insert();
 
                             workSheet.Cells[16, 2] = (i + 1);
-                            workSheet.Cells[16, 3] = moduleName1.ToUpper();
-                            workSheet.Cells[16, 4] = moduleCode1.ToUpper();
-                            workSheet.Cells[16, 5] = hang1;
+                            workSheet.Cells[16, 3] = moduleNameP.ToUpper();
+                            workSheet.Cells[16, 4] = moduleCodeP.ToUpper();
+                            workSheet.Cells[16, 5] = hangP;
                             workSheet.Cells[16, 6] = "BỘ";
-                            workSheet.Cells[16, 7] = qty1.ToString("n0");
+                            workSheet.Cells[16, 7] = qtyP.ToString("n0");
                             workSheet.Cells[16, 8] = sumPrice.ToString("n0");
-                            workSheet.Cells[16, 9] = qty1 * sumPrice;
+                            workSheet.Cells[16, 9] = qtyP * sumPrice;
                             ((Excel.Range)workSheet.Rows[16]).Font.Bold = true;
                             ((Excel.Range)workSheet.Rows[16]).Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Yellow);// Color.Yellow;
                             ((Excel.Range)workSheet.Rows[16]).Insert();
@@ -899,6 +901,9 @@ namespace BMS
                         app.Quit();
                     }
                 }
+
+                if (File.Exists(localPath))
+                    Process.Start(localPath);
             }
         }
 
